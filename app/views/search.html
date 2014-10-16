@@ -1,0 +1,32 @@
+<h3>Motore di ricerca siti</h3>
+<form role="form">
+	<div class="form-group">
+		<label for="faculty">Facoltà</label>
+		<select id="faculty" class="form-control" ng-options="faculty.Key as faculty.Description for faculty in faculties" ng-change="fillCdses()" ng-model="searchContext.FacultyKey">
+			<option value="">-- selziona una facoltà --</option>
+			
+		</select>
+		<div ng-show="cdses.length">
+		<label for="cds">Corsi di Studio</label>
+		<select id="cds" class="form-control" ng-options="cds.Key as cds.CourseName for cds in cdses" ng-model="searchContext.CdsKey">
+			<option value="">-- Tutti i corsi di studio --</option>
+		</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="keyword">Parola chiave</label>
+		<input type="text" id="keyword" class="form-control" ng-model="searchContext.Keyword">
+	</div>
+	<div class="form-group">
+		<label for="teacher">Nome docente</label>
+		<input type="text" id="teacher" class="form-control" ng-model="searchContext.Teacher">
+	</div>
+	<div class="form-group">
+		<button class="btn btn-default" ng-click="search()">Cerca</button>
+		<button class="btn btn-default" ng-click="reset()">Reset</button>
+	</div>
+
+</form>
+<ul>
+	<li class="list-item" ng-repeat="faculty in faculties">{{ faculty.Description }}</li>
+</ul>
