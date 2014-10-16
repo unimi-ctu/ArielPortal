@@ -12,14 +12,14 @@ var basePath = 'http://ale.unimi.it/portalApi/api/user/';
 angular.module('portalApp')
   .service('portal', function portal($http) {
 
-  	var searchContext = {};
+  	var _searchContext = {};
 
   	this.getSearchContext = function() {
-  		return searchContext;
+  		return angular.copy(_searchContext);
   	};
 
   	this.setSearchContext = function(context) {
-  		searchContext = context;
+  		_searchContext = angular.copy(context);
   	};
 
   	this.getFaculties = function() {

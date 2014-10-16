@@ -9,8 +9,9 @@
  */
 angular.module('portalApp')
   .controller('SearchCtrl', function ($scope, portal) {
-  	console.log($scope.searchContext);
   	$scope.searchContext = portal.getSearchContext();
+    console.log(portal.getSearchContext());
+    console.log($scope.searchContext);
 
   	portal.getFaculties().success(function(data) {
   		$scope.faculties = data;
@@ -29,11 +30,15 @@ angular.module('portalApp')
   	};
 
   	$scope.search = function() {
-  		$scope.setSearchContext(portal.searchContext);
+  		portal.setSearchContext($scope.searchContext);
   	};
 
   	$scope.reset = function() {
   		$scope.searchContext = {};
   		$scope.cdses = [];
   	};
+
+    $scope.$watch('searchContext', function() {
+      console.log('some change');
+    });
   });
