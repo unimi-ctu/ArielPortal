@@ -90,3 +90,20 @@ body {
     border-bottom: 0;
   }
 }
+
+.arl-teacher-list {
+  display: inline;
+  list-type: none;
+  padding: 0;
+
+  > li {
+    &:after {
+      content: ", ";
+    }
+    &:last-child:after {
+      content: "";
+    }
+    display: inline;
+  }
+}
+

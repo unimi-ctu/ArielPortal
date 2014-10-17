@@ -41,20 +41,20 @@
 		<p class="text-right" ng-show="isSearchForm"><a href='' ng-click="isSearchForm = false">Chiudi ricerca avanzata</a></p>
 	</div>
 </div>
-<p ng-show="searchContext.SelectedFacultyKey"><a href="" ng-click="search()">Torna all'elenco delle facoltà</a></p>
+<p ng-show="searchContext.SelectedFacultyKey != null"><a href="" ng-click="search()">Torna all'elenco delle facoltà</a></p>
 <ul class="list-group">
 	<li ng-show="projectList.FacultyList" class="list-group-item" ng-repeat="faculty in projectList.FacultyList">
 		<span class="badge">{{ faculty.ProjectCount }}</span>
-		<a href="" ng-click="search(faculty.Key)">{{ faculty.Description }}</a>
+		<strong><a href="" ng-click="search(faculty.Key)">{{ faculty.Description }}</a></strong>	
 	</li>
 	<li ng-show="projectList.ProjectList" class="list-group-item" ng-repeat="project in projectList.ProjectList | limitTo: showCount">
-		<h4>{{ project.Name }}</h4>
-		<ul>
-			<li ng-repeat="teacher in project.TeacherList">{{ teacher.FirtsName }} {{ teacher.LastName }}</li>
+		<h4><span ng-class="project.IsPoolMaster ? 'glyphicon-tags text-danger' : 'glyphicon-tag'" class="glyphicon glyphicon-tag"></span> {{ project.Name }}</h4>
+		<ul class="arl-teacher-list">
+			<li ng-repeat="teacher in project.TeacherList">{{ teacher.FirstName }} {{ teacher.LastName }}</li>
 		</ul>
 	</li>
 	<li ng-show="projectList.ProjectCount == 0" class="list-group-item">
-		Nessun sito trovato
+		<em>Nessun sito trovato</em>
 	</li>
 </ul>
 <p ng-show="projectList.ProjectList.length > showCount"><a href="" ng-click="showMore()">Visualizza altri siti... (mancano all'elenco {{ projectList.ProjectList.length - showCount }} siti)</a></p>

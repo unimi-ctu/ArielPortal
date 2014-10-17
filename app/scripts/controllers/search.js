@@ -63,7 +63,6 @@ angular.module('portalApp')
       else {
         delete $scope.searchContext.SelectedFacultyKey;
       }
-
   		portal.setSearchContext($scope.searchContext);
       $scope.searchVerbose = getSearchVerbose();
 
