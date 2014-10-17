@@ -1,5 +1,6 @@
 'use strict';
 
+var _showCount = 25;
 /**
  * @ngdoc function
  * @name portalApp.controller:SearchCtrl
@@ -32,6 +33,7 @@ angular.module('portalApp')
 
   	$scope.searchContext = portal.getSearchContext();
     $scope.searchVerbose = getSearchVerbose();
+    $scope.showCount = _showCount;
 
   	portal.getFaculties().success(function(data) {
   		$scope.faculties = data;
@@ -54,12 +56,21 @@ angular.module('portalApp')
   		}
   	};
 
-  	$scope.search = function() {
+  	$scope.search = function(selectedFacultyKey) {
+      if (selectedFacultyKey) {
+        $scope.searchContext.SelectedFacultyKey = selectedFacultyKey;
+      }
+      else {
+        delete $scope.searchContext.SelectedFacultyKey;
+      }
+
   		portal.setSearchContext($scope.searchContext);
       $scope.searchVerbose = getSearchVerbose();
 
       portal.getSearch($scope.searchContext).success(function(data) {
         $scope.projectList = data;
+        $scope.isSearchForm = false;
+        $scope.showCount = _showCount;
       });
   	};
 
@@ -68,5 +79,9 @@ angular.module('portalApp')
       $scope.searchVerbose = getSearchVerbose();
   		$scope.cdses = [];
   	};
+
+    $scope.showMore = function() {
+      $scope.showCount += _showCount;
+    };
 
   });

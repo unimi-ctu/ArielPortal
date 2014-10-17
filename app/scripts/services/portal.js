@@ -35,6 +35,7 @@ angular.module('portalApp')
   	};
 
     this.getSearch = function(searchContext) {
-      return $http.get(basePath + 'search/' + window.btoa(JSON.stringify(searchContext)));
+      var data = window.btoa(JSON.stringify(searchContext));
+      return $http.get(basePath + 'search/' + data);
     };
   });
