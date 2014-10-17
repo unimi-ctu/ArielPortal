@@ -1,38 +1,59 @@
 <h3>Motore di ricerca siti</h3>
-<form role="form" ng-show="isSearchForm">
-	<div class="form-group">
-		<label for="faculty">Facoltà</label>
-		<select id="faculty" class="form-control" ng-options="faculty.Key as faculty.Description for faculty in faculties" ng-change="fillCdses()" ng-model="searchContext.FacultyKey">
-			<option value="">-- selziona una facoltà --</option>
-			
-		</select>
-		<div ng-show="cdses.length">
-		<label for="cds">Corsi di Studio</label>
-		<select id="cds" class="form-control" ng-options="cds.Key as cds.PrettyName for cds in cdses" ng-model="searchContext.CdsKey">
-			<option value="">-- Tutti i corsi di studio --</option>
-		</select>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="keyword">Parola chiave</label>
-		<input type="text" id="keyword" class="form-control" ng-model="searchContext.Keyword">
-	</div>
-	<div class="form-group">
-		<label for="teacher">Nome docente</label>
-		<input type="text" id="teacher" class="form-control" ng-model="searchContext.Teacher">
-	</div>
-	<div class="form-group">
-		<button class="btn btn-default" ng-click="search()">Cerca</button>
-		<button class="btn btn-default" ng-click="reset()">Reset</button>
-		<button class="btn btn-default" ng-click="isSearchForm = false">Chiudi</button>
-	</div>
-</form>
-<p ng-hide="isSearchForm"><a href='' ng-click="isSearchForm = true">Ricerca avanzata</a></p>
-<div class="panel panel-default">
-	<div class="panel-heading">
-	   Contesto della ricerca
-	</div>
-	<div class="panel-body">
-	   Basic panel example
+<div class="panel panel-default" ng-show="isSearchForm">
+	  <div class="panel-heading">
+			<h3 class="panel-title">Ricerca avanzata</h3>
+	  </div>
+	  <div class="panel-body">
+		<form role="form">
+			<div class="form-group">
+				<label for="faculty">Facoltà</label>
+				<select id="faculty" class="form-control" ng-options="faculty.Key as faculty.Description for faculty in faculties" ng-change="fillCdses()" ng-model="searchContext.FacultyKey">
+					<option value="">-- selziona una facoltà --</option>
+					
+				</select>
+				<div ng-show="cdses.length">
+				<label for="cds">Corsi di Studio</label>
+				<select id="cds" class="form-control" ng-options="cds.Key as cds.PrettyName for cds in cdses" ng-model="searchContext.CdsKey">
+					<option value="">-- Tutti i corsi di studio --</option>
+				</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="keyword">Parola chiave</label>
+				<input type="text" id="keyword" class="form-control" ng-model="searchContext.Keyword">
+			</div>
+			<div class="form-group">
+				<label for="teacher">Nome docente</label>
+				<input type="text" id="teacher" class="form-control" ng-model="searchContext.Teacher">
+			</div>
+			<div class="form-group">
+				<button class="btn btn-default" ng-click="search()">Cerca</button>
+				<button class="btn btn-default" ng-click="reset()">Reset</button>
+			</div>
+		</form>
+	  </div>
+</div>
+<div class="panel panel-info">
+	<div class="panel-body bg-info">
+		<p ng-bind-html="searchVerbose" ng-show="searchVerbose"></p>
+		<p><kbd>Siti elencati</kbd> <strong>{{ projectList.ProjectCount }}</strong></p>
+		<p class="text-right" ng-hide="isSearchForm"><a href='' ng-click="isSearchForm = true">Apri ricerca avanzata</a></p>
+		<p class="text-right" ng-show="isSearchForm"><a href='' ng-click="isSearchForm = false">Chiudi ricerca avanzata</a></p>
 	</div>
 </div>
+<ul class="list-group">
+	<li ng-show="projectList.SearchType == 0" class="list-group-item" ng-repeat="project in projectList.ProjectList">
+		<h4>{{ project.Name }}</h4>
+		<ul>
+			<li ng-repeat="teacher in project.TeacherList">{{ teacher.FirtsName }} {{ teacher.LastName }}</li>
+		</ul>
+	</li>
+	<li ng-show="projectList.SearchType == 1" class="list-group-item" ng-repeat="faculty in projectList.FacultyList">
+		<span class="badge">{{ faculty.ProjectCount }}</span>
+		{{ faculty.Description }}
+	</li>
+	<li ng-show="projectList.SearchType == 404" class="list-group-item">
+		Nessun sito trovato
+	</li>
+</ul>
+

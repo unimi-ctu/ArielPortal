@@ -26,7 +26,15 @@ angular.module('portalApp')
   		return $http.get(basePath + 'faculties', {cache: true });
   	};
 
+    this.getFacultiesWithCounts = function() {
+      return $http.get(basePath + 'faculties/withcounts', {cache: true });
+    };
+
   	this.getCdses = function(facultyKey) {
   		return $http.get(basePath + 'faculty/' + facultyKey + '/cdses');
   	};
+
+    this.getSearch = function(searchContext) {
+      return $http.get(basePath + 'search/' + window.btoa(JSON.stringify(searchContext)));
+    };
   });
