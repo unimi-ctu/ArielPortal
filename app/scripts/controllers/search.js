@@ -10,6 +10,8 @@ var _showCount = 25;
  */
 angular.module('portalApp')
   .controller('SearchCtrl', function ($scope, portal) {
+
+    // nel master metto un commento diverso
     function getSearchVerbose() {
       var items = [];
       if ($scope.searchContext.FacultyKey) {
