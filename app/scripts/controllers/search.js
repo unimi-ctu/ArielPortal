@@ -10,6 +10,8 @@ var _showCount = 25;
  */
 angular.module('portalApp')
   .controller('SearchCtrl', function ($scope, portal) {
+
+    // funzione per creare il messaggio
     function getSearchVerbose() {
       var items = [];
       if ($scope.searchContext.FacultyKey) {
