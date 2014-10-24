@@ -43,14 +43,17 @@
 </div>
 <p ng-show="searchContext.SelectedFacultyKey != null"><a href="" ng-click="search()">Torna all'elenco delle facoltà</a></p>
 <ul class="list-group">
-	<li ng-show="projectList.FacultyList" class="list-group-item" ng-repeat="faculty in projectList.FacultyList">
+	<li ng-show="projectList.FacultyList" class="list-group-item arl-faculty-{{ faculty.Key }}-brd-l" ng-repeat="faculty in projectList.FacultyList">
 		<span class="badge">{{ faculty.ProjectCount }}</span>
-		<strong><a href="" ng-click="search(faculty.Key)">{{ faculty.Description }}</a></strong>	
+		<h4>
+			<a href="" ng-click="search(faculty.Key)">{{ faculty.Description }}</a>
+		</h4>
 	</li>
-	<li ng-show="projectList.ProjectList" class="list-group-item" ng-repeat="project in projectList.ProjectList | limitTo: showCount">
-		<h4><span ng-class="project.IsPoolMaster ? 'glyphicon-tags text-danger' : 'glyphicon-tag'" class="glyphicon glyphicon-tag"></span> {{ project.Name }}</h4>
+	<li ng-show="projectList.ProjectList" ng-class="project.IsRuleComplying ? 'bg-info list-group-item' : 'list-group-item'" ng-repeat="project in projectList.ProjectList | limitTo: showCount">
+		<h4><span ng-show="project.Project.IsPoolMaster" class="glyphicon glyphicon-star text-danger"></span> {{ project.Project.Name }}</h4>
+		<strong>Docenti:</strong>
 		<ul class="arl-teacher-list">
-			<li ng-repeat="teacher in project.TeacherList">{{ teacher.FirstName }} {{ teacher.LastName }}</li>
+			<li ng-repeat="teacher in project.Project.TeacherList">{{ teacher.FirstName }} {{ teacher.LastName }}</li>
 		</ul>
 	</li>
 	<li ng-show="projectList.ProjectCount == 0" class="list-group-item">

@@ -1,6 +1,6 @@
 'use strict';
 
-var basePath = 'http://ale.unimi.it/portalApi/api/user/';
+var basePath = 'http://api.unimi.it/ArielPortalAPI/api/user/';
 
 /**
  * @ngdoc service
