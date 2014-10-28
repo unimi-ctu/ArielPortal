@@ -38,19 +38,19 @@ angular.module('portalApp')
     $scope.showCount = _showCount;
 
   	portal.getFaculties().success(function(data) {
-  		$scope.faculties = data;
+  		$scope.faculties = data.Data;
   		$scope.fillCdses();
   	});
 
-    portal.getSearch($scope.searchContext).success(function(data) {
-      $scope.projectList = data;
-    });
+    //portal.getSearch($scope.searchContext).success(function(data) {
+    //  $scope.projectList = data.Data;
+    //});
 
 
   	$scope.fillCdses = function() {
   		if ($scope.searchContext.FacultyKey) {
 	  		portal.getCdses($scope.searchContext.FacultyKey).success(function(data) {
-	  			$scope.cdses = data === 'null' ? [] : data;		
+	  			$scope.cdses = data.Data === 'null' ? [] : data.Data;		
 	  		});
   		}
   		else {
@@ -68,12 +68,11 @@ angular.module('portalApp')
   		portal.setSearchContext($scope.searchContext);
       $scope.searchVerbose = getSearchVerbose();
 
-      console.log($scope.searchContext);
-      
       portal.getSearch($scope.searchContext).success(function(data) {
-        $scope.projectList = data;
+        $scope.projectList = data.Data;
         $scope.isSearchForm = false;
         $scope.showCount = _showCount;
+        $scope.user = data.User;
       });
   	};
 
@@ -87,11 +86,6 @@ angular.module('portalApp')
       $scope.showCount += _showCount;
     };
 
-    // $scope.projectComparator = function (actual, expected) {
-    //   console.log(actual);
-    //   if (!expected) {
-    //     return true;
-    //   }
-    //   return angular.equals(expected, actual);
-    // };
+    $scope.search();
+
   });
