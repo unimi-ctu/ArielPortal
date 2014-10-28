@@ -68,6 +68,8 @@ angular.module('portalApp')
   		portal.setSearchContext($scope.searchContext);
       $scope.searchVerbose = getSearchVerbose();
 
+      console.log($scope.searchContext);
+      
       portal.getSearch($scope.searchContext).success(function(data) {
         $scope.projectList = data;
         $scope.isSearchForm = false;
@@ -85,4 +87,11 @@ angular.module('portalApp')
       $scope.showCount += _showCount;
     };
 
+    // $scope.projectComparator = function (actual, expected) {
+    //   console.log(actual);
+    //   if (!expected) {
+    //     return true;
+    //   }
+    //   return angular.equals(expected, actual);
+    // };
   });

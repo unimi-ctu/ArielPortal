@@ -17,7 +17,13 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $httpProvider) {
+
+    // ATTENZIONE: senza questa riga di configurazione 
+    // non vengono inviati i cookie con le richieste $http
+    // http://stackoverflow.com/questions/17064791/http-doesnt-send-cookie-in-requests
+    $httpProvider.defaults.withCredentials = true;
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',

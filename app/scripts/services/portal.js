@@ -12,7 +12,7 @@ var basePath = 'http://api.unimi.it/ArielPortalAPI/api/user/';
 angular.module('portalApp')
   .service('portal', function portal($http) {
 
-  	var _searchContext = {};
+  	var _searchContext = { SearchFlags: {} };
 
   	this.getSearchContext = function() {
   		return angular.copy(_searchContext);
