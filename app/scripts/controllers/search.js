@@ -68,7 +68,7 @@ angular.module('portalApp')
   		portal.setSearchContext($scope.searchContext);
       $scope.searchVerbose = getSearchVerbose();
 
-      portal.getSearch($scope.searchContext).success(function(data) {
+      portal.getSearch($scope.searchContext).then(function(data) {
         $scope.projectList = data.Data;
         $scope.isSearchForm = false;
         $scope.showCount = _showCount;

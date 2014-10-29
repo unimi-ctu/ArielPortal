@@ -34,8 +34,17 @@ angular.module('portalApp')
   		return $http.get(basePath + 'faculty/' + facultyKey + '/cdses');
   	};
 
+    // this.getSearch = function(searchContext) {
+    //   var data = window.btoa(JSON.stringify(searchContext));
+    //   return $http.get(basePath + 'search/' + data);
+    // };
+
     this.getSearch = function(searchContext) {
       var data = window.btoa(JSON.stringify(searchContext));
-      return $http.get(basePath + 'search/' + data);
+      return $http.get(basePath + 'search/' + data).then(
+        function(response) {
+          console.log(response);
+          return response.data;
+        });
     };
   });
