@@ -10,9 +10,21 @@ var basePath = 'http://api.unimi.it/ArielPortalAPI/api/user/';
  * Service in the portalApp.
  */
 angular.module('portalApp')
-  .service('portal', function portal($http) {
+  .service('portal', function portal($http, $rootScope) {
 
   	var _searchContext = { SearchFlags: {} };
+
+    var pipeline = function(promise) {
+      return promise.then(function(response) {
+        if (!response.data.User && $rootScope.user) {
+          angular.element('body').prepend('<div>Sei uscito</div>');
+          // alert
+        }
+        $rootScope.user = response.data.User;
+        return response.data;
+
+      });
+    };
 
   	this.getSearchContext = function() {
   		return angular.copy(_searchContext);
@@ -23,28 +35,19 @@ angular.module('portalApp')
   	};
 
   	this.getFaculties = function() {
-  		return $http.get(basePath + 'faculties', {cache: true });
+  		return pipeline($http.get(basePath + 'faculties', {cache: true }));
   	};
 
     this.getFacultiesWithCounts = function() {
-      return $http.get(basePath + 'faculties/withcounts', {cache: true });
+      return pipeline($http.get(basePath + 'faculties/withcounts', {cache: true }));
     };
 
   	this.getCdses = function(facultyKey) {
-  		return $http.get(basePath + 'faculty/' + facultyKey + '/cdses');
+  		return pipeline($http.get(basePath + 'faculty/' + facultyKey + '/cdses'));
   	};
-
-    // this.getSearch = function(searchContext) {
-    //   var data = window.btoa(JSON.stringify(searchContext));
-    //   return $http.get(basePath + 'search/' + data);
-    // };
 
     this.getSearch = function(searchContext) {
       var data = window.btoa(JSON.stringify(searchContext));
-      return $http.get(basePath + 'search/' + data).then(
-        function(response) {
-          console.log(response);
-          return response.data;
-        });
+      return pipeline($http.get(basePath + 'search/' + data));
     };
   });

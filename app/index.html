@@ -31,11 +31,55 @@
         <h3 class="text-muted">arielPortal</h3>
       </div>
 
-      <div ng-view=""></div>
+      <div class="row">
+
+        <!-- box utente -->
+        <div class="col-md-3">
+          <div ng-cloak class="panel panel-default" ng-show="user">
+            <div class="panel-heading">
+              Profilo Utente
+            </div>
+            <div class="panel-body">
+                
+                <small>
+                <p><strong>{{ user.FirstName}} {{ user.LastName }}</strong></p>
+                <p>Unimi type: {{ user.UnimiType }}</p>
+                <p>Login: {{ user.Login }}</p>
+                <p>Email: {{ user.Email }}</p>
+                <ul ng-show="user.CdSList">
+                  <li ng-repeat="cds in user.CdSList">
+                    <kbd style="color: #666" class="arl-faculty-{{ cds.Faculty }}-bg">{{ cds.AcademicCourse}}</kbd> Mat {{ cds.Register }}
+                  </li>
+                </ul>
+                <ul ng-show="userAttrs">
+                  <li ng-repeat="attr in userAttrs">
+                    <kbd>{{ attr}}</kbd>
+                  </li>
+                </ul>
+                </small>
+            </div>
+          </div>
+          <div ng-cloak class="panel panel-default" ng-hide="user">
+            <div class="panel-body">
+               <h4>Autenticazione</h4>
+            </div>
+          </div>
+        </div>
+
+        <!-- qui ci inseriamo per inserire la view -->
+        <div class="col-md-9">
+          <div ng-view=""></div>
+        </div>
+
+      </div>
+
+
+
 
       <div class="footer">
         <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman and Labcomp team</p>
       </div>
+
     </div>
 
 

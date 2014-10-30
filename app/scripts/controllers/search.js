@@ -37,7 +37,7 @@ angular.module('portalApp')
     $scope.searchVerbose = getSearchVerbose();
     $scope.showCount = _showCount;
 
-  	portal.getFaculties().success(function(data) {
+  	portal.getFaculties().then(function(data) {
   		$scope.faculties = data.Data;
   		$scope.fillCdses();
   	});
@@ -49,7 +49,7 @@ angular.module('portalApp')
 
   	$scope.fillCdses = function() {
   		if ($scope.searchContext.FacultyKey) {
-	  		portal.getCdses($scope.searchContext.FacultyKey).success(function(data) {
+	  		portal.getCdses($scope.searchContext.FacultyKey).then(function(data) {
 	  			$scope.cdses = data.Data === 'null' ? [] : data.Data;		
 	  		});
   		}
