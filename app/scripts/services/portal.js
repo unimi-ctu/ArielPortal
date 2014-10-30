@@ -34,6 +34,10 @@ angular.module('portalApp')
   		_searchContext = angular.copy(context);
   	};
 
+    // this.setKeyword = function(keyword) {
+    //   _searchContext = { SearchFlags: {}, Keyword: keyword };      
+    // };
+
   	this.getFaculties = function() {
   		return pipeline($http.get(basePath + 'faculties', {cache: true }));
   	};
