@@ -41,8 +41,9 @@
             </div>
             <div class="panel-body">
                 
-                <small>
                 <p><strong>{{ user.FirstName}} {{ user.LastName }}</strong></p>
+
+                <small>
                 <p>Unimi type: {{ user.UnimiType }}</p>
                 <p>Login: {{ user.Login }}</p>
                 <p>Email: {{ user.Email }}</p>
@@ -57,11 +58,25 @@
                   </li>
                 </ul>
                 </small>
+
+                <p><strong><a href="https://www.elearning.unimi.it/authentication/logout.aspx?backurl=http://ale.unimi.it:9000">Logout</a></strong> per uscire.</p>
             </div>
           </div>
           <div ng-cloak class="panel panel-default" ng-hide="user">
             <div class="panel-body">
                <h4>Autenticazione</h4>
+                <form action="https://www.elearning.unimi.it/authentication/portal/login.aspx?url=http://ale.unimi.it:9000" method="POST" role="form">
+                  <div class="form-group">
+                    <label for="">Login</label>
+                    <input name="tbLogin" type="text" class="form-control" id="" placeholder="Inserisci Login">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Password</label>
+                    <input name="tbPassword" type="password" class="form-control" id="" placeholder="Inserisci Password">
+                  </div>
+                  <input type="hidden" name="hdnSilent" value="true"/>
+                  <button type="submit" class="btn btn-primary">Entra</button>
+                </form>
             </div>
           </div>
         </div>

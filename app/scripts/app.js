@@ -41,10 +41,15 @@ angular
         redirectTo: '/'
       });
   })
-  .run(function ($rootScope) {
+  .run(function ($rootScope, portal) {
     // serve per definire il profilo
     $rootScope.userAttrs = [
       'IsStaff', 'IsOwner', 'IsBaseTeacher', 'IsBaseStudent', 'IsTeacher', 'IsResearchStaff', 
       'IsUnimi', 'IsStudent', 'IsEmployee', 'IsGuest', 'IsPhd', 'IsSilsis', 'IsUnknownRadius'
     ];
+
+    // per ora a vuoto
+    portal.getFaculties();
+
+
   });
