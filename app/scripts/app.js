@@ -42,10 +42,16 @@ angular
       });
   })
   .run(function ($rootScope, $route, $location, portal) {
+    $rootScope.isDebug = true;
     // serve per definire il profilo
     $rootScope.userAttrs = [
       'IsStaff', 'IsOwner', 'IsBaseTeacher', 'IsBaseStudent', 'IsTeacher', 'IsResearchStaff', 
       'IsUnimi', 'IsStudent', 'IsEmployee', 'IsGuest', 'IsPhd', 'IsSilsis', 'IsUnknownRadius'
+    ];
+
+    $rootScope.userAttrsLabel = [
+      'Staff', 'Titolare', 'B Docente', 'B Studente', 'Docente', 'Staff ricerca',
+      'Unimi', 'Studente', 'Personale Unimi', 'Ospite', 'Phd', 'Silsis', 'Altro'
     ];
 
     // console.log($route);
