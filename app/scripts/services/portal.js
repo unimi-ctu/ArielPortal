@@ -34,6 +34,10 @@ angular.module('portalApp')
   		_searchContext = angular.copy(context);
   	};
 
+    this.checkUser = function() {
+      return pipeline($http.get(basePath + 'checkuser'));
+    };
+
   	this.getFaculties = function() {
   		return pipeline($http.get(basePath + 'faculties', {cache: true }));
   	};

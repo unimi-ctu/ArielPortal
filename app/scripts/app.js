@@ -49,7 +49,7 @@ angular
     ];
 
     // per ora a vuoto
-    portal.getFaculties();
+    portal.checkUser();
 
 
   });
