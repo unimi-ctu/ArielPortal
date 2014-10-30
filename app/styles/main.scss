@@ -93,22 +93,22 @@ body {
 
 
 $faculty-list: (
-  ('J', #3b426b),
-  ('A', #0a529c),
-  ('D', #c81d26),
-  ('H', #8f1f24),
-  ('G', #6ab042),
-  ('E', #dc6022),
-  ('U', #3bb19d),
-  ('F', #078d47),
-  ('Z', #eaae26),
-  ('B', #0978af),
-  ('C', #c3c3b7),
-  ('I', #e1ebe1),
-  ('AB', #e1ebe1),
-  ('AD', #e1ebe1),
-  ('AC', #e1ebe1),
-  ('ZZ', #e1ebe1));
+  ('J', #3b426b, #eee),
+  ('A', #0a529c, #eee),
+  ('D', #c81d26, #eee),
+  ('H', #8f1f24, #eee),
+  ('G', #6ab042, #eee),
+  ('E', #dc6022, #eee),
+  ('U', #3bb19d, #eee),
+  ('F', #078d47, #eee),
+  ('Z', #eaae26, #eee),
+  ('B', #0978af, #eee),
+  ('C', #c3c3b7, #333),
+  ('I', #e1ebe1, #333),
+  ('AB', #e1ebe1, #333),
+  ('AD', #e1ebe1, #333),
+  ('AC', #e1ebe1, #333),
+  ('ZZ', #e1ebe1, #333));
 
 @mixin faculty-bg($color) {
   background: $color;
@@ -118,9 +118,11 @@ $faculty-list: (
 // colore di background delle facoltà
 @each $faculty in $faculty-list {
   $name: nth($faculty, 1);
-  $value: nth($faculty, 2);
+  $bg: nth($faculty, 2);
+  $fg: nth($faculty, 3);
   .arl-faculty-#{$name}-bg {
-    @include faculty-bg($value);  
+    @include faculty-bg($bg);  
+    color: $fg;
   }
   
 }

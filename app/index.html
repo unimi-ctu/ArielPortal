@@ -49,12 +49,12 @@
                 <p>Email: {{ user.Email }}</p>
                 <ul ng-show="user.CdSList">
                   <li ng-repeat="cds in user.CdSList">
-                    <kbd style="color: #666" class="arl-faculty-{{ cds.Faculty }}-bg">{{ cds.AcademicCourse}}</kbd> Mat {{ cds.Register }}
+                    <kbd class="arl-faculty-{{ cds.Faculty }}-bg">{{ cds.AcademicCourse}}</kbd> Mat {{ cds.Register }}
                   </li>
                 </ul>
-                <ul ng-show="userAttrs">
-                  <li ng-repeat="attr in userAttrs">
-                    <kbd>{{ attr}}</kbd>
+                <ul>
+                  <li ng-repeat="attr in userAttrs" ng-show="isDebug || user[attr]">
+                    {{ userAttrsLabel[$index] }}: <span ng-class="user[attr] ? 'bg-success' : 'bg-danger'">{{ user[attr] }}</span>
                   </li>
                 </ul>
                 </small>
