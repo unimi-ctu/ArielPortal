@@ -33,7 +33,7 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
-      .when('/search', {
+      .when('/search/:keyword?', {
         templateUrl: 'views/search.html',
         controller: 'SearchCtrl'
       })
@@ -41,12 +41,24 @@ angular
         redirectTo: '/'
       });
   })
-  .run(function ($rootScope, portal) {
+  .run(function ($rootScope, $route, $location, portal) {
     // serve per definire il profilo
     $rootScope.userAttrs = [
       'IsStaff', 'IsOwner', 'IsBaseTeacher', 'IsBaseStudent', 'IsTeacher', 'IsResearchStaff', 
       'IsUnimi', 'IsStudent', 'IsEmployee', 'IsGuest', 'IsPhd', 'IsSilsis', 'IsUnknownRadius'
     ];
+
+    // console.log($route);
+
+    $rootScope.quickSearch = function() {
+      if ($route.current.$$route.controller === 'SearchCtrl') {
+        $rootScope.$broadcast('quicksearch', $rootScope.qsKeyword);
+      }
+      else {
+        $location.path('/search/' + $rootScope.qsKeyword);
+      }
+      $rootScope.qsKeyword = '';
+    };
 
     // per ora a vuoto
     portal.checkUser();

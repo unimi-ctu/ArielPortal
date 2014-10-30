@@ -9,8 +9,7 @@ var _showCount = 25;
  * Controller of the portalApp
  */
 angular.module('portalApp')
-  .controller('SearchCtrl', function ($scope, portal) {
-
+  .controller('SearchCtrl', function ($scope, $routeParams, portal) {
     // nel master metto un commento diverso
     function getSearchVerbose() {
       var items = [];
@@ -33,7 +32,12 @@ angular.module('portalApp')
       return null;
     }
 
-  	$scope.searchContext = portal.getSearchContext();
+    if ($routeParams.keyword) {
+      $scope.searchContext = { Keyword: $routeParams.keyword };
+    }
+    else {
+      $scope.searchContext = portal.getSearchContext();
+    }
     $scope.searchVerbose = getSearchVerbose();
     $scope.showCount = _showCount;
 
@@ -85,6 +89,11 @@ angular.module('portalApp')
     $scope.showMore = function() {
       $scope.showCount += _showCount;
     };
+
+    $scope.$on('quicksearch', function(event, keyword) {
+      $scope.searchContext = { SearchFlags: {}, Keyword: keyword };
+      $scope.search();
+    });
 
     $scope.search();
 
