@@ -9,7 +9,7 @@ var _showCount = 25;
  * Controller of the portalApp
  */
 angular.module('portalApp')
-  .controller('SearchCtrl', function ($scope, $routeParams, portal) {
+  .controller('SearchCtrl', function ($scope, $rootScope, $routeParams, portal) {
     // nel master metto un commento diverso
     function getSearchVerbose() {
       var items = [];
@@ -26,11 +26,36 @@ angular.module('portalApp')
       if ($scope.searchContext.Teacher) {
         items.push('docente: \'<strong>' + $scope.searchContext.Teacher + '</strong>\'');
       }
-      if ($scope.searchContext.SearchFlags) {
-        items.push('filtri: \'<strong>applicati</strong>\'');
-      }
       if (items.length) {
         return '<kbd>Contesto ricerca</kbd> ' + items.join(', ');
+      }
+      return null;
+    }
+
+    function getSearchFilterVerbose() {
+      var items = [];
+      if ($rootScope.user && $scope.searchContext.SearchFlags) {
+        if ($rootScope.user.IsBaseStudent && $scope.searchContext.SearchFlags.IsCDSRuleComplying) {
+          items.push('CdS compatibili');
+        }
+        if ($scope.searchContext.SearchFlags.IsEnrolled) {
+          items.push('Visitati');
+        }
+        if ($scope.searchContext.SearchFlags.IsFavorite) {
+          items.push('Preferiti');
+        }
+        if ($rootScope.user.IsBaseStudent && $scope.searchContext.SearchFlags.IsInfaculty) {
+          items.push('Della facoltà');
+        }
+        if ($rootScope.user.IsOwner && $scope.searchContext.SearchFlags.IsOwner) {
+          items.push('Titolare');
+        }
+        if ($scope.searchContext.SearchFlags.IsRuleComplying) {
+          items.push('Accessibili');
+        }
+      }
+      if (items.length) {
+        return '<kbd>Filtri</kbd> ' + items.join(', ');
       }
       return null;
     }
@@ -42,6 +67,7 @@ angular.module('portalApp')
       $scope.searchContext = portal.getSearchContext();
     }
     $scope.searchVerbose = getSearchVerbose();
+    $scope.searchFilterVerbose = getSearchFilterVerbose();
     $scope.showCount = _showCount;
 
   	portal.getFaculties().then(function(data) {
@@ -74,6 +100,7 @@ angular.module('portalApp')
       }
   		portal.setSearchContext($scope.searchContext);
       $scope.searchVerbose = getSearchVerbose();
+      $scope.searchFilterVerbose = getSearchFilterVerbose();
 
       portal.getSearch($scope.searchContext).then(function(data) {
         $scope.projectList = data.Data;
@@ -85,7 +112,8 @@ angular.module('portalApp')
 
   	$scope.reset = function() {
   		$scope.searchContext = {};
-      $scope.searchVerbose = getSearchVerbose();
+      //$scope.searchVerbose = getSearchVerbose();
+      //$scope.searchFilterVerbose = getSearchFilterVerbose();
   		$scope.cdses = [];
   	};
 

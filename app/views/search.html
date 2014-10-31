@@ -75,6 +75,7 @@
 <div class="panel panel-info">
 	<div class="panel-body bg-info">
 		<p ng-bind-html="searchVerbose" ng-show="searchVerbose"></p>
+		<p ng-bind-html="searchFilterVerbose" ng-show="searchFilterVerbose"></p>
 		<p><kbd>Numero siti</kbd> <strong>{{ projectList.ProjectCount }}</strong></p>
 		<p class="text-right" ng-hide="isSearchForm"><a href='' ng-click="isSearchForm = true">Apri ricerca avanzata</a></p>
 		<p class="text-right" ng-show="isSearchForm"><a href='' ng-click="isSearchForm = false">Chiudi ricerca avanzata</a></p>
@@ -91,7 +92,7 @@
 	</li>
 
 	<li ng-show="projectList.ProjectList" ng-repeat="project in projectList.ProjectList | limitTo: showCount" class="list-group-item">	
-		<h4><span ng-show="project.Project.IsPoolMaster" class="glyphicon glyphicon-star text-danger"></span> {{ project.Project.Name }}</h4>
+		<h4><span ng-show="project.Project.IsPoolMaster" class="glyphicon glyphicon-star text-danger"></span> <span ng-bind-html="project.Project.Name" /></h4>
 		<div><small>
 		<strong>Docenti:</strong>
 		<ul class="arl-teacher-list">
@@ -100,6 +101,7 @@
 		</small></div>
 
 		<div ng-show="project.IsRuleComplying"><small class="text-success">Sito accessibile</small></div>
+		<div ng-hide="project.Project.IsPublic"><small class="text-danger">Sito non pubblico</small></div>
 	</li>
 
 	<li ng-show="projectList.ProjectCount == 0" class="list-group-item">
