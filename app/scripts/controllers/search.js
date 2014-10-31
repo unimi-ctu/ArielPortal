@@ -26,6 +26,9 @@ angular.module('portalApp')
       if ($scope.searchContext.Teacher) {
         items.push('docente: \'<strong>' + $scope.searchContext.Teacher + '</strong>\'');
       }
+      if ($scope.searchContext.SearchFlags) {
+        items.push('filtri: \'<strong>applicati</strong>\'');
+      }
       if (items.length) {
         return '<kbd>Contesto ricerca</kbd> ' + items.join(', ');
       }
