@@ -26,6 +26,8 @@ angular.module('portalApp')
       });
     };
 
+
+
   	this.getSearchContext = function() {
   		return angular.copy(_searchContext);
   	};
@@ -33,6 +35,10 @@ angular.module('portalApp')
   	this.setSearchContext = function(context) {
   		_searchContext = angular.copy(context);
   	};
+
+    this.checkUser = function() {
+      return pipeline($http.get(basePath + 'checkuser'));
+    };
 
   	this.getFaculties = function() {
   		return pipeline($http.get(basePath + 'faculties', {cache: true }));
