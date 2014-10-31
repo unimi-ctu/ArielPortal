@@ -98,15 +98,20 @@ angular.module('portalApp')
       else {
         delete $scope.searchContext.SelectedFacultyKey;
       }
-  		portal.setSearchContext($scope.searchContext);
-      $scope.searchVerbose = getSearchVerbose();
-      $scope.searchFilterVerbose = getSearchFilterVerbose();
 
       portal.getSearch($scope.searchContext).then(function(data) {
         $scope.projectList = data.Data;
         $scope.isSearchForm = false;
         $scope.showCount = _showCount;
         $scope.user = data.User;
+  
+        if (!$rootScope.user) {
+          $scope.searchContext.SearchFlags = null;
+        }
+  
+        portal.setSearchContext($scope.searchContext);
+        $scope.searchVerbose = getSearchVerbose();
+        $scope.searchFilterVerbose = getSearchFilterVerbose();
       });
   	};
 
