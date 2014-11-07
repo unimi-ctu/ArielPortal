@@ -2,16 +2,17 @@
 
 /**
  * @ngdoc function
- * @name arielPortalApp.controller:FavoriteCtrl
+ * @name portalApp.controller:FavoriteCtrl
  * @description
  * # FavoriteCtrl
- * Controller of the arielPortalApp
+ * Controller of the portalApp
  */
-angular.module('arielPortalApp')
-  .controller('FavoriteCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+angular.module('portalApp')
+  .controller('FavoriteCtrl', function ($scope, portal) {
+
+  	if ($scope.user) {
+  		portal.getFavorites().then(function(data) {
+  			$scope.favorites = data.Data;
+	  	});
+  	}
   });

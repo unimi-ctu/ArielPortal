@@ -56,4 +56,9 @@ angular.module('portalApp')
       var data = window.btoa(JSON.stringify(searchContext));
       return pipeline($http.get(basePath + 'search/' + data));
     };
+
+    this.getFavorites = function() {
+      return pipeline($http.get(basePath + 'favorites'));
+    };
+
   });
