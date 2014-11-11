@@ -7,16 +7,20 @@
 			<div class="panel panel-default">
 				<div class="panel-body bg-warning">
 					<h4><span class="glyphicon glyphicon-asterisk text-primary"></span> {{ pw.Project.Name }}</h4>
-					<div><small>
-						<strong>Docenti:</strong>
-						<ul class="arl-teacher-list">
-							<li ng-repeat="teacher in pw.Project.TeacherList">{{ teacher.FirstName }} {{ teacher.LastName }}</li>
-						</ul>
-					<p>Ultima visita: 10/10/10 10:10pm</p>
-						</small></div>
-					<p>
+					<div>
+						<small>
+							
+							<strong>Docenti:</strong>
+							<ul class="arl-teacher-list">
+								<li ng-repeat="teacher in pw.Project.TeacherList">{{ teacher.FirstName }} {{ teacher.LastName }}</li>
+							</ul>
+							<p ng-show="pw.LastAccessDate">Ultima visita: {{ pw.LastAccessDate | date : 'd/MM/yyyy HH:mm' }}</p>
+							<p ng-hide="pw.LastAccessDate">Non visitato</p>
+						</small>
+					</div>
+					<p class="text-right">
 						<button type="button" class="btn btn-primary btn-xs">Apri</button>
-						<button type="button" class="btn btn-danger btn-xs">Rimuovi</button>
+						<button type="button" class="btn btn-danger btn-xs" ng-click="toggleFavorite({{ pw.Project.Id }})">Rimuovi</button>
 					</p>
 				</div>
 			</div>
