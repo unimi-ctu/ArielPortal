@@ -32,16 +32,33 @@
             </button>
             <a class="navbar-brand" href="#">arielPortal</a>
           </div>
+
           <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li><a href="#">Home</a></li>
+            <ul id="menu" class="nav navbar-nav arl-showMax">
               <li><a href="#/search">Offerta</a></li>
-              <li><a href="#/favorite">Siti preferiti</a></li>
+              <li><a href="#/favorite">Preferiti</a></li>
             </ul>
+            <ul id="menudd" class="nav navbar-nav arl-hideMax">
+              <li class="dropdown">
+                <a style="cursor: pointer" class="dropdown-toggle" data-toggle="dropdown" ng-click="false">Opzioni <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#/search">Offerta</a></li>
+                  <li><a href="#/favorite">Preferiti</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="navbar-form navbar-left arl-hideMax" role="search">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Parola chiave" ng-model="qsKeyword">
+              </div>
+              <button type="button" class="btn btn-default" ng-click="quickSearch()">Cerca siti</button>
+            </form>
             <ul class="nav navbar-nav navbar-right">
-              <li><a ng-href="#/about">About</a></li>
+              <li><a ng-href="#/about">Esci</a></li>
             </ul>
+            <p class="navbar-text navbar-right">Nome Utente</p>
           </div><!--/.nav-collapse -->
+
         </div><!--/.container-fluid -->
       </nav>
     </header>
@@ -57,7 +74,7 @@
 
         <!-- box utente -->
         <div class="col-md-3">
-          <div ng-cloak class="panel panel-default" ng-show="user">
+          <div ng-cloak class="panel panel-default arl-showMax" ng-show="user">
             <div class="panel-heading">
               <h3 class="panel-title">Profilo Utente</h3>
             </div>
@@ -84,7 +101,7 @@
                 <p><strong><a href="https://www.elearning.unimi.it/authentication/logout.aspx?backurl=http://ale.unimi.it:9000">Logout</a></strong> per uscire.</p>
             </div>
           </div>
-          <div ng-cloak class="panel panel-default" ng-hide="user">
+          <div ng-cloak class="panel panel-default arl-showMax" ng-hide="user">
             <div class="panel-heading">
                 <h3 class="panel-title">Autenticazione</h3>
             </div>
@@ -104,7 +121,7 @@
             </div>
           </div>
 
-          <div class="panel panel-default">
+          <div class="panel panel-default arl-showMax">
               <div class="panel-heading">
                 <h3 class="panel-title">Ricerca veloce siti</h3>
               </div>

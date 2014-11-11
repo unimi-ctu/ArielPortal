@@ -46,7 +46,7 @@ angular
       });
   })
   .run(function ($rootScope, $route, $location, portal) {
-    $rootScope.isDebug = true;
+    $rootScope.isDebug = false;
     // serve per definire il profilo
     $rootScope.userAttrs = [
       'IsStaff', 'IsOwner', 'IsBaseTeacher', 'IsBaseStudent', 'IsTeacher', 'IsResearchStaff', 

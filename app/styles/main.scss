@@ -69,6 +69,22 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   }
 }
 
+.arl-hideMax {
+  display: block;
+}
+
+.arl-showMax {
+  display: none;
+}
+
+#menu.arl-showMax {
+  display: block;
+}
+
+#menudd.arl-hideMax {
+  display: none;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
@@ -90,6 +106,35 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   .jumbotron {
     border-bottom: 0;
   }
+
+  #menu.arl-showMax {
+    display: none;
+  }
+
+  #menudd.arl-hideMax {
+    display: block;
+  }
+
+  
+}
+
+@media screen and (min-width: 992px) {
+  .arl-hideMax {
+    display: none;    
+  }
+
+  .arl-showMax {
+    display: block;    
+  }
+
+  #menu.arl-showMax {
+    display: block;
+  }
+
+  #menudd.arl-hideMax {
+    display: none;
+  }
+
 }
 
 
@@ -164,3 +209,4 @@ $faculty-list: (
     display: inline;
   }
 }
+
