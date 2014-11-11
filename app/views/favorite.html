@@ -1,0 +1,35 @@
+<div ng-show="user">
+	<h3>I miei preferiti</h3>
+	<p>L'elenco mostra i siti preferiti</p>
+	<p>Per aggiungere un preferito usa il comand "aggiungi preferito"</p>
+	<div class="row" ng-cloak ng-show="favorites.length">
+		<div class="col-sm-6" ng-repeat="pw in favorites">
+			<div class="panel panel-default">
+				<div class="panel-body bg-warning">
+					<h4><span class="glyphicon glyphicon-asterisk text-primary"></span> {{ pw.Project.Name }}</h4>
+					<div>
+						<small>
+							
+							<strong>Docenti:</strong>
+							<ul class="arl-teacher-list">
+								<li ng-repeat="teacher in pw.Project.TeacherList">{{ teacher.FirstName }} {{ teacher.LastName }}</li>
+							</ul>
+							<p ng-show="pw.LastAccessDate">Ultima visita: {{ pw.LastAccessDate | date : 'd/MM/yyyy HH:mm' }}</p>
+							<p ng-hide="pw.LastAccessDate">Non visitato</p>
+						</small>
+					</div>
+					<p class="text-right">
+						<button type="button" class="btn btn-primary btn-xs">Apri</button>
+						<button type="button" class="btn btn-danger btn-xs" ng-click="toggleFavorite({{ pw.Project.Id }})">Rimuovi</button>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-cloak ng-hide="favorites.length">
+		<p><em>Nessun sito preferito</em></p>
+	</div>
+</div>
+<div ng-hide="user">
+	<p>Questa pagina è disponibile solo dopo che hai eseguito l'autenticazione</p>
+</div>

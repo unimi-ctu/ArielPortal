@@ -126,6 +126,14 @@ angular.module('portalApp')
       $scope.showCount += _showCount;
     };
 
+    $scope.toggleFavorite = function(index) {
+      var p = $scope.projectList.ProjectList[index];
+
+      portal.toggleFavorite(p.Project.Id).then(function(data) {
+        p.IsFavorite = data.Data;  
+      });
+    };
+
     $scope.$on('quicksearch', function(event, keyword) {
       $scope.searchContext = { SearchFlags: {}, Keyword: keyword };
       $scope.search();

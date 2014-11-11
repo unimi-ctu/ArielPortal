@@ -37,6 +37,10 @@ angular
         templateUrl: 'views/search.html',
         controller: 'SearchCtrl'
       })
+      .when('/favorite', {
+        templateUrl: 'views/favorite.html',
+        controller: 'FavoriteCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

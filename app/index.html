@@ -2,7 +2,7 @@
 <html class="no-js">
   <head>
     <meta charset="utf-8">
-    <title>SLM - new title ale</title>
+    <title>Ariel</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -19,16 +19,38 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
+    <header>
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">arielPortal</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="#">Home</a></li>
+              <li><a href="#/search">Offerta</a></li>
+              <li><a href="#/favorite">Siti preferiti</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a ng-href="#/about">About</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+    </header>
+
     <!-- Add your site or application content here -->
-    <div class="container">
+    <div class="container-fluid">
+
+
       <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#/search">Offerta</a></li>
-          <li><a ng-href="#/about">About</a></li>
-          <li><a ng-href="#">Contact</a></li>
-        </ul>
-        <h3 class="text-muted">arielPortal</h3>
       </div>
 
       <div class="row">
@@ -165,6 +187,7 @@
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/search.js"></script>
         <script src="scripts/services/portal.js"></script>
+        <script src="scripts/controllers/favorite.js"></script>
         <!-- endbuild -->
 </body>
 </html>
