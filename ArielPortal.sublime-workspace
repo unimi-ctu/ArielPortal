@@ -1,0 +1,536 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"q",
+				"qFrequency"
+			],
+			[
+				"s",
+				"subsetsize"
+			],
+			[
+				"$roo",
+				"$rootScope	AngularJS"
+			],
+			[
+				"glyphicon",
+				"bs3-icon:glyphicon	bs3-icon-glyphicon"
+			],
+			[
+				"ng-sw",
+				"ng-switch-when	AngularJS"
+			],
+			[
+				"ng-bin",
+				"ng-bind-html	AngularJS"
+			],
+			[
+				"gets",
+				"getSearchVerbose"
+			],
+			[
+				"item",
+				"items"
+			],
+			[
+				"sear",
+				"searchContext"
+			],
+			[
+				"cont",
+				"searchContext"
+			],
+			[
+				"bs3-b",
+				"bs3-button:default	bs3-button-default"
+			],
+			[
+				"fa",
+				"facultyKey"
+			],
+			[
+				"se",
+				"searchContext"
+			],
+			[
+				"an",
+				"angular"
+			],
+			[
+				"bowe",
+				"bower_components"
+			],
+			[
+				"$rou",
+				"$routeParams	AngularJS"
+			],
+			[
+				"examI",
+				"examId"
+			],
+			[
+				"bow",
+				"bower_components"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "app/index.html",
+			"settings":
+			{
+				"buffer_size": 8674,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/favorite.html",
+			"settings":
+			{
+				"buffer_size": 1127,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/search.html",
+			"settings":
+			{
+				"buffer_size": 4560,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/scripts/services/portal.js",
+			"settings":
+			{
+				"buffer_size": 1612,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/scripts/controllers/favorite.js",
+			"settings":
+			{
+				"buffer_size": 361,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/styles/main.scss",
+			"settings":
+			{
+				"buffer_size": 2963,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 67.0,
+		"selected_items":
+		[
+			[
+				"bs3-",
+				"Snippet: bs3-col"
+			],
+			[
+				"bs3-tex",
+				"Snippet: bs3-input-text"
+			],
+			[
+				"bs3-i",
+				"Snippet: bs3-input-checkbox"
+			],
+			[
+				"Package Control: i",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"selec",
+				"Snippet: bs3-select"
+			],
+			[
+				"Snippet: html",
+				"Snippet: bs3-html5-template"
+			],
+			[
+				"Snippet: ht",
+				"Snippet: bs3-html5-template"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 575.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/ale/Projects/ArielPortal",
+		"/Users/ale/Projects/ArielPortal/app",
+		"/Users/ale/Projects/ArielPortal/app/scripts",
+		"/Users/ale/Projects/ArielPortal/app/scripts/controllers",
+		"/Users/ale/Projects/ArielPortal/app/scripts/services",
+		"/Users/ale/Projects/ArielPortal/app/styles",
+		"/Users/ale/Projects/ArielPortal/app/views"
+	],
+	"file_history":
+	[
+		"/Users/ale/Projects/ArielPortal/app/scripts/services/portal.js",
+		"/Users/ale/Projects/ArielPortal/app/scripts/app.js",
+		"/Users/ale/Projects/ArielPortal/app/styles/main.scss",
+		"/Users/ale/Projects/ArielPortal/app/views/search.html",
+		"/Users/ale/Projects/ArielPortal/app/scripts/controllers/search.js",
+		"/Users/ale/Projects/ArielPortal/app/index.html",
+		"/Users/ale/Projects/ArielPortal/.tmp/styles/main.css",
+		"/Users/ale/Projects/ArielPortal/Gruntfile.js",
+		"/Users/ale/Documents/trest.html",
+		"/Users/ale/Projects/HelpStats/app/index.html",
+		"/Users/ale/Library/Application Support/Sublime Text 3/Packages/Emmet/Default (OSX).sublime-keymap",
+		"/Users/ale/Library/Application Support/Sublime Text 3/Packages/Emmet/Emmet.sublime-settings",
+		"/Users/ale/Projects/ArielPortal/app/scripts/directives/searchcontext.js",
+		"/Users/ale/Projects/ArielPortal/node_modules/grunt-google-cdn/node_modules/bower/node_modules/bower-registry-client/node_modules/request/tests/test-s3.js",
+		"/Users/ale/Projects/ArielPortal/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap-sprockets.js",
+		"/Users/ale/Projects/ArielPortal/bower.json",
+		"/Volumes/192.168.38.105/sviluppo/ctu/Altri progetti/SurveySA/web/exam/app/scripts/controllers/calendar.js",
+		"/Volumes/192.168.38.105/sviluppo/ctu/Altri progetti/SurveySA/web/exam/app/scripts/app.js",
+		"/Volumes/192.168.38.105/sviluppo/ctu/Altri progetti/SurveySA/web/exam/app/views/sessions.html",
+		"/Volumes/192.168.38.105/sviluppo/ctu/Altri progetti/SurveySA/web/exam/app/views/calendar.html",
+		"/Volumes/192.168.38.105/sviluppo/ctu/Altri progetti/SurveySA/web/exam/app/scripts/controllers/examInfo.js",
+		"/Volumes/192.168.38.105/sviluppo/ctu/Altri progetti/SurveySA/web/exam/app/views/examInfo.html",
+		"/Volumes/192.168.38.105/sviluppo/ctu/Altri progetti/SurveySA/web/exam/app/scripts/controllers/month.js",
+		"/Volumes/192.168.38.105/sviluppo/ctu/Altri progetti/SurveySA/web/exam/app/scripts/controllers/sessions.js",
+		"/Volumes/192.168.38.105/sviluppo/ctu/Altri progetti/SurveySA/web/exam/app/scripts/controllers/exams.js",
+		"/Volumes/192.168.38.105/sviluppo/ctu/Altri progetti/SurveySA/web/exam/app/views/exams.html",
+		"/Volumes/192.168.38.105/sviluppo/ctu/Altri progetti/SurveySA/web/exam/app/styles/main.css",
+		"/Volumes/192.168.38.105/sviluppo/ctu/Altri progetti/SurveySA/web/exam/app/index.html",
+		"/Volumes/192.168.38.105/sviluppo/ctu/Altri progetti/SurveySA/web/exam/app/views/month.html",
+		"/Users/ale/Projects/yoho/test/protractor-test/conf.js",
+		"/Users/ale/Projects/yoho/test/protractor-test/example_spec.js"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"statis",
+			"mainCtrl",
+			"danger",
+			"Title",
+			"Url",
+			"div"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "app/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8674,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								896,
+								896
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 558.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/views/favorite.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1127,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								469,
+								469
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/views/search.html",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 4560,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3830,
+								4037
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1615.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/scripts/services/portal.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1612,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								142,
+								142
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 133.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/scripts/controllers/favorite.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 361,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								352,
+								352
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/styles/main.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2963,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								384,
+								384
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Syntax Highlighting for Sass/Syntaxes/SCSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "ArielPortal.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 235.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
