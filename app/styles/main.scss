@@ -1,6 +1,8 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 
 $font-family-sans-serif: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-size-base: 12px;
+
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
@@ -29,14 +31,14 @@ $font-family-sans-serif: "open sans", "Helvetica Neue", Helvetica, Arial, sans-s
 
 /* Custom page header */
 .header {
-  border-bottom: 1px solid #e5e5e5;
+  //border-bottom: 1px solid #e5e5e5;
 
   /* Make the masthead heading the same height as the navigation */
   h3 {
     margin-top: 0;
     margin-bottom: 0;
     line-height: 40px;
-    padding-bottom: 19px;
+    //padding-bottom: 19px;
   }
 }
 

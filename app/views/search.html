@@ -34,6 +34,12 @@
 						CdS compatibili
 					</label>
 				</div>
+				<div class="checkbox" ng-show="user.IsBaseStudent">
+					<label>
+						<input type="checkbox" ng-model="searchContext.SearchFlags.IsW4RuleComplying">
+						W4 compatibili
+					</label>
+				</div>
 				<div class="checkbox">
 					<label>
 						<input type="checkbox" ng-model="searchContext.SearchFlags.IsEnrolled">
@@ -100,8 +106,7 @@
 		</ul>
 		</small></div>
 
-		<div ng-show="project.IsRuleComplying"><small class="text-success">Sito accessibile</small></div>
-		<div ng-hide="project.Project.IsPublic"><small class="text-danger">Sito non pubblico</small></div>
+		<div ng-hide="project.Project.IsPublic"><small class="text-danger bg-danger"><strong>Sito non pubblico</strong></small></div>
 		<div ng-show="project.LastAccessDate"><small>Ultima visita: {{ project.LastAccessDate | date : 'd/MM/yyyy HH:mm' }}</small> </div>
 		<div class="text-right">
 			<button 
