@@ -10,6 +10,7 @@
  */
 angular
   .module('portalApp', [
+    'config',
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -74,7 +75,10 @@ angular
 
       $httpProvider.responseInterceptors.push(interceptor);
   })
-  .run(function ($rootScope, $route, $location, portal) {
+  .run(function ($rootScope, $route, $location, $sce, portal, ENV) {
+    $rootScope.logoutUrl = ENV.authUrl + 'logout.aspx?backurl=' + $location.absUrl();
+    $rootScope.loginUrl = $sce.trustAsResourceUrl(ENV.authUrl + ENV.authSkin + 'login.aspx?url=' + $location.absUrl());
+
     $rootScope.isDebug = false;
     // serve per definire il profilo
     $rootScope.userAttrs = [

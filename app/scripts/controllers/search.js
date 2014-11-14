@@ -38,6 +38,9 @@ angular.module('portalApp')
         if ($rootScope.user.IsBaseStudent && $scope.searchContext.SearchFlags.IsCDSRuleComplying) {
           items.push('CdS compatibili');
         }
+        if ($rootScope.user.IsBaseStudent && $scope.searchContext.SearchFlags.IsCDSRuleComplying) {
+          items.push('W4 compatibili');
+        }
         if ($scope.searchContext.SearchFlags.IsEnrolled) {
           items.push('Visitati');
         }
