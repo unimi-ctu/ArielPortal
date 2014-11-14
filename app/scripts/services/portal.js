@@ -1,7 +1,5 @@
 'use strict';
 
-var basePath = 'http://api.unimi.it/ArielPortalAPI/api/user/';
-
 /**
  * @ngdoc service
  * @name portalApp.portal
@@ -10,7 +8,7 @@ var basePath = 'http://api.unimi.it/ArielPortalAPI/api/user/';
  * Service in the portalApp.
  */
 angular.module('portalApp')
-  .service('portal', function portal($http, $rootScope) {
+  .service('portal', function portal($http, $rootScope, ENV) {
 
   	var _searchContext = { SearchFlags: {} };
 
@@ -37,32 +35,32 @@ angular.module('portalApp')
   	};
 
     this.checkUser = function() {
-      return pipeline($http.get(basePath + 'checkuser'));
+      return pipeline($http.get(ENV.apiEndPoint + 'checkuser'));
     };
 
   	this.getFaculties = function() {
-  		return pipeline($http.get(basePath + 'faculties', {cache: true }));
+  		return pipeline($http.get(ENV.apiEndPoint + 'faculties', {cache: true }));
   	};
 
     this.getFacultiesWithCounts = function() {
-      return pipeline($http.get(basePath + 'faculties/withcounts', {cache: true }));
+      return pipeline($http.get(ENV.apiEndPoint + 'faculties/withcounts', {cache: true }));
     };
 
   	this.getCdses = function(facultyKey) {
-  		return pipeline($http.get(basePath + 'faculty/' + facultyKey + '/cdses'));
+  		return pipeline($http.get(ENV.apiEndPoint + 'faculty/' + facultyKey + '/cdses'));
   	};
 
     this.getSearch = function(searchContext) {
       var data = window.btoa(JSON.stringify(searchContext));
-      return pipeline($http.get(basePath + 'search/' + data));
+      return pipeline($http.get(ENV.apiEndPoint + 'search/' + data));
     };
 
     this.getFavorites = function() {
-      return pipeline($http.get(basePath + 'favorites'));
+      return pipeline($http.get(ENV.apiEndPoint + 'favorites'));
     };
 
     this.toggleFavorite = function(projectId) {
-      return pipeline($http.get(basePath + 'project/' + projectId + '/toggleFavorite'));
+      return pipeline($http.get(ENV.apiEndPoint + 'project/' + projectId + '/toggleFavorite'));
     };
 
   });
