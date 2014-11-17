@@ -36,7 +36,7 @@
 				</div>
 				<div class="checkbox" ng-show="user.IsBaseStudent">
 					<label>
-						<input type="checkbox" ng-model="searchContext.SearchFlags.IsW4RuleComplying">
+						<input type="checkbox" ng-model="searchContext.SearchFlags.IsW4Visible">
 						W4 compatibili
 					</label>
 				</div>
@@ -107,8 +107,9 @@
 		</small></div>
 
 		<div ng-hide="project.Project.IsPublic"><small class="text-danger bg-danger"><strong>Sito non pubblico</strong></small></div>
+		<div ng-hide="project.IsRuleComplying"><small class="text-danger bg-danger"><strong>Sito non accessibile</strong></small></div>
 		<div ng-show="project.LastAccessDate"><small>Ultima visita: {{ project.LastAccessDate | date : 'd/MM/yyyy HH:mm' }}</small> </div>
-		<ul>
+		<ul ng-show="isdebug">
 			<li ng-repeat="attr in projectAttrs">
 				{{ projectAttrs[$index] }}: <span ng-class="project[attr] ? 'bg-success' : 'bg-danger'">{{ project[attr] }}</span>
 			</li>

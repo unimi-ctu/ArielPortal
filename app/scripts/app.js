@@ -93,7 +93,7 @@ angular
 
     $rootScope.projectAttrs = [
       'IsCDSRuleComplying', 
-      'IsW4RuleComplying',
+      'IsW4Visible',
       'IsEnrolled',
       'IsFavorite',
       'IsInfaculty',
