@@ -91,6 +91,16 @@ angular
       'Unimi', 'Studente', 'Personale Unimi', 'Ospite', 'Phd', 'Silsis', 'Altro'
     ];
 
+    $rootScope.projectAttrs = [
+      'IsCDSRuleComplying', 
+      'IsW4Visible',
+      'IsEnrolled',
+      'IsFavorite',
+      'IsInfaculty',
+      'IsOwner',
+      'IsRuleComplying'
+    ];
+
     // console.log($route);
 
     $rootScope.quickSearch = function() {
