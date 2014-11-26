@@ -99,12 +99,24 @@
 
 	<li ng-show="projectList.ProjectList" ng-repeat="project in projectList.ProjectList | limitTo: showCount" class="bg-danger list-group-item">	
 		<h4><span ng-show="project.Project.IsPoolMaster" class="glyphicon glyphicon-star text-danger"></span> <span ng-bind-html="project.Project.Name" /></h4>
-		<div><small>
-		<strong>Docenti:</strong>
-		<ul class="arl-teacher-list">
-			<li ng-repeat="teacher in project.Project.OwnerList">{{ teacher.FirstName }} {{ teacher.LastName }}</li>
-		</ul>
-		</small></div>
+		<div>
+			<small>
+				<strong>Docenti:</strong>
+				<ul class="arl-teacher-list">
+					<li ng-repeat="teacher in project.Project.OwnerList">{{ teacher.FirstName }} {{ teacher.LastName }}</li>
+				</ul>
+			</small>
+			<div class="arl-projectCard" ng-if="project.Project.Id == projectCard.Project.Id">
+				<h3>Scheda sito didattico</h3>
+				<h4>{{ projectCard.Project.OriginalName }}</h4>
+				<h5>Docente</h5>
+				<ul><li ng-repeat="teacher in projectCard.Project.OwnerList">{{ teacher.FirstName }} {{ teacher.LastName }}</li></ul>
+				<h5>Insegnamenti associati al sito</h5>
+				<ul><li ng-repeat="w4course in projectCard.Project.W4CourseList">{{ w4course.W4Code }} - {{ w4course.W4CodeDesc }}</li></ul>
+				<h5>Regole di accesso al sito</h5>
+				<span>da implementare</span>
+			</div>
+		</div>
 
 		<div ng-hide="project.Project.IsPublic"><small class="text-danger bg-danger"><strong>Sito non pubblico</strong></small></div>
 		<div ng-hide="project.IsRuleComplying"><small class="text-danger bg-danger"><strong>Sito non accessibile</strong></small></div>
@@ -123,7 +135,7 @@
 				ng-click="toggleFavorite($index)"
 				ng-bind-html="project.IsFavorite ? '<span class=\'glyphicon glyphicon-asterisk\'></span> Rimuovi dai preferiti' : 'Aggiungi ai preferiti'">
 			</button> 
-			<button type="button" class="btn btn-primary btn-xs">Scheda</button>
+			<button ng-click="getProject($index)" type="button" class="btn btn-primary btn-xs">Scheda</button>
 		</div>
 	</li>
 

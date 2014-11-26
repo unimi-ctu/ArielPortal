@@ -62,5 +62,9 @@ angular.module('portalApp')
     this.toggleFavorite = function(projectId) {
       return pipeline($http.get(ENV.apiEndPoint + 'project/' + projectId + '/toggleFavorite'));
     };
+	
+	this.getProject = function(projectId) {
+	  return pipeline($http.get(ENV.apiEndPoint + 'project/' + projectId));
+	};
 
   });

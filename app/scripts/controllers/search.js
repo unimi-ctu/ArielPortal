@@ -136,6 +136,14 @@ angular.module('portalApp')
         p.IsFavorite = data.Data;  
       });
     };
+	
+	$scope.getProject = function(index) {
+      var p = $scope.projectList.ProjectList[index];
+
+      portal.getProject(p.Project.Id).then(function(data) {
+        $scope.projectCard = data.Data;
+      });
+    };
 
     $scope.$on('quicksearch', function(event, keyword) {
       $scope.searchContext = { SearchFlags: {}, Keyword: keyword };
