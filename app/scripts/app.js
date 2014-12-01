@@ -42,6 +42,10 @@ angular
         templateUrl: 'views/favorite.html',
         controller: 'FavoriteCtrl'
       })
+      .when('/acl', {
+        templateUrl: 'views/acl.html',
+        controller: 'AclCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

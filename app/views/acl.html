@@ -1,0 +1,33 @@
+<h3>Attività dai siti</h3>
+<div class="panel panel-default">
+	<div class="panel-body">
+	   <button ng-click="loadacl()" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-refresh"></span> Aggiorna</button>
+	</div>
+</div>
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>oggetto</th>
+			<th>Sito</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="item in acl">
+			<td>
+				<h4>{{ item.Subject }}<h4>
+				<p><small>
+					<span class="glyphicon glyphicon-user"></span> <strong>{{ item.FirstName }} {{ item.LastName }}</strong> <span ng-show="item.AttachmentCount > 0"> / <span class="glyphicon glyphicon-paperclip"></span> {{ item.AttachmentCount }} attachment</span><br>
+					data: <strong>{{ item.Date }}</strong> <span ng-show="item.ModifyDate"> \ ultima modifica: {{ item.ModifyDate }}</span><br>
+					strumento: <strong>{{ item.ForumTitle }}</strong> / ambiente: <strong>{{ item.RoomTitle }}</strong>
+				</small></p>
+			</td>
+			<td>
+				<ul>
+					<li ng-repeat="p in item.Projects">
+						{{ p.ProjectTitle }}
+					</li>
+				</ul>
+			</td>
+		</tr>
+	</tbody>
+</table>
