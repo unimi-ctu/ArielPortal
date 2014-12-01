@@ -16,6 +16,5 @@ angular.module('portalApp')
   		});
   	};
 
-
   	$scope.loadacl();
   });
