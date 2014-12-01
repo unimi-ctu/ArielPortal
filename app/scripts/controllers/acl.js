@@ -9,13 +9,13 @@
  */
 angular.module('portalApp')
   .controller('AclCtrl', function ($scope, portal) {
-	$scope.loadacl = function() {
-		$scope.acl = [];
-		portal.getAcl().then(function(data) {
-			$scope.acl = data.Data;
-		});
-	};
+  	$scope.loadacl = function() {
+  		$scope.acl = [];
+  		portal.getAcl().then(function(data) {
+  			$scope.acl = data.Data;
+  		});
+  	};
 
 
-	$scope.loadacl();
+  	$scope.loadacl();
   });
