@@ -67,4 +67,8 @@ angular.module('portalApp')
 	  return pipeline($http.get(ENV.apiEndPoint + 'project/' + projectId));
 	};
 
+    this.getAcl = function() {
+      return pipeline($http.get(ENV.apiEndPoint + 'acl'));
+    };
+
   });
