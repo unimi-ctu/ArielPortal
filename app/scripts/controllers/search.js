@@ -136,6 +136,22 @@ angular.module('portalApp')
         p.IsFavorite = data.Data;  
       });
     };
+	
+	$scope.getProject = function(index) {
+      
+	  var p = $scope.projectList.ProjectList[index];
+
+      portal.getProject(p.Project.Id).then(function(data) {
+        $scope.projectCard = data.Data;
+		$scope.projectCard.StudentAccessAllowed = $scope.projectCard.GuestAccessAllowed = false;
+		// verifico la presenza di regole per l'accesso studente
+		if ($scope.projectCard.Project.AccessRuleList.some(function (obj) {  if (obj.ArielRoleString === 'User') { return true; } return false;})) { $scope.projectCard.StudentAccessAllowed = true; }
+		// verifico la presenza di regole per l'accesso guest
+		if ($scope.projectCard.Project.AccessRuleList.some(function (obj) {  if (obj.ArielRoleString === 'Guest') { return true; } return false;})) { $scope.projectCard.GuestAccessAllowed = true;}
+		$scope.projectCard.erasmusFacList = [];
+		$scope.projectCard.Project.AccessRuleList.forEach(function(rule) { if (rule.ArielRoleString === 'User' && !rule.noErasmus && rule.CdS !== null && rule.CdS.FacultyKey !== null && $scope.projectCard.erasmusFacList.indexOf(rule.CdS.FacultyKey) === -1) { $scope.projectCard.erasmusFacList.push(rule.CdS.FacultyKey);} });
+      });
+    };
 
     $scope.$on('quicksearch', function(event, keyword) {
       $scope.searchContext = { SearchFlags: {}, Keyword: keyword };

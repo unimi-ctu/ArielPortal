@@ -4,7 +4,7 @@ $font-family-sans-serif: "open sans", "Helvetica Neue", Helvetica, Arial, sans-s
 $font-size-base: 12px;
 
 // bower:scss
-@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "bootstrap-sass-official/assets/stylesheets/bootstrap.scss";
 // endbower
 
 .browsehappy {
@@ -212,5 +212,9 @@ $faculty-list: (
     }
     display: inline;
   }
+}
+
+.arl-projectCard {
+  background-color: #c8d40c;
 }
 
