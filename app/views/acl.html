@@ -12,12 +12,12 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="item in acl">
+		<tr ng-repeat="item in acl"> 
 			<td>
-				<h4>{{ item.Subject }}<h4>
+				<h4><span class="glyphicon glyphicon-file"></span> {{ item.Subject }}<h4>
 				<p><small>
 					<span class="glyphicon glyphicon-user"></span> <strong>{{ item.FirstName }} {{ item.LastName }}</strong> <span ng-show="item.AttachmentCount > 0"> / <span class="glyphicon glyphicon-paperclip"></span> {{ item.AttachmentCount }} attachment</span><br>
-					data: <strong>{{ item.Date }}</strong> <span ng-show="item.ModifyDate"> \ ultima modifica: {{ item.ModifyDate }}</span><br>
+					<span class="glyphicon glyphicon-calendar"></span> data: <strong>{{ item.Date | date:'medium' }}</strong> <span ng-show="item.ModifyDate"> / <span class="glyphicon glyphicon-calendar"></span> ultima modifica: <strong>{{ item.ModifyDate | date:'medium' }}</strong></span><br>
 					strumento: <strong>{{ item.ForumTitle }}</strong> / ambiente: <strong>{{ item.RoomTitle }}</strong>
 				</small></p>
 			</td>

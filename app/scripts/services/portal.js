@@ -71,8 +71,4 @@ angular.module('portalApp')
       return pipeline($http.get(ENV.apiEndPoint + 'acl'));
     };
 
-    this.getAcl = function() {
-      return pipeline($http.get(ENV.apiEndPoint + 'acl'));
-    };
-
   });
