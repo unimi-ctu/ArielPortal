@@ -141,6 +141,53 @@ $font-size-base: 12px;
 
 }
 
+$color-list: (
+  ('0', #b9b9b9, #f3f3f3, #fcfcfc),
+  ('1', #ffa211, #fff1da, #fffbf5),
+  ('2', #ff4c10, #ffd7ca, #feeded),
+  ('3', #ff008b, #ffcee9, #fff0fd),
+  ('4', #b21f99, #ffb8ff, #fff3ff),
+  ('5', #4c1fb2, #ced0fc, #eceeff),
+  ('6', #1f6bb2, #b4ecff, #e1f7ff),
+  ('7', #1fb0b2, #d0f0f1, #ebfcfc),
+  ('8', #21b22b, #d4fed0, #f5fef4)
+);
+
+@each $color in $color-list {
+  $name: nth($color, 1);
+  $dark: nth($color, 2);
+  $normal: nth($color, 3);
+  $light: nth($color, 4);
+
+  .arl-scheme-#{$name} {
+    &.arl-favorite {
+      .panel {
+        border-color: $normal;
+      }
+      .panel-body {
+        background: $light;
+        border-color: $normal;
+        h4 {
+          background: $normal;
+          .glyphicon-asterisk {
+            color: $dark;
+          }
+        }
+      }
+    }
+  }
+
+  .arl-coloreditor {
+    li.arl-scheme-#{$name} {
+      button {
+        background: $normal;
+        color: $normal;
+        border-color: $dark;
+      }
+    }
+
+  }
+}
 
 $faculty-list: (
   ('J', #3b426b, #eee),
@@ -218,3 +265,30 @@ $faculty-list: (
   background-color: #c8d40c;
 }
 
+.arl-favorite {
+  h4 {
+    padding: 3px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+  }
+}
+
+.arl-inlinedialog {
+  border-top: 1px solid #ddd;
+  padding-top: 5px;
+  span {
+    padding: 4px;
+    float: left;
+  }
+  ul {
+    float: left;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    li {
+      float: left ;
+      padding: 2px;
+      list-type: none;
+    }
+  }
+}

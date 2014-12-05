@@ -189,6 +189,7 @@
 
 		<div ng-hide="project.Project.IsPublic"><small class="text-danger bg-danger"><strong>Sito non pubblico</strong></small></div>
 		<div ng-hide="project.IsRuleComplying"><small class="text-danger bg-danger"><strong>Sito non accessibile</strong></small></div>
+		<div ng-show="project.IsFavorite" ng-class="'arl-fav-' + project.ColorScheme + '-fg'">qui</div>
 		<div ng-show="project.LastAccessDate"><small>Ultima visita: {{ project.LastAccessDate | date : 'd/MM/yyyy HH:mm' }}</small> </div>
 		<ul ng-show="isdebug">
 			<li ng-repeat="attr in projectAttrs">

@@ -1,12 +1,14 @@
 <div ng-show="user">
-	<h3>I miei preferiti</h3>
+	<h3>I miei siti preferiti</h3>
 	<p>L'elenco mostra i siti preferiti</p>
-	<p>Per aggiungere un preferito usa il comand "aggiungi preferito"</p>
+	<p>Per aggiungere un preferito usa il comando "aggiungi preferito"</p>
 	<div class="row" ng-cloak ng-show="favorites.length">
-		<div class="col-sm-6" ng-repeat="pw in favorites">
+		<div class="col-sm-12 arl-favorite" ng-repeat="pw in favorites" ng-class="'arl-scheme-' + pw.ColorScheme">
 			<div class="panel panel-default">
-				<div class="panel-body bg-warning">
-					<h4><span class="glyphicon glyphicon-asterisk text-primary"></span> {{ pw.Project.Name }}</h4>
+				<div class="panel-body">
+					<!-- TITOLO -->
+					<h4><span class="glyphicon glyphicon-asterisk"></span> {{ pw.Project.Name }}</h4>
+
 					<div>
 						<small>
 							
@@ -18,10 +20,32 @@
 							<p ng-hide="pw.LastAccessDate">Non visitato</p>
 						</small>
 					</div>
+
 					<p class="text-right">
 						<button type="button" class="btn btn-primary btn-xs">Apri</button>
-						<button type="button" class="btn btn-danger btn-xs" ng-click="toggleFavorite({{ pw.Project.Id }})">Rimuovi</button>
+						<button type="button" class="btn btn-primary btn-xs" ng-click="opencolor($index)">Cambia colore</button>
+						<button type="button" class="btn btn-danger btn-xs" ng-click="openconfirm($index)">Rimuovi</button>
+
 					</p>
+					<!-- EDITOR COLORI -->
+					<div class="arl-inlinedialog arl-coloreditor" ng-show="editcolor==$index">
+						<span>seleziona un colore:</span> 
+						
+						<ul>
+							<li ng-repeat="color in colorSchemes" ng-class="'arl-scheme-' + color">
+								<button type="button" class="btn btn-xs"  ng-click="changecolor(color,pw)">&nbsp;</button>
+							</li>
+							<li><button type="button" class="btn btn-danger btn-xs" ng-click="closecolor()">Annulla</button></li>
+						</ul>
+					</div>
+					<!-- CONFIRM REMOVE -->
+					<div class="arl-inlinedialog" ng-show="confirmindex==$index">
+						<span>sei sicuro di voler rimuovere il sito dai preferiti?</span>
+						<ul>
+							<li><button class="btn btn-primary btn-xs" ng-click="toggleFavorite(pw)">Sì</button></li>
+							<li><button class="btn btn-primary btn-xs" ng-click="closeconfirm()">No</button></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
