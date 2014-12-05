@@ -4,7 +4,7 @@
 	   <button ng-click="loadacl()" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-refresh"></span> Aggiorna</button>
 	</div>
 </div>
-<table class="table table-hover" ng-show="acl.length">
+<table class="arl-acl table table-hover" ng-show="acl.length">
 	<thead>
 		<tr>
 			<th>oggetto</th>
@@ -12,7 +12,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="item in acl"> 
+		<tr ng-repeat="item in acl" ng-class="'arl-scheme-' + item.Projects[0].Color"> 
 			<td>
 				<h4><span class="glyphicon glyphicon-file"></span> {{ item.Subject }}<h4>
 				<p><small>
@@ -22,9 +22,9 @@
 				</small></p>
 			</td>
 			<td>
-				<ul style="padding: 0; margin: 0; list-style: none;">
-					<li ng-repeat="p in item.Projects">
-						<span ng-show="p.IsFavorite" class="glyphicon glyphicon-asterisk" style="background: #d9534f; color: white; border-radius: 50%; padding: 2px;" title="sito preferito"></span> <a href="#">{{ p.ProjectTitle }}</a>
+				<ul class="arl-projects" style="padding: 0; margin: 0; list-style: none;">
+					<li ng-repeat="p in item.Projects" ng-class="'arl-scheme-' + p.Color">
+						<a href="#"><small><span ng-show="p.IsFavorite" class="glyphicon glyphicon-asterisk" style="background: #d9534f; color: white; border-radius: 50%; padding: 2px;" title="sito preferito"></span> {{ p.ProjectTitle }}</small></a>
 					</li>
 
 				</ul>
