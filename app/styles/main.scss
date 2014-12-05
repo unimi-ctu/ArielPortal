@@ -187,6 +187,18 @@ $color-list: (
     }
 
   }
+
+  .arl-acl {
+    tr.arl-scheme-#{$name} {
+      background: $light;
+    }
+    .arl-projects {
+      li.arl-scheme-#{$name} a {
+        background: $dark;
+        color: #fff;
+      }
+    }
+  }
 }
 
 $faculty-list: (
@@ -289,6 +301,18 @@ $faculty-list: (
       float: left ;
       padding: 2px;
       list-type: none;
+    }
+  }
+}
+
+.arl-acl {
+  .arl-projects {
+    padding: 0; 
+    margin: 0; 
+    list-style: none;
+    li a {
+      padding: 0 4px;
+      border-radius: 4px;
     }
   }
 }
