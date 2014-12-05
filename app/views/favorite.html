@@ -1,12 +1,12 @@
 <div ng-show="user">
-	<h3>I miei preferiti</h3>
+	<h3>I miei preferiti2</h3>
 	<p>L'elenco mostra i siti preferiti</p>
 	<p>Per aggiungere un preferito usa il comand "aggiungi preferito"</p>
 	<div class="row" ng-cloak ng-show="favorites.length">
 		<div class="col-sm-6" ng-repeat="pw in favorites">
 			<div class="panel panel-default">
-				<div class="panel-body bg-warning">
-					<h4><span class="glyphicon glyphicon-asterisk text-primary"></span> {{ pw.Project.Name }}</h4>
+				<div class="panel-body" ng-class="'arl-favorite-' + pw.ColorScheme + '-bg'">
+					<h4><span class="glyphicon glyphicon-asterisk" ng-class="'arl-favorite-' + pw.ColorScheme + '-fg'"></span> {{ pw.Project.Name }}</h4>
 					<div>
 						<small>
 							
@@ -20,8 +20,20 @@
 					</div>
 					<p class="text-right">
 						<button type="button" class="btn btn-primary btn-xs">Apri</button>
+						<button type="button" class="btn btn-primary btn-xs" ng-click="opencolor($index)">Cambia colore</button>
 						<button type="button" class="btn btn-danger btn-xs" ng-click="toggleFavorite({{ pw.Project.Id }})">Rimuovi</button>
+
 					</p>
+					<div class="arl-coloreditor" ng-show="editcolor==$index">
+						<span>seleziona un colore:</span> 
+						
+						<ul>
+							<li ng-repeat="color in colorSchemes">
+								<button type="button" class="btn btn-xs" ng-class="'arl-favorite-' + color + '-bg'" ng-click="changecolor(color,pw)">&nbsp;</button>
+							</li>
+							<li><button type="button" class="btn btn-danger btn-xs" ng-click="closecolor()">Annulla</button></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>

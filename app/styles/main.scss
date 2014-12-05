@@ -141,6 +141,29 @@ $font-size-base: 12px;
 
 }
 
+$color-list: (
+  ('0', #b9b9b9, #f3f3f3),
+  ('1', #ffa211, #fff1da),
+  ('2', #ff4c10, #ffd7ca),
+  ('3', #ff008b, #ffcee9),
+  ('4', #b21f99, #ffb8ff),
+  ('5', #4c1fb2, #ced0fc),
+  ('6', #1f6bb2, #b4ecff),
+  ('7', #1fb0b2, #d0f0f1),
+  ('8', #21b22b, #d4fed0)
+);
+
+@each $color in $color-list {
+  $name: nth($color, 1);
+  $fg: nth($color, 2);
+  $bg: nth($color, 3);
+  .arl-favorite-#{$name}-fg {
+    color: $fg;
+  }
+  .arl-favorite-#{$name}-bg {
+    background: $bg;
+  }
+}
 
 $faculty-list: (
   ('J', #3b426b, #eee),
@@ -218,3 +241,22 @@ $faculty-list: (
   background-color: #c8d40c;
 }
 
+.arl-coloreditor {
+  border-top: 1px solid #ddd;
+  padding-top: 5px;
+  span {
+    padding: 2px;
+    float: left;
+  }
+  ul {
+    float: left;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    li {
+      float: left ;
+      padding: 2px;
+      list-type: none;
+    }
+  }
+}

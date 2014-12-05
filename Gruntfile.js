@@ -403,6 +403,7 @@ module.exports = function (grunt) {
             name: 'development',
             authUrl: 'https://www.elearning.unimi.it/authentication/',
             authSkin: 'portal/',
+            //apiEndPoint: 'http://ariel.ariel.ctu.unimi.it/ArielAPI/api/user/'
             apiEndPoint: 'http://api.unimi.it/ArielPortalAPI/api/user/'
           }
         }
