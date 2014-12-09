@@ -73,6 +73,8 @@ angular.module('portalApp')
     $scope.searchFilterVerbose = getSearchFilterVerbose();
     $scope.showCount = _showCount;
 
+    $scope.projectCardId = -1;
+
   	portal.getFaculties().then(function(data) {
   		$scope.faculties = data.Data;
   		$scope.fillCdses();
@@ -103,6 +105,8 @@ angular.module('portalApp')
       }
 
       portal.getSearch($scope.searchContext).then(function(data) {
+        $scope.projectCardId = -1;
+
         $scope.projectList = data.Data;
         $scope.isSearchForm = false;
         $scope.showCount = _showCount;
@@ -137,20 +141,46 @@ angular.module('portalApp')
       });
     };
 	
-	$scope.getProject = function(index) {
-      
-	  var p = $scope.projectList.ProjectList[index];
+    $scope.getProject = function(p) {
+      if ($scope.projectCardId === p.Project.Id) {
+        $scope.projectCardId = -1;
+      }
+      else {
 
-      portal.getProject(p.Project.Id).then(function(data) {
-        $scope.projectCard = data.Data;
-		$scope.projectCard.StudentAccessAllowed = $scope.projectCard.GuestAccessAllowed = false;
-		// verifico la presenza di regole per l'accesso studente
-		if ($scope.projectCard.Project.AccessRuleList.some(function (obj) {  if (obj.ArielRoleString === 'User') { return true; } return false;})) { $scope.projectCard.StudentAccessAllowed = true; }
-		// verifico la presenza di regole per l'accesso guest
-		if ($scope.projectCard.Project.AccessRuleList.some(function (obj) {  if (obj.ArielRoleString === 'Guest') { return true; } return false;})) { $scope.projectCard.GuestAccessAllowed = true;}
-		$scope.projectCard.erasmusFacList = [];
-		$scope.projectCard.Project.AccessRuleList.forEach(function(rule) { if (rule.ArielRoleString === 'User' && !rule.noErasmus && rule.CdS !== null && rule.CdS.FacultyKey !== null && $scope.projectCard.erasmusFacList.indexOf(rule.CdS.FacultyKey) === -1) { $scope.projectCard.erasmusFacList.push(rule.CdS.FacultyKey);} });
-      });
+        portal.getProject(p.Project.Id).then(function(data) {
+          $scope.projectCardId = p.Project.Id;
+
+          $scope.projectCard = data.Data;
+  		    $scope.projectCard.StudentAccessAllowed = $scope.projectCard.GuestAccessAllowed = false;
+  		    
+          // verifico la presenza di regole per l'accesso studente
+  		    if ($scope.projectCard.Project.AccessRuleList.some(function (obj) {  
+            if (obj.ArielRoleString === 'User') { 
+              return true; 
+            } 
+            return false;
+          })) { 
+            $scope.projectCard.StudentAccessAllowed = true; 
+          }
+  		
+          // verifico la presenza di regole per l'accesso guest
+  		    if ($scope.projectCard.Project.AccessRuleList.some(function (obj) {  
+            if (obj.ArielRoleString === 'Guest') { 
+              return true; 
+            } 
+            return false;
+          })) { 
+            $scope.projectCard.GuestAccessAllowed = true;
+          }
+
+  		    $scope.projectCard.erasmusFacList = [];
+  		    $scope.projectCard.Project.AccessRuleList.forEach(function(rule) { 
+            if (rule.ArielRoleString === 'User' && !rule.noErasmus && rule.CdS !== null && rule.CdS.FacultyKey !== null && $scope.projectCard.erasmusFacList.indexOf(rule.CdS.FacultyKey) === -1) { 
+              $scope.projectCard.erasmusFacList.push(rule.CdS.FacultyKey);
+            } 
+          });
+        });
+      }
     };
 
     $scope.$on('quicksearch', function(event, keyword) {
