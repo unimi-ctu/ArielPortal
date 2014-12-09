@@ -199,6 +199,12 @@ $color-list: (
       }
     }
   }
+
+  .arl-project {
+    &.arl-scheme-#{$name} {
+      background: $light;
+    }
+  }
 }
 
 $faculty-list: (
@@ -224,26 +230,30 @@ $faculty-list: (
   background: linear-gradient(45deg, $color 0%, lighten($color, 25) 100%);
 }
 
-// colore di background delle facoltà
+// colori delle facoltà
 @each $faculty in $faculty-list {
   $name: nth($faculty, 1);
   $bg: nth($faculty, 2);
   $fg: nth($faculty, 3);
+
   .arl-faculty-#{$name}-bg {
     @include faculty-bg($bg);
     color: $fg;
   }
   
+  .arl-faculty-#{$name}-brd-l {
+    border-left: 32px solid $bg;  
+  }
+
+  .arl-facultycode {
+    &.arl-faculty-#{$name} {
+      background: $bg;
+      color: $fg;
+    }    
+  }
+
 }
 
-// colore del bordo delle facoltà
-@each $faculty in $faculty-list {
-  $name: nth($faculty, 1);
-  $value: nth($faculty, 2);
-  .arl-faculty-#{$name}-brd-l {
-    border-left: 32px solid $value;  
-  }
-}
 
 .arl-faculty {
   width: 32px;
@@ -273,8 +283,9 @@ $faculty-list: (
   }
 }
 
-.arl-projectCard {
-  background-color: #c8d40c;
+.arl-siteinfo {
+  border-left: 10px solid #ccc;
+  padding: 10px;
 }
 
 .arl-favorite {
@@ -315,4 +326,9 @@ $faculty-list: (
       border-radius: 4px;
     }
   }
+}
+
+.arl-facultycode {
+  padding: 0 4px;
+  border-radius: 4px;
 }
