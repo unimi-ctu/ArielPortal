@@ -103,7 +103,9 @@
 
 		<div>
 			<small>
-				<strong>Docenti:</strong>
+				<strong>
+					{{project.Project.ProjectTypeString == "Default" || project.Project.ProjectTypeString == "Other" ? 'Docent' : 'Coordonator'}}{{project.Project.OwnerList.length == 1 ? "e" : "i"}}
+				</strong>
 				<ul class="arl-teacher-list">
 					<li ng-repeat="teacher in project.Project.OwnerList">{{ teacher.FirstName }} {{ teacher.LastName }}</li>
 				</ul>
