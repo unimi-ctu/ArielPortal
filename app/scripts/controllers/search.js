@@ -14,10 +14,10 @@ angular.module('portalApp')
     function getSearchVerbose() {
       var items = [];
       if ($scope.searchContext.FacultyKey) {
-        items.push('codice facoltà: \'<strong>' + $scope.searchContext.FacultyKey + '</strong>\'');
+        items.push('facoltà: <strong>' + $scope.faculties[$scope.searchContext.FacultyKey].Description + '</strong>');
       }
       if ($scope.searchContext.CdsKey) {
-        items.push('codice corso di studi: \'<strong>' + $scope.searchContext.CdsKey + '</strong>\'');
+        items.push('codice corso di studi: <strong>' + $scope.searchContext.CdsKey + '</strong>');
       }
       if ($scope.searchContext.Keyword) {
         var pre = $scope.searchContext.Keyword.split(' ').length === 1 ? 'parola chiave' : 'parole chiave';

@@ -7,7 +7,7 @@
 		<form role="form">
 			<div class="form-group">
 				<label for="faculty">Facoltà</label>
-				<select id="faculty" class="form-control" ng-options="faculty.Key as faculty.Description for faculty in faculties" ng-change="fillCdses()" ng-model="searchContext.FacultyKey">
+				<select id="faculty" class="form-control" ng-options="key as faculty.Description for (key, faculty) in faculties" ng-change="fillCdses()" ng-model="searchContext.FacultyKey">
 					<option value="">-- selziona una facoltà --</option>
 					
 				</select>
@@ -127,6 +127,7 @@
 				ng-click="toggleFavorite($index)"
 				ng-bind-html="project.IsFavorite ? '<span class=\'glyphicon glyphicon-asterisk\'></span> Rimuovi dai preferiti' : '<span class=\'glyphicon glyphicon-plus-sign\'></span> Aggiungi ai preferiti'">
 			</button> 
+			<button ng-show="project.Project.IsPoolMaster" type="button" class="btn btn-primary btn-xs">Siti correlati</button>
 			<button ng-click="getProject(project)" type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-info-sign"></span> <span ng-show="project.Project.Id == projectCardId">Chiudi</span> Info</button>
 		</div>
 
@@ -134,105 +135,110 @@
 			<h4>Informazioni sito didattico</h4>
 
 			<div ng-show="projectCard.Project.W4CourseList.length">
-				<p><strong>Insegnamenti associati al sito</strong></p>
+				<p><strong><span class="glyphicon glyphicon-pushpin"></span> Insegnamenti associati al sito</strong></p>
 
-				<table class="table table-hover">
+				<div class="arl-indent">
+					<table class="table table-hover">
+						<tbody>
+							<tr ng-repeat="w4course in projectCard.Project.W4CourseList">
+								<td>
+									<span style="float:left;">{{ w4course.W4CodeDesc }}</span>
+									<span style="float:right;" class="arl-facultycode" ng-class="'arl-faculty-' + w4course.W4Faculty">{{ w4course.W4Code }}</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<p><strong><span class="glyphicon glyphicon-pushpin"></span> Regole di accesso al sito</strong></p>
+
+			<div class="arl-indent">
+
+				<p ng-if="projectCard.StudentAccessAllowed">È consentito l'accesso in modalità <strong>studente</strong> / <a style="cursor: pointer;" ng-click="$parent.showStudRules = !$parent.showStudRules">vedi CdS abilitati e regole di accesso</a></p>
+
+				<table ng-show="showStudRules" class="table table-striped table-hover">
 					<tbody>
-						<tr ng-repeat="w4course in projectCard.Project.W4CourseList">
+						<tr ng-repeat="accessRule in projectCard.Project.AccessRuleList" ng-show="accessRule.ArielRoleString == 'User'">
 							<td>
-								<span style="float:left;">{{ w4course.W4CodeDesc }}</span>
-								<span style="float:right;" class="arl-facultycode" ng-class="'arl-faculty-' + w4course.W4Faculty">{{ w4course.W4Code }}</span>
+								<div ng-if="accessRule.CdS">
+									<span style="float:left;">{{ accessRule.CdS.CourseName }}</span>
+									<span style="float:right;">
+										<span ng-if="accessRule.LocationKey" title="accesso consentito per linea/polo">linea/polo: {{ accessRule.LocationName }}</span>
+										<span ng-if="accessRule.LastnameRange" title="accesso consentito per iniziale del cognome">cognome: {{ accessRule.LastnameRange }}</span>
+										<span ng-if="accessRule.CourseYear" title="accesso consentito per anno di corso">anno di corso: {{ accessRule.CourseYear }}</span>
+										<span ng-if="accessRule.LastRegistrationYear" title="accesso consentito in base all'ultimo anno accademico di iscrizione">ultimo anno di iscrizione: {{ accessRule.LastRegistrationYear }}</span>
+										<span ng-if="accessRule.UserUnimiTypeString != 'Undefined'" title="accesso consentito per categoria utente">categoria utente: {{ accessRule.UserUnimiTypeString }}</span>
+										<span class="arl-facultycode" title="{{ accessRule.CdS.CourseName }}" ng-class="'arl-faculty-' + accessRule.CdS.FacultyKey">{{ accessRule.CdS.Key }}</span>
+									</span>
+								</div>
+								<div ng-if="!accessRule.CdS && accessRule.isUnimiUsersRule">
+									<span style="float:left;">Accesso consentito a <em>tutti gli utenti Unimi</em></span>
+									<span style="float:right;">
+										<span ng-if="accessRule.LocationKey" title="accesso consentito per linea/polo">linea/polo: {{ accessRule.LocationName }}</span>
+										<span ng-if="accessRule.LastnameRange" title="accesso consentito per iniziale del cognome">cognome: {{ accessRule.LastnameRange }}</span>
+										<span ng-if="accessRule.CourseYear" title="accesso consentito per anno di corso">anno di corso: {{ accessRule.CourseYear }}</span>
+										<span ng-if="accessRule.LastRegistrationYear" title="accesso consentito in base all'ultimo anno accademico di iscrizione">ultimo anno di iscrizione: {{ accessRule.LastRegistrationYear }}</span>
+										<span ng-if="accessRule.UserUnimiTypeString != 'Undefined'" title="accesso consentito per categoria utente">categoria utente: {{ accessRule.UserUnimiTypeString }}</span>
+									</span>
+								</div>
+								<div ng-if="!accessRule.CdS && accessRule.isAllUsersRule">
+									<span style="float:left;">Accesso consentito a <em>tutti gli utenti Unimi e autoregistrati Ariel</em></span>
+									<span style="float:right;">
+										<span ng-if="accessRule.LastnameRange" title="accesso consentito per iniziale del cognome">cognome: {{ accessRule.LastnameRange }}</span>
+									</span>
+								</div>
+							</td>
+						</tr>
+						<tr ng-repeat="faculty in projectCard.erasmusFacList">
+							<td><span class="glyphicon glyphicon-globe"></span> Erasmus facoltà {{ faculties[faculty].Description }}</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<p ng-if="projectCard.GuestAccessAllowed">È consentito l'accesso in modalità <strong>ospite</strong> / <a style="cursor: pointer;" ng-click="$parent.showGuestRules = !$parent.showGuestRules">vedi CdS abilitati e regole di accesso</a></p>
+
+				<table class="table table-striped table-hover" ng-show="showGuestRules">
+					<tbody>
+						<tr ng-repeat="accessRule in projectCard.Project.AccessRuleList" ng-show="accessRule.ArielRoleString == 'Guest'">
+							<td>
+								<div ng-if="accessRule.CdS">
+									<span style="float:left;">{{ accessRule.CdS.CourseName }}</span>
+									<span style="float:right;">
+										<span title="{{ accessRule.CdS.CourseName }}">{{ accessRule.CdS.Key }}</span>
+										<span ng-if="accessRule.LocationKey" title="accesso consentito per linea/polo">linea/polo: {{ accessRule.LocationName }}</span>
+										<span ng-if="accessRule.LastnameRange" title="accesso consentito per iniziale del cognome">cognome: {{ accessRule.LastnameRange }}</span>
+										<span ng-if="accessRule.CourseYear" title="accesso consentito per anno di corso">anno di corso: {{ accessRule.CourseYear }}</span>
+										<span ng-if="accessRule.LastRegistrationYear" title="accesso consentito in base all'ultimo anno accademico di iscrizione">ultimo anno di iscrizione: {{ accessRule.LastRegistrationYear }}</span>
+										<span ng-if="accessRule.UserUnimiTypeString != 'Undefined'" title="accesso consentito per categoria utente">categoria utente: {{ accessRule.UserUnimiTypeString }}</span>
+									</span>
+								</div>
+								<div ng-if="!accessRule.CdS && accessRule.isUnimiUsersRule">
+									<span>Accesso consentito a <em>tutti gli utenti Unimi</em></span>
+									<span>
+										<span ng-if="accessRule.LocationKey" title="accesso consentito per linea/polo">linea/polo: {{ accessRule.LocationName }}</span>
+										<span ng-if="accessRule.LastnameRange" title="accesso consentito per iniziale del cognome">cognome: {{ accessRule.LastnameRange }}</span>
+										<span ng-if="accessRule.CourseYear" title="accesso consentito per anno di corso">anno di corso: {{ accessRule.CourseYear }}</span>
+										<span ng-if="accessRule.LastRegistrationYear" title="accesso consentito in base all'ultimo anno accademico di iscrizione">ultimo anno di iscrizione: {{ accessRule.LastRegistrationYear }}</span>
+										<span ng-if="accessRule.UserUnimiTypeString != 'Undefined'" title="accesso consentito per categoria utente">categoria utente: {{ accessRule.UserUnimiTypeString }}</span>
+									</span>
+								</div>
+								<div ng-if="!accessRule.CdS && accessRule.isAllUsersRule">
+									<span style="float:left;">Accesso consentito a <em>tutti gli utenti Unimi e autoregistrati Ariel</em></span>
+									<span style="float:right;">
+										<span ng-if="accessRule.LastnameRange" title="accesso consentito per iniziale del cognome">cognome: {{ accessRule.LastnameRange }}</span>
+									</span>
+								</div>
 							</td>
 						</tr>
 					</tbody>
 				</table>
+
+
+				<p ng-if="projectCard.StudentAccessAllowed && !projectCard.GuestAccessAllowed">Non è consentito l'accesso in modalità <em>ospite</em></p>
+
+				<p ng-if="!projectCard.StudentAccessAllowed && !projectCard.GuestAccessAllowed">Per accedere al sito è necessario contattare il docente</p>
 			</div>
-
-			<p><strong>Regole di accesso al sito</strong></p>
-
-			<p ng-if="projectCard.StudentAccessAllowed">È consentito l'accesso in modalità <strong>studente</strong> / <a style="cursor: pointer;" ng-click="$parent.showStudRules = !$parent.showStudRules">vedi CdS abilitati e regole di accesso</a></p>
-
-			<table ng-show="showStudRules" class="table table-striped table-hover">
-				<tbody>
-					<tr ng-repeat="accessRule in projectCard.Project.AccessRuleList" ng-show="accessRule.ArielRoleString == 'User'">
-						<td>
-							<div ng-if="accessRule.CdS">
-								<span style="float:left;">{{ accessRule.CdS.CourseName }}</span>
-								<span style="float:right;">
-									<span ng-if="accessRule.LocationKey" title="accesso consentito per linea/polo">linea/polo: {{ accessRule.LocationName }}</span>
-									<span ng-if="accessRule.LastnameRange" title="accesso consentito per iniziale del cognome">cognome: {{ accessRule.LastnameRange }}</span>
-									<span ng-if="accessRule.CourseYear" title="accesso consentito per anno di corso">anno di corso: {{ accessRule.CourseYear }}</span>
-									<span ng-if="accessRule.LastRegistrationYear" title="accesso consentito in base all'ultimo anno accademico di iscrizione">ultimo anno di iscrizione: {{ accessRule.LastRegistrationYear }}</span>
-									<span ng-if="accessRule.UserUnimiTypeString != 'Undefined'" title="accesso consentito per categoria utente">categoria utente: {{ accessRule.UserUnimiTypeString }}</span>
-									<span class="arl-facultycode" title="{{ accessRule.CdS.CourseName }}" ng-class="'arl-faculty-' + accessRule.CdS.FacultyKey">{{ accessRule.CdS.Key }}</span>
-								</span>
-							</div>
-							<div ng-if="!accessRule.CdS && accessRule.isUnimiUsersRule">
-								<span style="float:left;">Accesso consentito a <em>tutti gli utenti Unimi</em></span>
-								<span style="float:right;">
-									<span ng-if="accessRule.LocationKey" title="accesso consentito per linea/polo">linea/polo: {{ accessRule.LocationName }}</span>
-									<span ng-if="accessRule.LastnameRange" title="accesso consentito per iniziale del cognome">cognome: {{ accessRule.LastnameRange }}</span>
-									<span ng-if="accessRule.CourseYear" title="accesso consentito per anno di corso">anno di corso: {{ accessRule.CourseYear }}</span>
-									<span ng-if="accessRule.LastRegistrationYear" title="accesso consentito in base all'ultimo anno accademico di iscrizione">ultimo anno di iscrizione: {{ accessRule.LastRegistrationYear }}</span>
-									<span ng-if="accessRule.UserUnimiTypeString != 'Undefined'" title="accesso consentito per categoria utente">categoria utente: {{ accessRule.UserUnimiTypeString }}</span>
-								</span>
-							</div>
-							<div ng-if="!accessRule.CdS && accessRule.isAllUsersRule">
-								<span style="float:left;">Accesso consentito a <em>tutti gli utenti Unimi e autoregistrati Ariel</em></span>
-								<span style="float:right;">
-									<span ng-if="accessRule.LastnameRange" title="accesso consentito per iniziale del cognome">cognome: {{ accessRule.LastnameRange }}</span>
-								</span>
-							</div>
-						</td>
-					</tr>
-					<tr ng-repeat="faculty in projectCard.erasmusFacList">
-						<td>Erasmus facoltà {{ faculty }}</td>
-					</tr>
-				</tbody>
-			</table>
-
-			<p ng-if="projectCard.GuestAccessAllowed">È consentito l'accesso in modalità <strong>ospite</strong> / <a style="cursor: pointer;" ng-click="$parent.showGuestRules = !$parent.showGuestRules">vedi CdS abilitati e regole di accesso</a></p>
-
-			<table class="table table-striped table-hover" ng-show="showGuestRules">
-				<tbody>
-					<tr ng-repeat="accessRule in projectCard.Project.AccessRuleList" ng-show="accessRule.ArielRoleString == 'Guest'">
-						<td>
-							<div ng-if="accessRule.CdS">
-								<span style="float:left;">{{ accessRule.CdS.CourseName }}</span>
-								<span style="float:right;">
-									<span title="{{ accessRule.CdS.CourseName }}">{{ accessRule.CdS.Key }}</span>
-									<span ng-if="accessRule.LocationKey" title="accesso consentito per linea/polo">linea/polo: {{ accessRule.LocationName }}</span>
-									<span ng-if="accessRule.LastnameRange" title="accesso consentito per iniziale del cognome">cognome: {{ accessRule.LastnameRange }}</span>
-									<span ng-if="accessRule.CourseYear" title="accesso consentito per anno di corso">anno di corso: {{ accessRule.CourseYear }}</span>
-									<span ng-if="accessRule.LastRegistrationYear" title="accesso consentito in base all'ultimo anno accademico di iscrizione">ultimo anno di iscrizione: {{ accessRule.LastRegistrationYear }}</span>
-									<span ng-if="accessRule.UserUnimiTypeString != 'Undefined'" title="accesso consentito per categoria utente">categoria utente: {{ accessRule.UserUnimiTypeString }}</span>
-								</span>
-							</div>
-							<div ng-if="!accessRule.CdS && accessRule.isUnimiUsersRule">
-								<span>Accesso consentito a <em>tutti gli utenti Unimi</em></span>
-								<span>
-									<span ng-if="accessRule.LocationKey" title="accesso consentito per linea/polo">linea/polo: {{ accessRule.LocationName }}</span>
-									<span ng-if="accessRule.LastnameRange" title="accesso consentito per iniziale del cognome">cognome: {{ accessRule.LastnameRange }}</span>
-									<span ng-if="accessRule.CourseYear" title="accesso consentito per anno di corso">anno di corso: {{ accessRule.CourseYear }}</span>
-									<span ng-if="accessRule.LastRegistrationYear" title="accesso consentito in base all'ultimo anno accademico di iscrizione">ultimo anno di iscrizione: {{ accessRule.LastRegistrationYear }}</span>
-									<span ng-if="accessRule.UserUnimiTypeString != 'Undefined'" title="accesso consentito per categoria utente">categoria utente: {{ accessRule.UserUnimiTypeString }}</span>
-								</span>
-							</div>
-							<div ng-if="!accessRule.CdS && accessRule.isAllUsersRule">
-								<span style="float:left;">Accesso consentito a <em>tutti gli utenti Unimi e autoregistrati Ariel</em></span>
-								<span style="float:right;">
-									<span ng-if="accessRule.LastnameRange" title="accesso consentito per iniziale del cognome">cognome: {{ accessRule.LastnameRange }}</span>
-								</span>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-
-
-			<p ng-if="projectCard.StudentAccessAllowed && !projectCard.GuestAccessAllowed">Non è consentito l'accesso in modalità <em>ospite</em></p>
-
-			<p ng-if="!projectCard.StudentAccessAllowed && !projectCard.GuestAccessAllowed">Per accedere al sito è necessario contattare il docente</p>
 		</div>
 
 	</li>
