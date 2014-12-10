@@ -133,7 +133,7 @@
 			<button ng-click="getProject(project)" type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-info-sign"></span> <span ng-show="project.Project.Id == projectCardId">Chiudi</span> Info</button>
 		</div>
 
-		<div ng-include="'views/card.html'"></div>
+		<div class="arl-siteinfo" ng-if="project.Project.Id == projectCardId" ng-include="'views/card.html'"></div>
 	</li>
 
 	<li ng-show="projectList.ProjectCount == 0" class="list-group-item">
