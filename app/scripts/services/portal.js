@@ -55,6 +55,10 @@ angular.module('portalApp')
       return pipeline($http.get(ENV.apiEndPoint + 'search/' + data));
     };
 
+    this.getPool = function(projectId) {
+      return pipeline($http.get(ENV.apiEndPoint + 'pool/' + projectId));
+    };
+
     this.getFavorites = function() {
       return pipeline($http.get(ENV.apiEndPoint + 'favorites'));
     };
