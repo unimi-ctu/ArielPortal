@@ -1,10 +1,25 @@
-<h3>Offerta didattica siti</h3>
-<div class="panel panel-default" ng-show="isSearchForm">
-	  <div class="panel-heading">
-			<h3 class="panel-title">Ricerca avanzata</h3>
-	  </div>
-	  <div class="panel-body">
-		<form role="form">
+<div class="panel panel-info">
+
+	<div class="panel-body bg-info">
+		<p style="float: left; padding-right: 10px;" ng-bind-html="searchVerbose" ng-show="searchVerbose"></p>
+		<p style="float: left; padding-right: 10px;" ng-bind-html="searchFilterVerbose" ng-show="searchFilterVerbose"></p>
+		<p style="float: left; padding-right: 10px;"><kbd>Numero siti</kbd> <strong>{{ result.ProjectCount }}</strong></p>
+		<p style="float: right; padding-left: 10px;" ng-hide="isSearchForm">
+			<button class="btn btn-primary btn-xs"ng-click="isSearchForm = true">
+				<span class="glyphicon glyphicon-search"></span> 
+				Apri ricerca avanzata
+			</button>
+		</p>
+		<p style="float: right; padding-left: 10px;" ng-show="isSearchForm">
+			<button class="btn btn-primary btn-xs"ng-click="isSearchForm = false">
+				<span class="glyphicon glyphicon-search"></span> 
+				Chiudi ricerca avanzata
+			</button>
+		</p>
+
+		<!-- form ricerca avanzata -->
+		<form style="clear: both;" role="form" ng-show="isSearchForm">
+			<h3>Ricerca avanzata</h3>
 			<div class="form-group">
 				<label for="faculty">Facoltà</label>
 				<select id="faculty" class="form-control" ng-options="key as faculty.Description for (key, faculty) in faculties" ng-change="fillCdses()" ng-model="searchContext.FacultyKey">
@@ -18,74 +33,54 @@
 				</select>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="keyword">Parola chiave</label>
-				<input type="text" id="keyword" class="form-control" ng-model="searchContext.Keyword">
-			</div>
-			<div class="form-group">
-				<label for="teacher">Nome docente</label>
-				<input type="text" id="teacher" class="form-control" ng-model="searchContext.Teacher">
+			<div class="row">
+				<div class="col-md-6 form-group">
+					<label for="keyword">Parola chiave</label>
+					<input type="text" id="keyword" class="form-control" ng-model="searchContext.Keyword">
+				</div>
+				<div class="col-md-6 form-group">
+					<label for="teacher">Nome docente</label>
+					<input type="text" id="teacher" class="form-control" ng-model="searchContext.Teacher">
+				</div>
 			</div>
 			<div class="form-group" ng-show="user">
-				<label>Filtri</label>
-				<div class="checkbox" ng-show="user.IsBaseStudent">
-					<label>
-						<input type="checkbox" ng-model="searchContext.SearchFlags.IsCDSRuleComplying">
-						CdS compatibili
-					</label>
-				</div>
-				<div class="checkbox" ng-show="user.IsBaseStudent">
-					<label>
-						<input type="checkbox" ng-model="searchContext.SearchFlags.IsW4Visible">
-						W4 compatibili
-					</label>
-				</div>
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" ng-model="searchContext.SearchFlags.IsEnrolled">
-						Visitati
-					</label>
-				</div>
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" ng-model="searchContext.SearchFlags.IsFavorite">
-						Preferiti
-					</label>
-				</div>
-				<div class="checkbox" ng-show="user.IsBaseStudent">
-					<label>
-						<input type="checkbox" ng-model="searchContext.SearchFlags.IsInfaculty">
-						Della facoltà
-					</label>
-				</div>
-				<div class="checkbox" ng-show="user.IsOwner">
-					<label>
-						<input type="checkbox" ng-model="searchContext.SearchFlags.IsOwner">
-						Titolare
-					</label>
-				</div>
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" ng-model="searchContext.SearchFlags.IsRuleComplying">
-						Accessibili
-					</label>
-				</div>
+				<strong style="padding-right: 10px;">Filtri</strong>
+				<label class="checkbox-inline" ng-show="user.IsBaseStudent">
+					<input type="checkbox" ng-model="searchContext.SearchFlags.IsCDSRuleComplying">
+					CdS compatibili
+				</label>
+				<label class="checkbox-inline" ng-show="user.IsBaseStudent">
+					<input type="checkbox" ng-model="searchContext.SearchFlags.IsW4Visible">
+					W4 compatibili
+				</label>
+				<label class="checkbox-inline">
+					<input type="checkbox" ng-model="searchContext.SearchFlags.IsEnrolled">
+					Visitati
+				</label>
+				<label class="checkbox-inline">
+					<input type="checkbox" ng-model="searchContext.SearchFlags.IsFavorite">
+					Preferiti
+				</label>
+				<label class="checkbox-inline" ng-show="user.IsBaseStudent">
+					<input type="checkbox" ng-model="searchContext.SearchFlags.IsInfaculty">
+					Della facoltà
+				</label>
+				<label class="checkbox-inline" ng-show="user.IsOwner">
+					<input type="checkbox" ng-model="searchContext.SearchFlags.IsOwner">
+					Titolare
+				</label>
+				<label class="checkbox-inline">
+					<input type="checkbox" ng-model="searchContext.SearchFlags.IsRuleComplying">
+					Accessibili
+				</label>
 			</div>
 			<div class="form-group">
 				<button class="btn btn-default" ng-click="search()">Cerca</button>
 				<button class="btn btn-default" ng-click="reset()">Reset</button>
 			</div>
 		</form>
-	  </div>
-</div>
-<div class="panel panel-info">
-	<div class="panel-body bg-info">
-		<p ng-bind-html="searchVerbose" ng-show="searchVerbose"></p>
-		<p ng-bind-html="searchFilterVerbose" ng-show="searchFilterVerbose"></p>
-		<p><kbd>Numero siti</kbd> <strong>{{ projectList.ProjectCount }}</strong></p>
-		<p class="text-right" ng-hide="isSearchForm"><a href='' ng-click="isSearchForm = true">Apri ricerca avanzata</a></p>
-		<p class="text-right" ng-show="isSearchForm"><a href='' ng-click="isSearchForm = false">Chiudi ricerca avanzata</a></p>
 	</div>
+
 </div>
 <p ng-show="searchContext.SelectedFacultyKey != null"><a href="" ng-click="search()">Torna all'elenco delle facoltà</a></p>
 
@@ -103,7 +98,7 @@
 	</div>
 
 	<ul class="list-group" ng-show="header.ProjectList">
-		<li  class="list-group-item" ng-repeat="pw in header.ProjectList">
+		<li  class="list-group-item" ng-repeat="pw in header.ProjectList | limitTo: showCount">
 
 			<h4><span ng-show="pw.Project.IsPoolMaster" class="glyphicon glyphicon-fullscreen text-danger"></span> <span ng-bind-html="pw.Project.Name" /></h4>
 
@@ -120,10 +115,10 @@
 
 			<div ng-hide="pw.Project.IsPublic"><small class="text-danger bg-danger"><strong>Sito non pubblico</strong></small></div>
 			<div ng-hide="pw.IsRuleComplying"><small class="text-danger bg-danger"><strong>Sito non accessibile</strong></small></div>
-			<div ng-show="pw.LastAccessDate"><small>Ultima visita: {{ project.LastAccessDate | date : 'd/MM/yyyy HH:mm' }}</small> </div>
+			<div ng-show="pw.LastAccessDate"><small>Ultima visita: {{ pw.LastAccessDate | date : 'd/MM/yyyy HH:mm' }}</small> </div>
 			<ul ng-show="isdebug">
 				<li ng-repeat="attr in projectAttrs">
-					{{ projectAttrs[$index] }}: <span ng-class="pw[attr] ? 'bg-success' : 'bg-danger'">{{ project[attr] }}</span>
+					{{ projectAttrs[$index] }}: <span ng-class="pw[attr] ? 'bg-success' : 'bg-danger'">{{ pw[attr] }}</span>
 				</li>
 			</ul>
 			<div class="text-right">
@@ -142,10 +137,14 @@
 			<div class="arl-siteinfo" ng-if="pw.Project.Id == projectCardId" ng-include="'views/card.html'"></div>
 		</li>
 	</ul>
+
+	<p ng-show="header.ProjectList.length > showCount"><a href="" ng-click="showMore()">Visualizza altri siti... (mancano all'elenco {{ header.ProjectList.length - showCount }} siti)</a></p>
+
 </div>
 
 <p ng-show="result.ProjectCount == 0">
 	<em>Nessun sito trovato</em>
 </p>
 
-<p ng-show="projectList.ProjectList.length > showCount"><a href="" ng-click="showMore()">Visualizza altri siti... (mancano all'elenco {{ projectList.ProjectList.length - showCount }} siti)</a></p>
+
+
