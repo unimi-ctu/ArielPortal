@@ -252,6 +252,12 @@ $faculty-list: (
     }    
   }
 
+  .arl-dot {
+    &.arl-faculty-#{$name} {
+      background: $bg;
+    }  
+  }
+
 }
 
 
@@ -335,4 +341,13 @@ $faculty-list: (
 
 .arl-indent {
   padding-left: 15px;
+}
+
+.arl-dot {
+  padding: 5px;
+  //background: #000;
+  color: #fff;
+  border-radius: 50%;
+  //display: block;
+  //float: left;
 }

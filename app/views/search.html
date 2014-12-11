@@ -88,6 +88,67 @@
 	</div>
 </div>
 <p ng-show="searchContext.SelectedFacultyKey != null"><a href="" ng-click="search()">Torna all'elenco delle facoltà</a></p>
+
+<div ng-repeat="header in result.SearchHeaderList">
+	
+	<!-- intestazione di facoltà -->
+	<div ng-if="header.Faculty">
+		<h3><small><span class="arl-dot glyphicon glyphicon-asterisk" ng-class="'arl-faculty-' + header.Faculty.Key"></span></small> <a href="" ng-click="search(header.Faculty.Key)">{{ header.Faculty.Description }}</a> <small>({{ header.Faculty.ProjectCount }} siti)</small></h3>
+	</div>
+
+	<!-- intestazione testuale -->
+	<div ng-if="!header.Faculty">
+		<h3>{{ header.Title }}</h3>
+		<p ng-show="header.Note">{{ header.Note }}</p>
+	</div>
+
+	<ul class="list-group" ng-show="header.ProjectList">
+		<li  class="list-group-item" ng-repeat="pw in header.ProjectList">
+
+			<h4><span ng-show="pw.Project.IsPoolMaster" class="glyphicon glyphicon-fullscreen text-danger"></span> <span ng-bind-html="pw.Project.Name" /></h4>
+
+			<div>
+				<small>
+					<strong>
+						{{pw.Project.ProjectTypeString == "Default" || pw.Project.ProjectTypeString == "Other" ? 'Docent' : 'Coordinator'}}{{pw.Project.OwnerList.length == 1 ? "e" : "i"}}:
+					</strong>
+					<ul class="arl-teacher-list">
+						<li ng-repeat="teacher in pw.Project.OwnerList">{{ teacher.FirstName }} {{ teacher.LastName }}</li>
+					</ul>
+				</small>
+			</div>
+
+			<div ng-hide="pw.Project.IsPublic"><small class="text-danger bg-danger"><strong>Sito non pubblico</strong></small></div>
+			<div ng-hide="pw.IsRuleComplying"><small class="text-danger bg-danger"><strong>Sito non accessibile</strong></small></div>
+			<div ng-show="pw.LastAccessDate"><small>Ultima visita: {{ project.LastAccessDate | date : 'd/MM/yyyy HH:mm' }}</small> </div>
+			<ul ng-show="isdebug">
+				<li ng-repeat="attr in projectAttrs">
+					{{ projectAttrs[$index] }}: <span ng-class="pw[attr] ? 'bg-success' : 'bg-danger'">{{ project[attr] }}</span>
+				</li>
+			</ul>
+			<div class="text-right">
+				<button 
+					ng-show="user && pw.IsRuleComplying" 
+					type="button" 
+					class="btn btn-xs" 
+					ng-class="pw.IsFavorite ? 'btn-danger' : 'btn-default'"
+					ng-click="toggleFavorite($index)"
+					ng-bind-html="pw.IsFavorite ? '<span class=\'glyphicon glyphicon-asterisk\'></span> Rimuovi dai preferiti' : '<span class=\'glyphicon glyphicon-plus-sign\'></span> Aggiungi ai preferiti'">
+				</button> 
+				<button ng-show="pw.Project.IsPoolMaster" type="button" class="btn btn-primary btn-xs">Siti correlati</button>
+				<button ng-click="getProject(pw)" type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-info-sign"></span> <span ng-show="pw.Project.Id == projectCardId">Chiudi</span> Info</button>
+			</div>
+
+			<div class="arl-siteinfo" ng-if="pw.Project.Id == projectCardId" ng-include="'views/card.html'"></div>
+		</li>
+	</ul>
+</div>
+
+<p ng-show="result.ProjectCount == 0">
+	<em>Nessun sito trovato</em>
+</p>
+
+<!--
 <ul class="list-group">
 
 	<li ng-show="projectList.FacultyList" class="list-group-item arl-faculty-{{ faculty.Key }}-brd-l" ng-repeat="faculty in projectList.FacultyList">
@@ -141,4 +202,6 @@
 	</li>
 
 </ul>
+-->
+
 <p ng-show="projectList.ProjectList.length > showCount"><a href="" ng-click="showMore()">Visualizza altri siti... (mancano all'elenco {{ projectList.ProjectList.length - showCount }} siti)</a></p>
