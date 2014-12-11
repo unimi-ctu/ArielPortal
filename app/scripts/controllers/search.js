@@ -183,6 +183,12 @@ angular.module('portalApp')
       }
     };
 
+    $scope.getPool = function(p) {
+        portal.getPool(p.Project.Id).then(function(data) {
+          $scope.result = data.Data; 
+        });     
+    };
+
     $scope.$on('quicksearch', function(event, keyword) {
       $scope.searchContext = { SearchFlags: {}, Keyword: keyword };
       $scope.search();
