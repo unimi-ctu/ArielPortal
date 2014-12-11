@@ -107,7 +107,7 @@ angular.module('portalApp')
       portal.getSearch($scope.searchContext).then(function(data) {
         $scope.projectCardId = -1;
 
-        $scope.projectList = data.Data;
+        $scope.result = data.Data;
         $scope.isSearchForm = false;
         $scope.showCount = _showCount;
         $scope.user = data.User;
@@ -134,7 +134,7 @@ angular.module('portalApp')
     };
 
     $scope.toggleFavorite = function(index) {
-      var p = $scope.projectList.ProjectList[index];
+      var p = $scope.result.ProjectList[index];
 
       portal.toggleFavorite(p.Project.Id).then(function(data) {
         p.IsFavorite = data.Data;  
