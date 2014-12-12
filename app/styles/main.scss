@@ -352,10 +352,14 @@ $faculty-list: (
 }
 
 .arl-dot {
-  padding: 5px;
-  //background: #000;
+  padding: 4px;
   color: #fff;
   border-radius: 50%;
-  //display: block;
-  //float: left;
+}
+
+.arl-square {
+  padding: 4px;
+  color: #fff;
+  background: #999;
+  border-radius: 20%;
 }
