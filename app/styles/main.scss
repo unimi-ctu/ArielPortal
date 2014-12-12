@@ -162,7 +162,7 @@ $color-list: (
   .arl-scheme-#{$name} {
     &.arl-favorite {
       .panel {
-        border-color: $normal;
+        border-color: $light;
       }
       .panel-body {
         background: $light;
@@ -302,9 +302,17 @@ $faculty-list: (
   }
 }
 
-.arl-inlinedialog {
+@mixin arl-separator() {
   border-top: 1px solid #ddd;
   padding-top: 5px;
+}
+
+.arl-separated {
+  @include arl-separator();
+}
+
+.arl-inlinedialog {
+  @include arl-separator();
   span {
     padding: 4px;
     float: left;

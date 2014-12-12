@@ -1,24 +1,25 @@
 <div class="panel panel-info">
 
 	<div class="panel-body bg-info">
+		<p style="float: left; padding-right: 10px;"><kbd>Numero siti</kbd> <strong>{{ result.ProjectCount }}</strong></p>
 		<p style="float: left; padding-right: 10px;" ng-bind-html="searchVerbose" ng-show="searchVerbose"></p>
 		<p style="float: left; padding-right: 10px;" ng-bind-html="searchFilterVerbose" ng-show="searchFilterVerbose"></p>
-		<p style="float: left; padding-right: 10px;"><kbd>Numero siti</kbd> <strong>{{ result.ProjectCount }}</strong></p>
 		<p style="float: right; padding-left: 10px;" ng-hide="isSearchForm">
-			<button class="btn btn-primary btn-xs"ng-click="isSearchForm = true">
+			<button class="btn btn-primary btn-xs" ng-click="isSearchForm = true">
 				<span class="glyphicon glyphicon-search"></span> 
 				Apri ricerca avanzata
 			</button>
+			<button class="btn btn-primary btn-xs" ng-click="resetSearch()"><span class="glyphicon glyphicon-remove"></span> Elimina filtro</button>
 		</p>
 		<p style="float: right; padding-left: 10px;" ng-show="isSearchForm">
-			<button class="btn btn-primary btn-xs"ng-click="isSearchForm = false">
+			<button class="btn btn-danger btn-xs" ng-click="isSearchForm = false">
 				<span class="glyphicon glyphicon-search"></span> 
 				Chiudi ricerca avanzata
 			</button>
 		</p>
 
 		<!-- form ricerca avanzata -->
-		<form style="clear: both;" role="form" ng-show="isSearchForm">
+		<form class="arl-separated" style="clear: both;" role="form" ng-show="isSearchForm">
 			<h3>Ricerca avanzata</h3>
 			<div class="form-group">
 				<label for="faculty">Facoltà</label>
@@ -26,12 +27,12 @@
 					<option value="">-- selziona una facoltà --</option>
 					
 				</select>
-				<div ng-show="cdses.length">
+			</div>
+			<div ng-show="cdses.length">
 				<label for="cds">Corsi di Studio</label>
 				<select id="cds" class="form-control" ng-options="cds.Key as cds.PrettyName for cds in cdses" ng-model="searchContext.CdsKey">
 					<option value="">-- Tutti i corsi di studio --</option>
 				</select>
-				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-6 form-group">
@@ -82,7 +83,7 @@
 	</div>
 
 </div>
-<p ng-show="searchContext.SelectedFacultyKey != null"><a href="" ng-click="search()">Torna all'elenco delle facoltà</a></p>
+<p ng-show="isBack"><a href="" ng-click="back()"><span class="glyphicon glyphicon-arrow-left"></span> Torna all'elenco precedente</a></p>
 
 <div ng-repeat="header in result.SearchHeaderList">
 	
@@ -134,7 +135,7 @@
 				<button ng-click="getProject(pw)" type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-info-sign"></span> <span ng-show="pw.Project.Id == projectCardId">Chiudi</span> Info</button>
 			</div>
 
-			<div class="arl-siteinfo" ng-if="pw.Project.Id == projectCardId" ng-include="'views/card.html'"></div>
+			<div class="arl-siteinfo arl-separator" ng-if="pw.Project.Id == projectCardId" ng-include="'views/card.html'"></div>
 		</li>
 	</ul>
 
