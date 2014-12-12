@@ -96,13 +96,26 @@ angular.module('portalApp')
   		}
   	};
 
+    //
+    $scope.back = function() {
+      var facultyKey = $scope.searchContext.isPoolMode ? $scope.searchContext.SelectedFacultyKey : null;
+      $scope.search(facultyKey);
+    };
+
+    //
   	$scope.search = function(selectedFacultyKey) {
+
+      $scope.searchContext.isPoolMode = false;
+
       if (selectedFacultyKey) {
         $scope.searchContext.SelectedFacultyKey = selectedFacultyKey;
+        $scope.isBack = true;
       }
       else {
         delete $scope.searchContext.SelectedFacultyKey;
+        $scope.isBack = false;
       }
+
 
       portal.getSearch($scope.searchContext).then(function(data) {
         $scope.projectCardId = -1;
@@ -110,7 +123,7 @@ angular.module('portalApp')
         $scope.result = data.Data;
         $scope.isSearchForm = false;
         $scope.showCount = _showCount;
-        $scope.user = data.User;
+        //$scope.user = data.User;
   
         if (!$rootScope.user) {
           $scope.searchContext.SearchFlags = null;
@@ -128,6 +141,12 @@ angular.module('portalApp')
       //$scope.searchFilterVerbose = getSearchFilterVerbose();
   		$scope.cdses = [];
   	};
+
+    $scope.resetSearch = function() {
+      $scope.reset();
+      $scope.search();
+    };
+
 
     $scope.showMore = function() {
       $scope.showCount += _showCount;
@@ -184,9 +203,12 @@ angular.module('portalApp')
     };
 
     $scope.getPool = function(p) {
-        portal.getPool(p.Project.Id).then(function(data) {
-          $scope.result = data.Data; 
-        });     
+      $scope.searchContext.isPoolMode = true;
+      $scope.isBack = true;
+
+      portal.getPool(p.Project.Id).then(function(data) {
+        $scope.result = data.Data; 
+      });     
     };
 
     $scope.$on('quicksearch', function(event, keyword) {
