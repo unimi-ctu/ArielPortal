@@ -101,7 +101,11 @@
 	<ul class="list-group" ng-show="header.ProjectList">
 		<li  class="list-group-item" ng-repeat="pw in header.ProjectList | limitTo: showCount">
 
-			<h4><span ng-show="pw.Project.IsPoolMaster" class="glyphicon glyphicon-fullscreen text-danger"></span> <span ng-bind-html="pw.Project.Name" /></h4>
+			<h4>
+				<small><span ng-show="pw.Project.IsPoolMaster" class="glyphicon glyphicon-fullscreen text-danger arl-square"></span></small>
+				<small><span ng-repeat="f in pw.Project.FacultyList" ><span class="glyphicon glyphicon-asterisk arl-dot" ng-class="'arl-faculty-'+f.Key" title="{{ f.Description }}"></span> </span></small>
+				<span ng-bind-html="pw.Project.Name" />
+			</h4>
 
 			<div>
 				<small>
@@ -128,7 +132,7 @@
 					type="button" 
 					class="btn btn-xs" 
 					ng-class="pw.IsFavorite ? 'btn-danger' : 'btn-default'"
-					ng-click="toggleFavorite($index)"
+					ng-click="toggleFavorite(pw)"
 					ng-bind-html="pw.IsFavorite ? '<span class=\'glyphicon glyphicon-asterisk\'></span> Rimuovi dai preferiti' : '<span class=\'glyphicon glyphicon-plus-sign\'></span> Aggiungi ai preferiti'">
 				</button> 
 				<button ng-show="pw.Project.IsPoolMaster" type="button" class="btn btn-primary btn-xs" ng-click="getPool(pw)">Siti correlati</button>

@@ -152,8 +152,8 @@ angular.module('portalApp')
       $scope.showCount += _showCount;
     };
 
-    $scope.toggleFavorite = function(index) {
-      var p = $scope.result.ProjectList[index];
+    $scope.toggleFavorite = function(p) {
+      //var p = $scope.result.ProjectList[index];
 
       portal.toggleFavorite(p.Project.Id).then(function(data) {
         p.IsFavorite = data.Data;  
