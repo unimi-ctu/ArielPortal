@@ -21,7 +21,7 @@
 
 	<div class="arl-indent">
 
-		<p ng-if="projectCard.StudentAccessAllowed">È consentito l'accesso in modalità <strong>studente</strong> / <a style="cursor: pointer;" ng-click="$parent.showStudRules = !$parent.showStudRules">vedi CdS abilitati e regole di accesso</a></p>
+		<p ng-if="projectCard.StudentAccessAllowed"><span class="glyphicon glyphicon-ok-circle text-info"></span> È consentito l'accesso in modalità <strong>studente</strong> / <a style="cursor: pointer;" ng-click="$parent.showStudRules = !$parent.showStudRules">vedi CdS abilitati e regole di accesso</a></p>
 
 		<table ng-show="showStudRules" class="table table-striped table-hover">
 			<tbody>
@@ -62,7 +62,7 @@
 			</tbody>
 		</table>
 
-		<p ng-if="projectCard.GuestAccessAllowed">È consentito l'accesso in modalità <strong>ospite</strong> / <a style="cursor: pointer;" ng-click="$parent.showGuestRules = !$parent.showGuestRules">vedi CdS abilitati e regole di accesso</a></p>
+		<p ng-if="projectCard.GuestAccessAllowed"><span class="glyphicon glyphicon-ok-circle text-success"></span> È consentito l'accesso in modalità <strong>ospite</strong> / <a style="cursor: pointer;" ng-click="$parent.showGuestRules = !$parent.showGuestRules">vedi CdS abilitati e regole di accesso</a></p>
 
 		<table class="table table-striped table-hover" ng-show="showGuestRules">
 			<tbody>
@@ -101,7 +101,7 @@
 		</table>
 
 
-		<p ng-if="projectCard.StudentAccessAllowed && !projectCard.GuestAccessAllowed">Non è consentito l'accesso in modalità <em>ospite</em></p>
+		<p ng-if="projectCard.StudentAccessAllowed && !projectCard.GuestAccessAllowed"><span class="glyphicon glyphicon-ban-circle text-danger"></span> Non è consentito l'accesso in modalità <em>ospite</em></p>
 
-		<p ng-if="!projectCard.StudentAccessAllowed && !projectCard.GuestAccessAllowed">Per accedere al sito è necessario contattare il docente</p>
+		<p ng-if="!projectCard.StudentAccessAllowed && !projectCard.GuestAccessAllowed"><span class="glyphicon glyphicon-warning-sign text-warning"></span> Per accedere al sito è necessario contattare il docente</p>
 	</div>
