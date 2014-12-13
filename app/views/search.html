@@ -1,6 +1,9 @@
 <div class="panel panel-info">
 
 	<div class="panel-body bg-info">
+		
+		<h1 class="arl-title">Offerta didattica</h1>
+
 		<p style="float: left; padding-right: 10px;"><kbd>Numero siti</kbd> <strong>{{ result.ProjectCount }}</strong></p>
 		<p style="float: left; padding-right: 10px;" ng-bind-html="searchVerbose" ng-show="searchVerbose"></p>
 		<p style="float: left; padding-right: 10px;" ng-bind-html="searchFilterVerbose" ng-show="searchFilterVerbose"></p>
@@ -88,20 +91,22 @@
 <div ng-repeat="header in result.SearchHeaderList">
 	
 	<!-- intestazione di facoltà -->
-	<div ng-if="header.Faculty">
+	<div ng-if="header.Faculty" ng-class="'arl-level' + header.Level">
 		<h3><small><span class="arl-dot glyphicon glyphicon-asterisk" ng-class="'arl-faculty-' + header.Faculty.Key"></span></small> <a href="" ng-click="search(header.Faculty.Key)">{{ header.Faculty.Description }}</a> <small>({{ header.Faculty.ProjectCount }} siti)</small></h3>
 	</div>
 
 	<!-- intestazione testuale -->
-	<div ng-if="!header.Faculty">
+	<div ng-if="!header.Faculty" ng-class="'arl-level' + header.Level">
 		<h3>{{ header.Title }}</h3>
 		<p ng-show="header.Note">{{ header.Note }}</p>
 	</div>
-
+	
+	<!-- Elenco progetti -->
 	<ul class="list-group" ng-show="header.ProjectList">
 		<li  class="list-group-item" ng-repeat="pw in header.ProjectList | limitTo: showCount">
 
 			<h4>
+				<small><span style="height: 19px;" class="text-danger arl-square">M</span></small>
 				<small><span ng-show="pw.Project.IsPoolMaster" class="glyphicon glyphicon-fullscreen text-danger arl-square"></span></small>
 				<small><span ng-repeat="f in pw.Project.FacultyList" ><span class="glyphicon glyphicon-asterisk arl-dot" ng-class="'arl-faculty-'+f.Key" title="{{ f.Description }}"></span> </span></small>
 				<span ng-bind-html="pw.Project.Name" />
