@@ -106,7 +106,7 @@
 		<li  class="list-group-item" ng-repeat="pw in header.ProjectList | limitTo: showCount">
 
 			<h4>
-				<!-- <small><span style="height: 19px;" class="text-danger arl-square">M</span></small> -->
+				<small><span ng-show="pw.Project.IsMoodle" class="text-danger arl-square" title="Piattaforma Moodle">M</span></small>
 				<small><span ng-show="pw.Project.IsPoolMaster" class="glyphicon glyphicon-fullscreen text-danger arl-square"></span></small>
 				<small><span ng-repeat="f in pw.Project.FacultyList" ><span class="glyphicon glyphicon-asterisk arl-dot" ng-class="'arl-faculty-'+f.Key" title="{{ f.Description }}"></span> </span></small>
 				<span ng-bind-html="pw.Project.Name" />
