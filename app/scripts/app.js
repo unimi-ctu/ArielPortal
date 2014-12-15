@@ -109,6 +109,13 @@ angular
 
     // console.log($route);
 
+    $rootScope.getw4 = function() {
+      if ($route.current.$$route.controller !== 'SearchCtrl') {
+        $location.path('/search');
+      }
+      $rootScope.$broadcast('getw4', $rootScope.qsKeyword);
+    };
+
     $rootScope.quickSearch = function() {
       if ($route.current.$$route.controller === 'SearchCtrl') {
         $rootScope.$broadcast('quicksearch', $rootScope.qsKeyword);

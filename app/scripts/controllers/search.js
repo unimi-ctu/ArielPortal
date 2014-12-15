@@ -53,7 +53,7 @@ angular.module('portalApp')
         if ($rootScope.user.IsOwner && $scope.searchContext.searchParams.SearchFlags.IsOwner) {
           items.push('Titolare');
         }
-        if ($scope.searchContext.SearchFlags.searchParams.IsRuleComplying) {
+        if ($scope.searchContext.searchParams.SearchFlags.IsRuleComplying) {
           items.push('Accessibili');
         }
       }
@@ -236,6 +236,11 @@ angular.module('portalApp')
       portal.getPool(p.Project.Id).then(function(data) {
         $scope.result = data.Data; 
       });     
+    };
+
+    $scope.getW4 = function() {
+      $scope.searchContext = { searchParams: { SearchFlags: { IsW4Visible: true } }};
+      $scope.search();
     };
 
     $scope.$on('quicksearch', function(event, keyword) {
