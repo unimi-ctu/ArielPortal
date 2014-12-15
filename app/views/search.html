@@ -13,6 +13,8 @@
 				Apri ricerca avanzata
 			</button>
 			<button ng-show="isFilter" class="btn btn-primary btn-xs" ng-click="resetSearch()"><span class="glyphicon glyphicon-remove"></span> Elimina filtro</button>
+			<button ng-show="user.IsBaseStudent" class="btn btn-primary btn-xs" ng-click="getW4()"> Siti W4</button>
+
 		</p>
 		<p style="float: right; padding-left: 10px;" ng-show="isSearchForm">
 			<button class="btn btn-danger btn-xs" ng-click="isSearchForm = false">
@@ -86,8 +88,8 @@
 	</div>
 
 </div>
-<p ng-show="isBack"><a href="" ng-click="back()"><span class="glyphicon glyphicon-arrow-left"></span> Torna all'elenco precedente</a></p>
-<p ng-show="!isBack && isFilter"><a href="" ng-click="resetSearch()"><span class="glyphicon glyphicon-arrow-left"></span> Torna all'elenco generale</a></p>
+<p style="float: right" ng-show="isBack"><a href="" ng-click="back()"><span class="glyphicon glyphicon-arrow-left"></span> Torna all'elenco precedente</a></p>
+<p style="float: right" ng-show="!isBack && isFilter"><a href="" ng-click="resetSearch()"><span class="glyphicon glyphicon-arrow-left"></span> Torna all'elenco generale</a></p>
 
 <div ng-repeat="header in result.SearchHeaderList">
 	
