@@ -165,15 +165,13 @@ angular.module('portalApp')
   	};
 
   	$scope.reset = function() {
-  		$scope.searchContext = { searchParams: {} };
-      //$scope.searchVerbose = getSearchVerbose();
-      //$scope.searchFilterVerbose = getSearchFilterVerbose();
+  		$scope.searchContext.searchParams = {};
   		$scope.cdses = [];
   	};
 
     $scope.resetSearch = function() {
       $scope.reset();
-      $scope.search();
+      $scope.search($scope.searchContext.SelectedFacultyKey);
     };
 
 
@@ -246,11 +244,5 @@ angular.module('portalApp')
     });
 
     $scope.search();
-
-    $scope.dump = function() {
-      console.log($scope.searchContext);
-    };
-
-
 
   });

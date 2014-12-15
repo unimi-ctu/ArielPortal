@@ -87,6 +87,7 @@
 
 </div>
 <p ng-show="isBack"><a href="" ng-click="back()"><span class="glyphicon glyphicon-arrow-left"></span> Torna all'elenco precedente</a></p>
+<p ng-show="!isBack && isFilter"><a href="" ng-click="resetSearch()"><span class="glyphicon glyphicon-arrow-left"></span> Torna all'elenco generale</a></p>
 
 <div ng-repeat="header in result.SearchHeaderList">
 	
@@ -96,8 +97,13 @@
 	</div>
 
 	<!-- intestazione testuale -->
-	<div ng-if="!header.Faculty" ng-class="'arl-level' + header.Level">
-		<h3>{{ header.Title }}</h3>
+	<div ng-if="!header.Faculty" ng-class="'arl-level' + header.Level" ng-switch="header.Title">
+		<p ng-switch-when="404">
+			<em>{{ "nessun sito didattico trovato" }}</em>
+		</p>
+		<h3 ng-switch-default>
+			{{ header.Title }}
+		</h3>
 		<p ng-show="header.Note">{{ header.Note }}</p>
 	</div>
 	
@@ -152,9 +158,6 @@
 
 </div>
 
-<p ng-show="result.ProjectCount == 0">
-	<em>Nessun sito trovato</em>
-</p>
 
 
 
