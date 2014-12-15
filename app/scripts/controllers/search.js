@@ -13,18 +13,18 @@ angular.module('portalApp')
     // nel master metto un commento diverso
     function getSearchVerbose() {
       var items = [];
-      if ($scope.searchContext.FacultyKey) {
-        items.push('facoltà: <strong>' + $scope.faculties[$scope.searchContext.FacultyKey].Description + '</strong>');
+      if ($scope.searchContext.searchParams.FacultyKey) {
+        items.push('facoltà: <strong>' + $scope.faculties[$scope.searchContext.searchParams.FacultyKey].Description + '</strong>');
       }
-      if ($scope.searchContext.CdsKey) {
-        items.push('codice corso di studi: <strong>' + $scope.searchContext.CdsKey + '</strong>');
+      if ($scope.searchContext.searchParams.CdsKey) {
+        items.push('codice corso di studi: <strong>' + $scope.searchContext.searchParams.CdsKey + '</strong>');
       }
-      if ($scope.searchContext.Keyword) {
-        var pre = $scope.searchContext.Keyword.split(' ').length === 1 ? 'parola chiave' : 'parole chiave';
-        items.push(pre + ': \'<strong>' + $scope.searchContext.Keyword + '</strong>\'');
+      if ($scope.searchContext.searchParams.Keyword) {
+        var pre = $scope.searchContext.searchParams.Keyword.split(' ').length === 1 ? 'parola chiave' : 'parole chiave';
+        items.push(pre + ': \'<strong>' + $scope.searchContext.searchParams.Keyword + '</strong>\'');
       }
-      if ($scope.searchContext.Teacher) {
-        items.push('docente: \'<strong>' + $scope.searchContext.Teacher + '</strong>\'');
+      if ($scope.searchContext.searchParams.Teacher) {
+        items.push('docente: \'<strong>' + $scope.searchContext.searchParams.Teacher + '</strong>\'');
       }
       if (items.length) {
         return '<kbd>Contesto ricerca</kbd> ' + items.join(', ');
@@ -34,26 +34,26 @@ angular.module('portalApp')
 
     function getSearchFilterVerbose() {
       var items = [];
-      if ($rootScope.user && $scope.searchContext.SearchFlags) {
-        if ($rootScope.user.IsBaseStudent && $scope.searchContext.SearchFlags.IsCDSRuleComplying) {
+      if ($rootScope.user && $scope.searchContext.searchParams.SearchFlags) {
+        if ($rootScope.user.IsBaseStudent && $scope.searchContext.searchParams.SearchFlags.IsCDSRuleComplying) {
           items.push('CdS compatibili');
         }
-        if ($rootScope.user.IsBaseStudent && $scope.searchContext.SearchFlags.IsW4Visible) {
+        if ($rootScope.user.IsBaseStudent && $scope.searchContext.searchParams.SearchFlags.IsW4Visible) {
           items.push('W4 compatibili');
         }
-        if ($scope.searchContext.SearchFlags.IsEnrolled) {
+        if ($scope.searchContext.searchParams.SearchFlags.IsEnrolled) {
           items.push('Visitati');
         }
-        if ($scope.searchContext.SearchFlags.IsFavorite) {
+        if ($scope.searchContext.searchParams.SearchFlags.IsFavorite) {
           items.push('Preferiti');
         }
-        if ($rootScope.user.IsBaseStudent && $scope.searchContext.SearchFlags.IsInfaculty) {
+        if ($rootScope.user.IsBaseStudent && $scope.searchContext.searchParams.SearchFlags.IsInfaculty) {
           items.push('Della facoltà');
         }
-        if ($rootScope.user.IsOwner && $scope.searchContext.SearchFlags.IsOwner) {
+        if ($rootScope.user.IsOwner && $scope.searchContext.searchParams.SearchFlags.IsOwner) {
           items.push('Titolare');
         }
-        if ($scope.searchContext.SearchFlags.IsRuleComplying) {
+        if ($scope.searchContext.SearchFlags.searchParams.IsRuleComplying) {
           items.push('Accessibili');
         }
       }
@@ -64,7 +64,7 @@ angular.module('portalApp')
     }
 
     if ($routeParams.keyword) {
-      $scope.searchContext = { Keyword: $routeParams.keyword };
+      $scope.searchContext = { searchParams: { Keyword: $routeParams.keyword }};
     }
     else {
       $scope.searchContext = portal.getSearchContext();
@@ -84,10 +84,38 @@ angular.module('portalApp')
     //  $scope.projectList = data.Data;
     //});
 
+    $scope.isFilter = false;
+    var getIsFilter = function() {
+      // controlla il searchContext
+      if (!$scope.searchContext || !$scope.searchContext.searchParams ) {
+        return false; // ovviamente;
+      }
+      if (
+        $scope.searchContext.searchParams.FacultyKey || 
+        $scope.searchContext.searchParams.CdsKey || 
+        $scope.searchContext.searchParams.Keyword || 
+        $scope.searchContext.searchParams.Teacher) {
+        return true;
+      }
+      if ($scope.searchContext.searchParams.SearchFlags) {
+        if (
+          $scope.searchContext.searchParams.SearchFlags.IsCDSRuleComplying ||
+          $scope.searchContext.searchParams.SearchFlags.IsW4Visible ||
+          $scope.searchContext.searchParams.SearchFlags.IsEnrolled ||
+          $scope.searchContext.searchParams.SearchFlags.IsFavorite ||
+          $scope.searchContext.searchParams.SearchFlags.IsInfaculty ||
+          $scope.searchContext.searchParams.SearchFlags.IsOwner ||
+          $scope.searchContext.searchParams.SearchFlags.IsRuleComplying) {
+          return true;
+        }
+
+      }
+      return false;
+    };
 
   	$scope.fillCdses = function() {
   		if ($scope.searchContext.FacultyKey) {
-	  		portal.getCdses($scope.searchContext.FacultyKey).then(function(data) {
+	  		portal.getCdses($scope.searchContext.searchParams.FacultyKey).then(function(data) {
 	  			$scope.cdses = data.Data === 'null' ? [] : data.Data;		
 	  		});
   		}
@@ -118,6 +146,7 @@ angular.module('portalApp')
 
 
       portal.getSearch($scope.searchContext).then(function(data) {
+        $scope.isFilter = getIsFilter();
         $scope.projectCardId = -1;
 
         $scope.result = data.Data;
@@ -126,7 +155,7 @@ angular.module('portalApp')
         //$scope.user = data.User;
   
         if (!$rootScope.user) {
-          $scope.searchContext.SearchFlags = null;
+          $scope.searchContext.searchParams.SearchFlags = null;
         }
   
         portal.setSearchContext($scope.searchContext);
@@ -136,7 +165,7 @@ angular.module('portalApp')
   	};
 
   	$scope.reset = function() {
-  		$scope.searchContext = {};
+  		$scope.searchContext = { searchParams: {} };
       //$scope.searchVerbose = getSearchVerbose();
       //$scope.searchFilterVerbose = getSearchFilterVerbose();
   		$scope.cdses = [];
@@ -212,10 +241,16 @@ angular.module('portalApp')
     };
 
     $scope.$on('quicksearch', function(event, keyword) {
-      $scope.searchContext = { SearchFlags: {}, Keyword: keyword };
+      $scope.searchContext = { searchParams: { SearchFlags: {}, Keyword: keyword } };
       $scope.search();
     });
 
     $scope.search();
+
+    $scope.dump = function() {
+      console.log($scope.searchContext);
+    };
+
+
 
   });
