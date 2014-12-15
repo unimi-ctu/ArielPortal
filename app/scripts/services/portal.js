@@ -10,7 +10,7 @@
 angular.module('portalApp')
   .service('portal', function portal($http, $rootScope, ENV) {
 
-  	var _searchContext = { SearchFlags: {} };
+  	var _searchContext = { searchParams: { SearchFlags: {} } };
 
     var pipeline = function(promise) {
       return promise.then(function(response) {

@@ -12,7 +12,7 @@
 				<span class="glyphicon glyphicon-search"></span> 
 				Apri ricerca avanzata
 			</button>
-			<button class="btn btn-primary btn-xs" ng-click="resetSearch()"><span class="glyphicon glyphicon-remove"></span> Elimina filtro</button>
+			<button ng-show="isFilter" class="btn btn-primary btn-xs" ng-click="resetSearch()"><span class="glyphicon glyphicon-remove"></span> Elimina filtro</button>
 		</p>
 		<p style="float: right; padding-left: 10px;" ng-show="isSearchForm">
 			<button class="btn btn-danger btn-xs" ng-click="isSearchForm = false">
@@ -26,60 +26,60 @@
 			<h3>Ricerca avanzata</h3>
 			<div class="form-group">
 				<label for="faculty">Facoltà</label>
-				<select id="faculty" class="form-control" ng-options="key as faculty.Description for (key, faculty) in faculties" ng-change="fillCdses()" ng-model="searchContext.FacultyKey">
+				<select id="faculty" class="form-control" ng-options="key as faculty.Description for (key, faculty) in faculties" ng-change="fillCdses()" ng-model="searchContext.searchParams.FacultyKey">
 					<option value="">-- selziona una facoltà --</option>
 					
 				</select>
 			</div>
 			<div ng-show="cdses.length">
 				<label for="cds">Corsi di Studio</label>
-				<select id="cds" class="form-control" ng-options="cds.Key as cds.PrettyName for cds in cdses" ng-model="searchContext.CdsKey">
+				<select id="cds" class="form-control" ng-options="cds.Key as cds.PrettyName for cds in cdses" ng-model="searchContext.searchParams.CdsKey">
 					<option value="">-- Tutti i corsi di studio --</option>
 				</select>
 			</div>
 			<div class="row">
 				<div class="col-md-6 form-group">
 					<label for="keyword">Parola chiave</label>
-					<input type="text" id="keyword" class="form-control" ng-model="searchContext.Keyword">
+					<input type="text" id="keyword" class="form-control" ng-model="searchContext.searchParams.Keyword">
 				</div>
 				<div class="col-md-6 form-group">
 					<label for="teacher">Nome docente</label>
-					<input type="text" id="teacher" class="form-control" ng-model="searchContext.Teacher">
+					<input type="text" id="teacher" class="form-control" ng-model="searchContext.searchParams.Teacher">
 				</div>
 			</div>
 			<div class="form-group" ng-show="user">
 				<strong style="padding-right: 10px;">Filtri</strong>
 				<label class="checkbox-inline" ng-show="user.IsBaseStudent">
-					<input type="checkbox" ng-model="searchContext.SearchFlags.IsCDSRuleComplying">
+					<input type="checkbox" ng-model="searchContext.searchParams.SearchFlags.IsCDSRuleComplying">
 					CdS compatibili
 				</label>
 				<label class="checkbox-inline" ng-show="user.IsBaseStudent">
-					<input type="checkbox" ng-model="searchContext.SearchFlags.IsW4Visible">
+					<input type="checkbox" ng-model="searchContext.searchParams.SearchFlags.IsW4Visible">
 					W4 compatibili
 				</label>
 				<label class="checkbox-inline">
-					<input type="checkbox" ng-model="searchContext.SearchFlags.IsEnrolled">
+					<input type="checkbox" ng-model="searchContext.searchParams.SearchFlags.IsEnrolled">
 					Visitati
 				</label>
 				<label class="checkbox-inline">
-					<input type="checkbox" ng-model="searchContext.SearchFlags.IsFavorite">
+					<input type="checkbox" ng-model="searchContext.searchParams.SearchFlags.IsFavorite">
 					Preferiti
 				</label>
 				<label class="checkbox-inline" ng-show="user.IsBaseStudent">
-					<input type="checkbox" ng-model="searchContext.SearchFlags.IsInfaculty">
+					<input type="checkbox" ng-model="searchContext.searchParams.SearchFlags.IsInfaculty">
 					Della facoltà
 				</label>
 				<label class="checkbox-inline" ng-show="user.IsOwner">
-					<input type="checkbox" ng-model="searchContext.SearchFlags.IsOwner">
+					<input type="checkbox" ng-model="searchContext.searchParams.SearchFlags.IsOwner">
 					Titolare
 				</label>
 				<label class="checkbox-inline">
-					<input type="checkbox" ng-model="searchContext.SearchFlags.IsRuleComplying">
+					<input type="checkbox" ng-model="searchContext.searchParams.SearchFlags.IsRuleComplying">
 					Accessibili
 				</label>
 			</div>
 			<div class="form-group">
-				<button class="btn btn-default" ng-click="search()">Cerca</button>
+				<button class="btn btn-default" ng-click="search(searchContext.SelectedFacultyKey)">Cerca</button>
 				<button class="btn btn-default" ng-click="reset()">Reset</button>
 			</div>
 		</form>
