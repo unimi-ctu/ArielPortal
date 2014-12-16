@@ -161,6 +161,7 @@ $color-list: (
 
   .arl-scheme-#{$name} {
     &.arl-favorite {
+      background: $light;
       .panel {
         border-color: $light;
       }
@@ -299,6 +300,7 @@ $faculty-list: (
     padding: 3px;
     border: 1px solid transparent;
     border-radius: 3px;
+    overflow: auto;
   }
 }
 
@@ -328,6 +330,8 @@ $faculty-list: (
       list-type: none;
     }
   }
+  overflow: auto;
+  clear: both;
 }
 
 .arl-acl {

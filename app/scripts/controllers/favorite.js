@@ -50,7 +50,7 @@ angular.module('portalApp')
     var loadData = function() {
 	  	if ($scope.user) {
 	  		portal.getFavorites().then(function(data) {
-	  			$scope.favorites = data.Data;
+	  			$scope.result = data.Data;
 		  	});
 	  	}
     };
