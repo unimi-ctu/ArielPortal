@@ -60,7 +60,7 @@ angular.module('portalApp')
     };
 
     this.getFavorites = function() {
-      return pipeline($http.get(ENV.apiEndPoint + 'favorites2'));
+      return pipeline($http.get(ENV.apiEndPoint + 'favorites'));
     };
 
     this.toggleFavorite = function(projectId) {
