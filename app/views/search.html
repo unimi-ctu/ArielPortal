@@ -88,6 +88,8 @@
 	</div>
 
 </div>
+
+
 <p style="float: right" ng-show="isBack"><a href="" ng-click="back()"><span class="glyphicon glyphicon-arrow-left"></span> Torna all'elenco precedente</a></p>
 <p style="float: right" ng-show="!isBack && isFilter"><a href="" ng-click="resetSearch()"><span class="glyphicon glyphicon-arrow-left"></span> Torna all'elenco generale</a></p>
 
@@ -101,7 +103,7 @@
 	<!-- intestazione testuale -->
 	<div ng-if="!header.Faculty" ng-class="'arl-level' + header.Level" ng-switch="header.Title">
 		<p ng-switch-when="404">
-			<em>{{ "nessun sito didattico trovato" }}</em>
+			<em>nessun sito didattico trovato</em>
 		</p>
 		<h3 ng-switch-default>
 			{{ header.Title }}
@@ -139,6 +141,7 @@
 					{{ projectAttrs[$index] }}: <span ng-class="pw[attr] ? 'bg-success' : 'bg-danger'">{{ pw[attr] }}</span>
 				</li>
 			</ul>
+			
 			<div class="text-right">
 				<button 
 					ng-show="user && pw.IsRuleComplying" 
