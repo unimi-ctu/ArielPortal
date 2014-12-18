@@ -18,39 +18,22 @@
 		<!-- Elenco progetti -->
 		<ul class="list-group" ng-show="header.ProjectList">
 			<li class="list-group-item arl-favorite" ng-repeat="pw in header.ProjectList" ng-class="'arl-scheme-' + pw.ColorScheme">
-				<h4>
-					<small><span ng-show="pw.Project.IsMoodle" class="text-danger arl-square" title="Piattaforma Moodle">M</span></small>
-					<small><span ng-show="pw.Project.IsPoolMaster" class="glyphicon glyphicon-fullscreen text-danger arl-square"></span></small>
-					<small><span ng-repeat="f in pw.Project.FacultyList" ><span class="glyphicon glyphicon-asterisk arl-dot" ng-class="'arl-faculty-'+f.Key" title="{{ f.Description }}"></span> </span></small>
-					<span ng-bind-html="pw.Project.Name" />
-				</h4>
 
-				<div>
-					<small>
-						<strong>
-							{{pw.Project.ProjectTypeString == "Default" || pw.Project.ProjectTypeString == "Other" ? 'Docent' : 'Coordinator'}}{{pw.Project.OwnerList.length == 1 ? "e" : "i"}}:
-						</strong>
-						<ul class="arl-teacher-list">
-							<li ng-repeat="teacher in pw.Project.OwnerList">{{ teacher.FirstName }} {{ teacher.LastName }}</li>
-						</ul>
-					</small>
-				</div>
+				<!-- Site description -->
+				<div ng-include="'views/siteDescription.html'"></div>
 
-				<div ng-hide="pw.Project.IsPublic"><small class="text-danger bg-danger"><strong>Sito non pubblico</strong></small></div>
-				<div ng-hide="pw.IsRuleComplying"><small class="text-danger bg-danger"><strong>Sito non accessibile</strong></small></div>
-				<div ng-show="pw.LastAccessDate"><small>Ultima visita: {{ pw.LastAccessDate | date : 'd/MM/yyyy HH:mm' }}</small> </div>
-				<ul ng-show="isdebug">
-					<li ng-repeat="attr in projectAttrs">
-						{{ projectAttrs[$index] }}: <span ng-class="pw[attr] ? 'bg-success' : 'bg-danger'">{{ pw[attr] }}</span>
-					</li>
-				</ul>
+				<!-- Site commands -->
+				<div ng-include="'views/siteCommands.html'" class="text-right"></div>
 
-					<p class="text-right">
-						<button type="button" class="btn btn-primary btn-xs">Apri</button>
-						<button type="button" class="btn btn-primary btn-xs" ng-click="opencolor($index)">Cambia colore</button>
-						<button type="button" class="btn btn-danger btn-xs" ng-click="openconfirm($index)">Rimuovi</button>
+				<!-- Site card -->
+				<div class="arl-siteinfo arl-separator" ng-if="pw.Project.Id == projectCardId" ng-include="'views/card.html'"></div>
 
-					</p>
+
+				<p class="text-right">
+					<button type="button" class="btn btn-primary btn-xs">Apri</button>
+					<button type="button" class="btn btn-primary btn-xs" ng-click="opencolor($index)">Cambia colore</button>
+					<button type="button" class="btn btn-danger btn-xs" ng-click="openconfirm($index)">Rimuovi</button>
+				</p>
 
 				<div class="arl-siteinfo arl-separator" ng-if="pw.Project.Id == projectCardId" ng-include="'views/card.html'"></div>
 
