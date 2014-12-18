@@ -1,16 +1,19 @@
 
 <button 
-	ng-show="user && pw.IsRuleComplying" 
+	ng-show="user && pw.IsRuleComplying && header.Type != 5 && header.Type != 4" 
 	type="button" 
 	class="btn btn-xs" 
 	ng-class="pw.IsFavorite ? 'btn-danger' : 'btn-default'"
 	ng-click="toggleFavorite(pw)"
-	ng-bind-html="pw.IsFavorite ? '<span class=\'glyphicon glyphicon-asterisk\'></span> Rimuovi dai preferiti' : '<span class=\'glyphicon glyphicon-plus-sign\'></span> Aggiungi ai preferiti'">
+	ng-bind-html="pw.IsFavorite ? '<span class=\'glyphicon glyphicon-heart\'></span> Rimuovi dai preferiti' : '<span class=\'glyphicon glyphicon-plus-sign\'></span> Aggiungi ai preferiti'">
 </button> 
 
-<button ng-show="pw.Project.IsPoolMaster" type="button" class="btn btn-primary btn-xs" ng-click="getPool(pw)">Siti correlati</button>
+<button ng-show="pw.Project.IsPoolMaster && header.Type != 5 && header.Type != 4 &&  header.Type != 3" type="button" class="btn btn-primary btn-xs" ng-click="getPool(pw)">Siti correlati</button>
 
 <button ng-click="getProject(pw)" type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-info-sign"></span> <span ng-show="pw.Project.Id == projectCardId">Chiudi</span> Info</button>
 
-<!-- Solo per favorite -->
-<button ng-show="header.Type == 5" type="button" class="btn btn-primary btn-xs" ng-click="opencolor($index)">Cambia colore</button>
+<!-- CAMBIO COLORE Solo per favorite -->
+<button ng-show="pw.IsFavorite && header.Type == 5" type="button" class="btn btn-primary btn-xs" ng-click="opencolor($index)">Cambia colore</button>
+
+<!-- RIMUOVI Solo per favorite -->
+<button ng-show="pw.IsFavorite && header.Type == 5" type="button" class="btn btn-danger btn-xs" ng-click="openconfirm($index)"><span class="glyphicon glyphicon-heart"></span> Rimuovi</button>
