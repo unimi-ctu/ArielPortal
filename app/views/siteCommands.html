@@ -10,7 +10,7 @@
 
 <button ng-show="pw.Project.IsPoolMaster && header.Type != 5 && header.Type != 4 &&  header.Type != 3" type="button" class="btn btn-primary btn-xs" ng-click="getPool(pw)">Siti correlati</button>
 
-<button ng-click="getProject(pw)" type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-info-sign"></span> <span ng-show="pw.Project.Id == projectCardId">Chiudi</span> Info</button>
+<button ng-click="getProject(pw)" type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-info-sign"></span> {{pw.Project.Id == projectCardId && "Chiudi" || ""}} Info</button>
 
 <!-- CAMBIO COLORE Solo per favorite -->
 <button ng-show="pw.IsFavorite && header.Type == 5" type="button" class="btn btn-primary btn-xs" ng-click="opencolor($index)">Cambia colore</button>
