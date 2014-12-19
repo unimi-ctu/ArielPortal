@@ -14,17 +14,17 @@
 	<tbody>
 		<tr ng-repeat="item in acl" ng-class="'arl-scheme-' + item.Projects[0].Color"> 
 			<td>
-				<h4><span class="glyphicon glyphicon-file"></span> {{ item.Subject }}<h4>
+				<h4><span class="glyphicon glyphicon-file"></span> <a href="http://{{ item.Projects[0].ProjectKey }}.ariel.ctu.unimi.it/v3/getThread.aspx?name={{ item.ToolName }}&messageId={{ item.MessageId }}">{{ item.Subject }}</a><h4>
 				<p><small>
 					<span class="glyphicon glyphicon-user"></span> <strong>{{ item.FirstName }} {{ item.LastName }}</strong> <span ng-show="item.AttachmentCount > 0"> / <span class="glyphicon glyphicon-paperclip"></span> {{ item.AttachmentCount }} attachment</span><br>
 					<span class="glyphicon glyphicon-calendar"></span> data: <strong>{{ item.Date | date:'medium' }}</strong> <span ng-show="item.ModifyDate"> / <span class="glyphicon glyphicon-calendar"></span> ultima modifica: <strong>{{ item.ModifyDate | date:'medium' }}</strong></span><br>
-					strumento: <strong>{{ item.ForumTitle }}</strong> / ambiente: <strong>{{ item.RoomTitle }}</strong>
+					strumento: <strong><a href="http://{{ item.Projects[0].ProjectKey }}.ariel.ctu.unimi.it/v3/frm3/ThreadList.aspx?name={{ item.ToolName }}">{{ item.ForumTitle }}</a></strong> / ambiente: <strong><a href="http://{{ item.Projects[0].ProjectKey }}.ariel.ctu.unimi.it/v3/frm3/ThreadList.aspx?name={{ item.ToolName }}&roomid={{ item.RoomId }}">{{ item.RoomTitle }}</a></strong>
 				</small></p>
 			</td>
 			<td>
 				<ul class="arl-projects" style="padding: 0; margin: 0; list-style: none;">
-					<li ng-repeat="p in item.Projects" ng-class="'arl-scheme-' + p.Color">
-						<a href="#"><small><span ng-show="p.IsFavorite" class="glyphicon glyphicon-asterisk" style="background: #d9534f; color: white; border-radius: 50%; padding: 2px;" title="sito preferito"></span> {{ p.ProjectTitle }}</small></a>
+					<li ng-repeat="p in item.Projects">
+						<a href="http://{{ p.ProjectKey }}.ariel.ctu.unimi.it"><small> <span class="glyphicon glyphicon-heart"></span> {{ p.ProjectTitle }}</small></a>
 					</li>
 
 				</ul>
