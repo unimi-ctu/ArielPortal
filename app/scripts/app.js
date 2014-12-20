@@ -26,7 +26,7 @@ angular
     $httpProvider.defaults.withCredentials = true;
 
     $routeProvider
-      .when('/', {
+      .when('/main', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
@@ -47,7 +47,7 @@ angular
         controller: 'AclCtrl'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/main'
       });
 
       var $http,
