@@ -12,9 +12,18 @@ angular.module('portalApp')
   	$scope.loadacl = function() {
   		$scope.acl = [];
   		portal.getAcl().then(function(data) {
-  			$scope.acl = data.Data;
+  			$scope.acl = data.Data.Messages;
+
+  			// barbatrukking
+  			var projects = [];
+
+  			angular.forEach(data.Data.Projects, function(value, key) {
+  				projects.push({ key: key, value: value});
+  			});
+  			$scope.projects = projects;
   		});
   	};
 
   	$scope.loadacl();
+
   });

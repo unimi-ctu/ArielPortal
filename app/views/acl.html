@@ -1,7 +1,27 @@
-<h3>Attività dai siti</h3>
 <div class="panel panel-default">
-	<div class="panel-body">
-	   <button ng-click="loadacl()" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-refresh"></span> Aggiorna</button>
+	<div class="panel-body bg-info">
+		<h1 class="arl-title">Attività dai siti</h1>
+		<p style="float: right; padding-left: 10px;">
+
+			<button class="btn btn-primary btn-xs" ng-click="isSearchForm = !isSearchForm">
+				<span class="glyphicon glyphicon-search"></span> 
+				Apri ricerca
+			</button>
+			<button ng-click="loadacl()" type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-refresh"></span> Aggiorna</button>
+		</p>
+		<form class="arl-separated" style="clear: both;" role="form" ng-show="isSearchForm">
+			<div class="form-group">
+				<label for="project">Sito</label>
+				<select id="project" class="form-control" ng-model="search.projectKey" ng-options="p.key as p.value for p in projects | orderBy: 'value' : false ">
+					<option value="">Tutti i siti preferiti</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="keyword">Cerca parola</label>
+				<input type="text" id="keyword" class="form-control" required="required" pattern=""
+				 title="" ng-model="search.keyword">
+			</div>
+		</form>
 	</div>
 </div>
 <table class="arl-acl table table-hover" ng-show="acl.length">
@@ -12,7 +32,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="item in acl" ng-class="'arl-scheme-' + item.Projects[0].Color"> 
+		<tr ng-repeat="item in acl | filter : search.keyword | aclFilter : search" ng-class="'arl-scheme-' + item.Projects[0].Color"> 
 			<td>
 				<h4><span class="glyphicon glyphicon-file"></span> <a href="http://{{ item.Projects[0].ProjectKey }}.ariel.ctu.unimi.it/v3/getThread.aspx?name={{ item.ToolName }}&messageId={{ item.MessageId }}">{{ item.Subject }}</a><h4>
 				<p><small>
