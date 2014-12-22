@@ -13,17 +13,13 @@ angular.module('portalApp')
     return function (items, search) {
     	var retn = [];
 
-    	if (search) {
+    	if (search && search.projectKey) {
 	    	angular.forEach(items, function(item) {
-	    		if (search && search.projectKey) {
-	    			console.log('ue');
-	    			angular.forEach(item.Projects, function(p) {
-	    				if (p.ProjectKey === search.projectKey) {
-				    		retn.push(item);
-	    					return;
-	    				}
-					});
-	    		}
+    			angular.forEach(item.Projects, function(p) {
+    				if (p.ProjectKey === search.projectKey) {
+			    		retn.push(item);
+    				}
+				});
 	    	});
     	}
     	else {
