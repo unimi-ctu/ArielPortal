@@ -76,10 +76,10 @@ angular.module('portalApp')
     $scope.projectCardId = -1;
 
     // lo spostiamo in app.js e centralizziamo $scope.faculties
-  	portal.getFaculties().then(function(data) {
-  		$scope.faculties = data.Data;
-  		$scope.fillCdses();
-  	});
+  	// portal.getFaculties().success(function(data) {
+  	// 	$scope.faculties = data.Data;
+  	// 	$scope.fillCdses();
+  	// });
 
     //portal.getSearch($scope.searchContext).success(function(data) {
     //  $scope.projectList = data.Data;
@@ -116,7 +116,7 @@ angular.module('portalApp')
 
   	$scope.fillCdses = function() {
   		if ($scope.searchContext.FacultyKey) {
-	  		portal.getCdses($scope.searchContext.searchParams.FacultyKey).then(function(data) {
+	  		portal.getCdses($scope.searchContext.searchParams.FacultyKey).success(function(data) {
 	  			$scope.cdses = data.Data === 'null' ? [] : data.Data;		
 	  		});
   		}
@@ -146,7 +146,7 @@ angular.module('portalApp')
       }
 
 
-      portal.getSearch($scope.searchContext).then(function(data) {
+      portal.getSearch($scope.searchContext).success(function(data) {
         $scope.isFilter = getIsFilter();
         $scope.projectCardId = -1;
 
@@ -183,7 +183,7 @@ angular.module('portalApp')
     $scope.toggleFavorite = function(p) {
       //var p = $scope.result.ProjectList[index];
 
-      portal.toggleFavorite(p.Project.Id).then(function(data) {
+      portal.toggleFavorite(p.Project.Id).success(function(data) {
         p.IsFavorite = data.Data;  
       });
     };
@@ -194,7 +194,7 @@ angular.module('portalApp')
       }
       else {
 
-        portal.getProject(p.Project.Id).then(function(data) {
+        portal.getProject(p.Project.Id).success(function(data) {
           $scope.projectCardId = p.Project.Id;
 
           $scope.projectCard = data.Data;
@@ -234,7 +234,7 @@ angular.module('portalApp')
       $scope.searchContext.isPoolMode = true;
       $scope.isBack = true;
 
-      portal.getPool(p.Project.Id).then(function(data) {
+      portal.getPool(p.Project.Id).success(function(data) {
         $scope.result = data.Data; 
       });     
     };

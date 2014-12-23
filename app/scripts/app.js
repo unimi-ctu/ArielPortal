@@ -24,6 +24,7 @@ angular
     // non vengono inviati i cookie con le richieste $http
     // http://stackoverflow.com/questions/17064791/http-doesnt-send-cookie-in-requests
     $httpProvider.defaults.withCredentials = true;
+    $httpProvider.interceptors.push('interceptor');
 
     $routeProvider
       .when('/main', {
@@ -50,34 +51,34 @@ angular
         redirectTo: '/main'
       });
 
-      var $http,
-          interceptor = ['$q', '$injector', function ($q, $injector) {
-            function success(response) {
-                // get $http via $injector because of circular dependency problem
-                $http = $http || $injector.get('$http');
-                if($http.pendingRequests.length < 1) {
-                    angular.element('#loadingWidget').hide();
-                }
-                return response;
-            }
+      // var $http,
+      //     interceptor = ['$q', '$injector', function ($q, $injector) {
+      //       function success(response) {
+      //           // get $http via $injector because of circular dependency problem
+      //           $http = $http || $injector.get('$http');
+      //           if($http.pendingRequests.length < 1) {
+      //               angular.element('#loadingWidget').hide();
+      //           }
+      //           return response;
+      //       }
 
-            function error(response) {
-                // get $http via $injector because of circular dependency problem
-                $http = $http || $injector.get('$http');
-                if($http.pendingRequests.length < 1) {
-                    angular.element('#loadingWidget').hide();
-                }
-                console.log('error detected');
-                return $q.reject(response);
-            }
+      //       function error(response) {
+      //           // get $http via $injector because of circular dependency problem
+      //           $http = $http || $injector.get('$http');
+      //           if($http.pendingRequests.length < 1) {
+      //               angular.element('#loadingWidget').hide();
+      //           }
+      //           console.log('error detected');
+      //           return $q.reject(response);
+      //       }
 
-            return function (promise) {
-                angular.element('#loadingWidget').show();
-                return promise.then(success, error);
-            };
-          }];
+      //       return function (promise) {
+      //           angular.element('#loadingWidget').show();
+      //           return promise.then(success, error);
+      //       };
+      //     }];
 
-      $httpProvider.responseInterceptors.push(interceptor);
+      //$httpProvider.responseInterceptors.push(interceptor);
   })
   .run(function ($rootScope, $route, $location, $sce, portal, ENV) {
     $rootScope.logoutUrl = ENV.authUrl + 'logout.aspx?backurl=' + $location.absUrl();
