@@ -101,15 +101,15 @@
                 <p><strong>{{ user.FirstName}} {{ user.LastName }}</strong></p>
 
                 <small>
-                <p>Unimi type: {{ user.UnimiType }}</p>
-                <p>Login: {{ user.Login }}</p>
+                <p>Tipologia: {{ unimiTypes[user.UnimiType] }}</p>
+                <p ng-show="isDebug">Login: {{ user.Login }}</p>
                 <p>Email: {{ user.Email }}</p>
                 <ul ng-show="user.CdSList">
                   <li ng-repeat="cds in user.CdSList">
                     <kbd class="arl-faculty-{{ cds.Faculty }}-bg">{{ cds.AcademicCourse}}</kbd> Mat {{ cds.Register }}
                   </li>
                 </ul>
-                <ul>
+                <ul ng-show="isDebug">
                   <li ng-repeat="attr in userAttrs" ng-show="isDebug || user[attr]">
                     {{ userAttrsLabel[$index] }}: <span ng-class="user[attr] ? 'bg-success' : 'bg-danger'">{{ user[attr] }}</span>
                   </li>
