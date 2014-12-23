@@ -97,7 +97,7 @@
 	
 	<!-- intestazione di facoltà -->
 	<div ng-if="header.Faculty" ng-class="'arl-level' + header.Level">
-		<h3><small><span class="arl-dot glyphicon glyphicon-asterisk" ng-class="'arl-faculty-' + header.Faculty.Key"></span></small> <a href="" ng-click="search(header.Faculty.Key)">{{ header.Faculty.Description }}</a> <small>({{ header.Faculty.ProjectCount == 1 ? 'un sito' : header.Faculty.ProjectCount + ' siti'}})</small></h3>
+		<h3><small class="arl-cell"><span class="arl-dot glyphicon glyphicon-asterisk" ng-class="'arl-faculty-' + header.Faculty.Key"></span></small> <span class="arl-cell"><a href="" ng-click="search(header.Faculty.Key)">{{ header.Faculty.Description }}</a> <small>({{ header.Faculty.ProjectCount == 1 ? 'un sito' : header.Faculty.ProjectCount + ' siti'}})</small></span></h3>
 	</div>
 
 	<!-- intestazione testuale -->

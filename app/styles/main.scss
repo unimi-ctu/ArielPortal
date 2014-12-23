@@ -159,6 +159,10 @@ $color-list: (
   $normal: nth($color, 3);
   $light: nth($color, 4);
 
+  .arl-scheme-#{$name}-fg {
+    color: $dark;
+  }
+
   .arl-scheme-#{$name} {
     &.arl-favorite {
       background: $light;
@@ -379,5 +383,9 @@ $faculty-list: (
 
 }
 
+.arl-cell {
+  display: table-cell;
+  padding: 0 2px;
+}
 //http://cssdeck.com/labs/different-css3-box-shadows-effects
 
