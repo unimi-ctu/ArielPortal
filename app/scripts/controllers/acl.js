@@ -11,7 +11,7 @@ angular.module('portalApp')
   .controller('AclCtrl', function ($scope, portal) {
   	$scope.loadacl = function() {
   		$scope.acl = [];
-  		portal.getAcl().then(function(data) {
+  		portal.getAcl().success(function(data) {
   			$scope.acl = data.Data.Messages;
 
   			// barbatrukking
