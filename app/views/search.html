@@ -113,7 +113,7 @@
 	
 	<!-- Elenco progetti -->
 	<ul class="list-group" ng-show="header.ProjectList">
-		<li  class="list-group-item" ng-repeat="pw in header.ProjectList | limitTo: showCount">
+		<li  class="list-group-item arl-favorite" ng-repeat="pw in header.ProjectList | limitTo: showCount" ng-class="'arl-scheme-' + pw.ColorScheme">
 
 			<!-- Site description -->
 			<div ng-include="'views/siteDescription.html'"></div>
