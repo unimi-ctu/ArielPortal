@@ -22,7 +22,7 @@ angular.module('portalApp')
         return response;
       },
       responseError: function(response) {
-        console.log('errore');
+        console.log(response);
         return $q.reject(response);
       }
     };
