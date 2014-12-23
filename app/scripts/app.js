@@ -50,35 +50,6 @@ angular
       .otherwise({
         redirectTo: '/main'
       });
-
-      // var $http,
-      //     interceptor = ['$q', '$injector', function ($q, $injector) {
-      //       function success(response) {
-      //           // get $http via $injector because of circular dependency problem
-      //           $http = $http || $injector.get('$http');
-      //           if($http.pendingRequests.length < 1) {
-      //               angular.element('#loadingWidget').hide();
-      //           }
-      //           return response;
-      //       }
-
-      //       function error(response) {
-      //           // get $http via $injector because of circular dependency problem
-      //           $http = $http || $injector.get('$http');
-      //           if($http.pendingRequests.length < 1) {
-      //               angular.element('#loadingWidget').hide();
-      //           }
-      //           console.log('error detected');
-      //           return $q.reject(response);
-      //       }
-
-      //       return function (promise) {
-      //           angular.element('#loadingWidget').show();
-      //           return promise.then(success, error);
-      //       };
-      //     }];
-
-      //$httpProvider.responseInterceptors.push(interceptor);
   })
   .run(function ($rootScope, $route, $location, $sce, portal, ENV) {
     $rootScope.logoutUrl = ENV.authUrl + 'logout.aspx?backurl=' + $location.absUrl();
@@ -106,6 +77,19 @@ angular
       'IsRuleComplying'
     ];
 
+    $rootScope.unimiTypes = {
+      0: 'Utente Ariel',
+      1: 'Studente',
+      2: null,
+      3: 'Docente',
+      4: 'Ricercatore',
+      5: 'Staff Unimi',
+      6: 'Studente Silsis',
+      7: 'Guest Unimi',
+      8: 'Utente Unimi',
+      9: 'Dottorando / Specializzando'
+    };
+
     $rootScope.colorSchemes = [0,1,2,3,4,5,6,7,8];
 
     // console.log($route);
@@ -128,13 +112,13 @@ angular
     };
 
     // per ora a vuoto
-    portal.checkUser().then(function() {
-      portal.getFaculties().then(function(data) {
-        $rootScope.faculties = data.Data;
-        //$scope.fillCdses();
-      });
+    portal.checkUser().success(function() {
     });
 
+    portal.getFaculties().success(function(data) {
+      $rootScope.faculties = data.Data;
+      //$scope.fillCdses();
+    });
 
   });
 
