@@ -75,6 +75,7 @@ angular.module('portalApp')
 
     $scope.projectCardId = -1;
 
+    // lo spostiamo in app.js e centralizziamo $scope.faculties
   	portal.getFaculties().then(function(data) {
   		$scope.faculties = data.Data;
   		$scope.fillCdses();

@@ -127,7 +127,12 @@ angular
     };
 
     // per ora a vuoto
-    portal.checkUser();
+    portal.checkUser().then(function() {
+      portal.getFaculties().then(function(data) {
+        $rootScope.faculties = data.Data;
+        //$scope.fillCdses();
+      });
+    });
 
 
   });
