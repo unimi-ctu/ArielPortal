@@ -3,11 +3,11 @@
 		<h1 class="arl-title">Attività dai siti</h1>
 		<p style="float: right; padding-left: 10px;">
 
-			<button class="btn btn-primary btn-xs" ng-click="isSearchForm = !isSearchForm">
+			<button class="btn btn-primary btn-xs" ng-click="isSearchForm = !isSearchForm" ng-show="hasFavorites && acl.length">
 				<span class="glyphicon glyphicon-search"></span> 
 				Apri ricerca
 			</button>
-			<button ng-click="loadacl()" type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-refresh"></span> Aggiorna</button>
+			<button ng-click="loadacl()" type="button" class="btn btn-primary btn-xs" ng-show="hasFavorites"><span class="glyphicon glyphicon-refresh"></span> Aggiorna</button>
 		</p>
 		<form class="arl-separated" style="clear: both;" role="form" ng-show="isSearchForm">
 			<div class="form-group">
@@ -24,17 +24,17 @@
 		</form>
 	</div>
 </div>
-<table class="arl-acl table table-hover" ng-show="acl.length">
+<table class="arl-acl table table-hover" ng-show="hasFavorites && acl.length">
 	<thead>
 		<tr>
-			<th>oggetto</th>
-			<th>sito</th>
+			<th>Oggetto</th>
+			<th>Sito</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-repeat="item in acl | filter : search.keyword | aclFilter : search" ng-class="'arl-scheme-' + item.Projects[0].Color"> 
 			<td>
-				<h4><span class="glyphicon glyphicon-file"></span> <a href="http://{{ item.Projects[0].ProjectKey }}.ariel.ctu.unimi.it/v3/getThread.aspx?name={{ item.ToolName }}&messageId={{ item.MessageId }}">{{ item.Subject }}</a><h4>
+				<h4><span class="glyphicon glyphicon-file arl-cell"></span> <a class="arl-cell" href="http://{{ item.Projects[0].ProjectKey }}.ariel.ctu.unimi.it/v3/getThread.aspx?name={{ item.ToolName }}&messageId={{ item.MessageId }}">{{ item.Subject }}<em ng-hide="item.Subject">Senza titolo</em></a><h4>
 				<p><small>
 					<span class="glyphicon glyphicon-user"></span> <strong>{{ item.FirstName }} {{ item.LastName }}</strong> <span ng-show="item.AttachmentCount > 0"> / <span class="glyphicon glyphicon-paperclip"></span> {{ item.AttachmentCount }} attachment</span><br>
 					<span class="glyphicon glyphicon-calendar"></span> data: <strong>{{ item.Date | date:'medium' }}</strong> <span ng-show="item.ModifyDate"> / <span class="glyphicon glyphicon-calendar"></span> ultima modifica: <strong>{{ item.ModifyDate | date:'medium' }}</strong></span><br>
@@ -44,7 +44,7 @@
 			<td>
 				<ul class="arl-projects" style="padding: 0; margin: 0; list-style: none;">
 					<li ng-repeat="p in item.Projects">
-						<a href="http://{{ p.ProjectKey }}.ariel.ctu.unimi.it"><small> <span class="glyphicon glyphicon-heart"></span> {{ p.ProjectTitle }}</small></a>
+						<a href="http://{{ p.ProjectKey }}.ariel.ctu.unimi.it"><small> <span class="glyphicon glyphicon-heart arl-cell arl-scheme-{{ p.Color }}-fg"></span> <span class="arl-cell">{{ p.ProjectTitle }}</span></small></a>
 					</li>
 
 				</ul>
@@ -52,8 +52,14 @@
 		</tr>
 	</tbody>
 </table>
-<div ng-hide="acl.length">
+<div ng-show="hasFavorites && !acl.length">
 	<p><em>nessuna attivià dai siti preferiti</em></p>
+</div>
+<div ng-hide="hasFavorites" class="ng-cloak" ng-cloak>
+	<p><em>non è stato impostato nessun sito preferito</em></p>
 	<h3>Istruzioni per l'uso</h3>
 	<p>Per attivare questo elenco è necessario impostare i siti preferiti</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eleifend nisl libero, vel faucibus massa tincidunt vel. Aliquam auctor risus elit, ac auctor sem condimentum vel. Nam rhoncus ipsum sed massa dignissim dapibus. Vestibulum auctor nibh non vestibulum consectetur. Mauris vitae magna eu magna elementum eleifend vulputate vel sem. Nam a euismod lacus, nec mattis risus. Ut bibendum nibh quis nulla hendrerit, in volutpat nisl imperdiet. Aliquam nec tincidunt felis. Vestibulum pellentesque dolor pellentesque pretium convallis. Vivamus vel finibus risus.</p>
+
+	<p>Pellentesque malesuada mauris eget varius ultrices. Nullam in nulla facilisis, mollis augue sed, ullamcorper dui. Cras pretium imperdiet urna, at vulputate urna viverra id. Quisque luctus elit et gravida fringilla. Nam accumsan, lectus vel dapibus suscipit, ex ipsum tincidunt ipsum, ut rhoncus dui tellus ac ipsum. In fermentum tincidunt enim non accumsan. In lacinia felis at urna pellentesque, consequat dictum leo mollis. Curabitur mattis ullamcorper magna in consectetur. Nullam elementum, lorem a pulvinar gravida, mauris libero euismod nisi, et semper elit libero id ligula. Maecenas nisl ante, dapibus eget lectus non, sagittis pretium justo.</p>
 </div>
