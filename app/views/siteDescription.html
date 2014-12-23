@@ -25,6 +25,9 @@
 <div ng-show="pw.LastAccessDate">
 	<small>Ultima visita: {{ pw.LastAccessDate | date : 'd/MM/yyyy HH:mm' }}</small> 
 </div>
+<div ng-show="pw.IsFavorite && !pw.LastAccessDate">
+	<small><span class="glyphicon glyphicon-warning-sign text-danger"></span> Le attività di questo siti non saranno visibili nel portale fino al primo accesso</small> 
+</div>
 
 <ul ng-show="isdebug">
 	<li ng-repeat="attr in projectAttrs">
