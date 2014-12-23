@@ -22,7 +22,7 @@ angular.module('portalApp')
   	};
 
   	$scope.changecolor = function(color, pw) {
-  		portal.setFavoriteColor(pw.Project.Id, color).then(function() {
+  		portal.setFavoriteColor(pw.Project.Id, color).success(function() {
 	  		pw.ColorScheme = color;
 		  	$scope.editcolor = -1;
 		  });
@@ -39,7 +39,7 @@ angular.module('portalApp')
 
 
     $scope.toggleFavorite = function(pw) {
-      portal.toggleFavorite(pw.Project.Id).then(function(data) {
+      portal.toggleFavorite(pw.Project.Id).success(function(data) {
 	      if (data) {
 	      	loadData();
 	  		$scope.confirmindex = -1;
@@ -49,7 +49,7 @@ angular.module('portalApp')
 
     var loadData = function() {
 	  	if ($scope.user) {
-	  		portal.getFavorites().then(function(data) {
+	  		portal.getFavorites().success(function(data) {
 	  			$scope.result = data.Data;
 		  	});
 	  	}
