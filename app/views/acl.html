@@ -33,7 +33,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="item in acl | filter : search.keyword | aclFilter : search" ng-class="'arl-scheme-' + item.Projects[0].Color"> 
+			<tr ng-repeat="item in results = (acl | filter : search.keyword | aclFilter : search) " ng-class="'arl-scheme-' + item.Projects[0].Color"> 
 				<td>
 					<h4><span class="glyphicon glyphicon-file arl-cell"></span> <a class="arl-cell" href="http://{{ item.Projects[0].ProjectKey }}.ariel.ctu.unimi.it/v3/getThread.aspx?name={{ item.ToolName }}&messageId={{ item.MessageId }}">{{ item.Subject }}<em ng-hide="item.Subject">Senza titolo</em></a></h4>
 					<p><small>
@@ -51,6 +51,7 @@
 					</ul>
 				</td>
 			</tr>
+			<tr ng-hide="results.length"><td colspan="2"><em>nessun oggetto trovato</em></td></tr>
 		</tbody>
 	</table>
 	<div ng-show="hasFavorites && !acl.length">

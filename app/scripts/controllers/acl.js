@@ -13,7 +13,6 @@ angular.module('portalApp')
   		$scope.acl = [];
   		portal.getAcl().success(function(data) {
         $scope.hasFavorites = data.Data.HasFavorites;
-        console.log($scope.hasFavorites);
   			$scope.acl = data.Data.Messages;
 
   			// barbatrukking
