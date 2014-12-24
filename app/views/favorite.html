@@ -17,7 +17,7 @@
 
 		<!-- Elenco progetti -->
 		<ul class="list-group" ng-show="header.ProjectList">
-			<li class="list-group-item arl-favorite" ng-repeat="pw in header.ProjectList" ng-class="'arl-scheme-' + pw.ColorScheme">
+			<li class="list-group-item arl-favorite {{ 'arl-scheme-' + pw.ColorScheme }}" ng-repeat="pw in header.ProjectList" ng-class="{ 'arl-owner': pw.IsOwner }">
 
 				<!-- Site description -->
 				<div ng-include="'views/siteDescription.html'"></div>
