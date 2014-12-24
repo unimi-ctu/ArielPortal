@@ -4,9 +4,9 @@
 			<h1 class="arl-title">Attività dai siti</h1>
 			<p style="float: right; padding-left: 10px;">
 
-				<button class="btn btn-primary btn-xs" ng-click="isSearchForm = !isSearchForm" ng-show="hasFavorites && acl.length">
+				<button class="btn {{ isSearchForm ? 'btn-danger' : 'btn-primary' }} btn-xs" ng-click="isSearchForm = !isSearchForm" ng-show="hasFavorites && acl.length">
 					<span class="glyphicon glyphicon-search"></span> 
-					Apri ricerca
+					{{ isSearchForm ? 'Chiudi ricerca' : 'Apri ricerca' }}
 				</button>
 				<button ng-click="loadacl()" type="button" class="btn btn-primary btn-xs" ng-show="hasFavorites"><span class="glyphicon glyphicon-refresh"></span> Aggiorna</button>
 			</p>
