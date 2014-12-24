@@ -1,6 +1,6 @@
 
 <button 
-	ng-show="user && pw.IsRuleComplying && header.Type != 5 && header.Type != 4" 
+	ng-show="user && pw.Project.IsPublic && pw.IsRuleComplying && header.Type != 5 && header.Type != 4" 
 	type="button" 
 	class="btn btn-xs" 
 	ng-class="pw.IsFavorite ? 'btn-danger' : 'btn-default'"
