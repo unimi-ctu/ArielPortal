@@ -33,7 +33,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="item in results = (acl | filter : search.keyword | aclFilter : search) " ng-class="'arl-scheme-' + item.Projects[0].Color"> 
+			<tr class="{{ 'arl-scheme-' + item.Projects[0].Color }}" ng-repeat="item in results = (acl | filter : search.keyword | aclFilter : search) " ng-class="{ 'arl-owner': item.IsOwner }"> 
 				<td>
 					<h4><span class="glyphicon glyphicon-file arl-cell"></span> <a class="arl-cell" href="http://{{ item.Projects[0].ProjectKey }}.ariel.ctu.unimi.it/v3/getThread.aspx?name={{ item.ToolName }}&messageId={{ item.MessageId }}">{{ item.Subject }}<em ng-hide="item.Subject">Senza titolo</em></a></h4>
 					<p><small>
@@ -45,7 +45,7 @@
 				<td>
 					<ul class="arl-projects" style="padding: 0; margin: 0; list-style: none;">
 						<li ng-repeat="p in item.Projects">
-							<a href="http://{{ p.ProjectKey }}.ariel.ctu.unimi.it"><small> <span class="glyphicon glyphicon-heart arl-cell arl-scheme-{{ p.Color }}-fg"></span> <span class="arl-cell">{{ p.ProjectTitle }}</span></small></a>
+							<a href="http://{{ p.ProjectKey }}.ariel.ctu.unimi.it"><small> <span class="glyphicon glyphicon-heart arl-cell arl-scheme-{{ p.Color }}-fg"></span> <span class="arl-cell" ng-bind-html="p.ProjectTitle"></span></small></a>
 						</li>
 
 					</ul>
