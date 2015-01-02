@@ -17,13 +17,13 @@
 </div>
 
 <div ng-hide="pw.Project.IsPublic">
-	<small class="text-danger bg-danger"><strong>Sito non pubblico</strong></small>
+	<small class="text-danger"><strong><span class="glyphicon glyphicon-remove-circle"></span> Sito non pubblico</strong></small>
 </div>
 <div ng-hide="pw.IsRuleComplying">
-	<small class="text-danger bg-danger"><strong>Sito non accessibile</strong></small>
+	<small class="text-danger"><strong><span class="glyphicon glyphicon-ban-circle"></span> Sito non accessibile</strong></small>
 </div>
 <div ng-show="pw.LastAccessDate">
-	<small>Ultima visita: {{ pw.LastAccessDate | date : 'd/MM/yyyy HH:mm' }}</small> 
+	<small>Ultima visita: <strong>{{ pw.LastAccessDate | date : 'd/MM/yyyy HH:mm' }}</strong></small> 
 </div>
 <div ng-show="pw.IsFavorite && !pw.LastAccessDate">
 	<small><span class="glyphicon glyphicon-warning-sign text-danger"></span> Le attività di questo siti non saranno visibili nel portale fino al primo accesso</small> 
