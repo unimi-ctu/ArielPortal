@@ -5,7 +5,7 @@
 	<a class="arl-cell" href="http://{{pw.Project.Url}}.ariel.ctu.unimi.it"><span ng-bind-html="pw.Project.Name" /></a>
 </h4>
 
-<div>
+<div ng-show="pw.Project.OwnerList.length">
 	<small>
 		<strong>
 			{{pw.Project.ProjectTypeString == "Default" || pw.Project.ProjectTypeString == "Other" ? 'Docent' : 'Coordinator'}}{{pw.Project.OwnerList.length == 1 ? "e" : "i"}}:
