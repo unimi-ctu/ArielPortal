@@ -2,7 +2,7 @@
 	<small class="arl-cell" ng-show="pw.Project.IsMoodle"><span class="text-danger arl-square" title="Piattaforma Moodle">M</span></small>
 	<small class="arl-cell" ng-show="pw.Project.IsPoolMaster"><span class="glyphicon glyphicon-fullscreen text-danger arl-square"></span></small>
 	<small class="arl-cell" ng-repeat="f in pw.Project.FacultyList"><span class="glyphicon glyphicon-asterisk arl-dot" ng-class="'arl-faculty-'+f.Key" title="{{ f.Description }}"></span></small>
-	<a class="arl-cell" href="http://{{pw.Project.Url}}.ariel.ctu.unimi.it"><span ng-bind-html="pw.Project.Name" /></a>
+	<a class="arl-cell" href="{{ pw.Project.IsMoodle ? pw.Project.Url : 'http://' + pw.Project.Url + '.ariel.ctu.unimi.it' }}"><span ng-bind-html="pw.Project.Name" /></a>
 </h4>
 
 <div ng-show="pw.Project.OwnerList.length">
