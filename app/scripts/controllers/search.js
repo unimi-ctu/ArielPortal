@@ -181,10 +181,9 @@ angular.module('portalApp')
     };
 
     $scope.toggleFavorite = function(p) {
-      //var p = $scope.result.ProjectList[index];
-
       portal.toggleFavorite(p.Project.Id).success(function(data) {
         p.IsFavorite = data.Data;  
+        $scope.confirmindex = -1;
       });
     };
 	
@@ -205,6 +204,15 @@ angular.module('portalApp')
       $scope.searchContext = { searchParams: { SearchFlags: { IsW4Visible: true } }};
       $scope.search();
     };
+
+    $scope.openconfirm = function(index) {
+      $scope.confirmindex = $scope.confirmindex === index ? -1 : index;
+    };
+
+    $scope.closeconfirm = function() {
+      $scope.confirmindex = -1;
+    };
+
 
     $scope.$on('quicksearch', function(event, keyword) {
       $scope.searchContext = { searchParams: { SearchFlags: {}, Keyword: keyword } };

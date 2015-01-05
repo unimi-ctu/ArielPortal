@@ -4,7 +4,7 @@
 	type="button" 
 	class="btn btn-xs" 
 	ng-class="pw.IsFavorite ? 'btn-danger' : 'btn-default'"
-	ng-click="toggleFavorite(pw)"
+	ng-click="openconfirm($index)"
 	ng-bind-html="pw.IsFavorite ? '<span class=\'glyphicon glyphicon-heart\'></span> Rimuovi dai preferiti' : '<span class=\'glyphicon glyphicon-plus-sign\'></span> Aggiungi ai preferiti'">
 </button> 
 

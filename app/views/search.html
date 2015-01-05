@@ -123,6 +123,17 @@
 
 			<!-- Site card -->
 			<div class="arl-siteinfo arl-separator" ng-if="pw.Project.Id == projectCardId" ng-include="'views/card.html'"></div>
+
+			<!-- CONFIRM REMOVE -->
+			<div class="arl-inlinedialog" ng-show="confirmindex==$index">
+				<span ng-show="pw.IsFavorite">sei sicuro di voler rimuovere il sito dai preferiti?</span>
+				<span ng-hide="pw.IsFavorite">sei sicuro di voler aggiungere il sito ai preferiti?</span>
+				<ul>
+					<li><button class="btn btn-primary btn-xs" ng-click="toggleFavorite(pw)">Sì</button></li>
+					<li><button class="btn btn-primary btn-xs" ng-click="closeconfirm()">No</button></li>
+				</ul>
+			</div>
+
 		</li>
 	</ul>
 
