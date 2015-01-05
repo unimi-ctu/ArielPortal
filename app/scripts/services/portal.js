@@ -79,4 +79,45 @@ angular.module('portalApp')
       return $http.get(ENV.apiEndPoint + 'acl');
     };
 
+    this.getProjectCard = function(p, scope) {
+      if (scope.projectCardId === p.Project.Id) {
+        scope.projectCardId = -1;
+      }
+      else {
+
+        this.getProject(p.Project.Id).success(function(data) {
+          scope.projectCardId = p.Project.Id;
+
+          scope.projectCard = data.Data;
+          scope.projectCard.StudentAccessAllowed = scope.projectCard.GuestAccessAllowed = false;
+          
+          // verifico la presenza di regole per l'accesso studente
+          if (scope.projectCard.Project.AccessRuleList.some(function (obj) {  
+            if (obj.ArielRoleString === 'User') { 
+              return true; 
+            } 
+            return false;
+          })) { 
+            scope.projectCard.StudentAccessAllowed = true; 
+          }
+      
+          // verifico la presenza di regole per l'accesso guest
+          if (scope.projectCard.Project.AccessRuleList.some(function (obj) {  
+            if (obj.ArielRoleString === 'Guest') { 
+              return true; 
+            } 
+            return false;
+          })) { 
+            scope.projectCard.GuestAccessAllowed = true;
+          }
+
+          scope.projectCard.erasmusFacList = [];
+          scope.projectCard.Project.AccessRuleList.forEach(function(rule) { 
+            if (rule.ArielRoleString === 'User' && !rule.noErasmus && rule.CdS !== null && rule.CdS.FacultyKey !== null && scope.projectCard.erasmusFacList.indexOf(rule.CdS.FacultyKey) === -1) { 
+              scope.projectCard.erasmusFacList.push(rule.CdS.FacultyKey);
+            } 
+          });
+        });
+      }
+    };
   });

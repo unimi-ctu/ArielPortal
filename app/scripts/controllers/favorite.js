@@ -55,5 +55,10 @@ angular.module('portalApp')
 	  	}
     };
 
+    $scope.getProject = function(p) {
+      return portal.getProjectCard(p, $scope);
+    };
+
+
     loadData();
 });
