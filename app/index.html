@@ -82,19 +82,21 @@
         <!-- box utente -->
         <div class="col-md-3">
 
-          <h3>Testo informazioni</h3>
+          <div class="arl-showMax">
+            <h3>Testo informazioni</h3>
 
-          <p class="arl-showMax">
-            <small>
-            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque tempor libero eget nisi eleifend, vitae viverra turpis feugiat. Nulla facilisi. Nunc rutrum congue lobortis. Quisque imperdiet commodo ornare. Aliquam erat volutpat.
-            </small>
-          </p>
+            <p>
+              <small>
+              Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque tempor libero eget nisi eleifend, vitae viverra turpis feugiat. Nulla facilisi. Nunc rutrum congue lobortis. Quisque imperdiet commodo ornare. Aliquam erat volutpat.
+              </small>
+            </p>
 
-          <p>&nbsp;</p>
+            <p>&nbsp;</p>
+          </div>
 
           <div ng-cloak class="panel panel-success arl-showMax ng-cloak" ng-show="user">
             <div class="panel-heading">
-              <h3 class="panel-title">Profilo Utente</h3>
+              <h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> Profilo Utente</h3>
             </div>
             <div class="panel-body">
                 
@@ -121,7 +123,7 @@
           </div>
           <div ng-cloak class="panel panel-danger arl-showMax ng-cloak" ng-hide="user">
             <div class="panel-heading">
-                <h3 class="panel-title">Autenticazione</h3>
+                <h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> Autenticazione</h3>
             </div>
             <div class="panel-body">
                 <form action="{{ loginUrl }}" method="POST" role="form">
@@ -141,7 +143,7 @@
 
           <div class="panel panel-default arl-showMax">
               <div class="panel-heading">
-                <h3 class="panel-title">Ricerca veloce siti</h3>
+                <h3 class="panel-title"><span class="glyphicon glyphicon-search"></span> Ricerca veloce siti</h3>
               </div>
               <div class="panel-body">
                 <form action="" role="form">
