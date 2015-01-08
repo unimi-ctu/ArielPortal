@@ -47,6 +47,10 @@ angular
         templateUrl: 'views/acl.html',
         controller: 'AclCtrl'
       })
+      .when('/quicksearch', {
+        templateUrl: 'views/quicksearch.html',
+        controller: 'QuicksearchCtrl'
+      })
       .otherwise({
         redirectTo: '/main'
       });

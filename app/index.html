@@ -47,6 +47,7 @@
               <li><a href="#/search">Offerta</a></li>
               <li><a href="#/favorite">Preferiti</a></li>
               <li><a href="#/acl">Attività</a></li>
+              <li><a href="#/quicksearch" class="arl-hideMax">Ricerca veloce siti</a></li>
             </ul>
             <ul id="menudd" class="nav navbar-nav arl-hideMax">
               <li class="dropdown">
@@ -55,19 +56,20 @@
                   <li><a href="#/search">Offerta</a></li>
                   <li><a href="#/favorite">Preferiti</a></li>
                   <li><a href="#/acl">Attività</a></li>
+                  <li><a href="#/quicksearch">Ricerca siti</a></li>
                 </ul>
               </li>
             </ul>
-            <form class="navbar-form navbar-left arl-hideMax" role="search">
+            <form id="menusearch" class="navbar-form navbar-left arl-hideMax" role="search">
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="Parola chiave" ng-model="qsKeyword">
               </div>
               <button type="button" class="btn btn-default" ng-click="quickSearch()">Cerca siti</button>
             </form>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a ng-href="#/about">Esci</a></li>
+            <ul ng-show="user" class="nav navbar-nav navbar-right">
+              <li><a href="{{ logoutUrl }}"><span class="glyphicon glyphicon-log-out"></span> Esci</a></li>
             </ul>
-            <p class="navbar-text navbar-right">Nome Utente</p>
+            <p ng-show="user" class="navbar-text navbar-right"><span class="glyphicon glyphicon-user"></span> {{ user.FirstName}} {{ user.LastName }}</p>
           </div><!--/.nav-collapse -->
 
         </div><!--/.container-fluid -->
@@ -118,7 +120,7 @@
                 </ul>
                 </small>
 
-                <p><strong><a href="{{ logoutUrl }}">Logout</a></strong> per uscire.</p>
+                <p><strong><a href="{{ logoutUrl }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></strong> per uscire.</p>
             </div>
           </div>
           <div ng-cloak class="panel panel-danger arl-showMax ng-cloak" ng-hide="user">
@@ -229,6 +231,7 @@
         <script src="scripts/controllers/acl.js"></script>
         <script src="scripts/filters/aclfilter.js"></script>
         <script src="scripts/services/interceptor.js"></script>
+        <script src="scripts/controllers/quicksearch.js"></script>
         <!-- endbuild -->
 </body>
 </html>
