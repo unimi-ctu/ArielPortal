@@ -121,10 +121,8 @@ angular
 
     portal.getFaculties().success(function(data) {
       $rootScope.faculties = data.Data;
-	  $rootScope.facultiesMap = new Array();
-	  for (var i = 0; i < $rootScope.faculties.length; i++)
-		$rootScope.facultiesMap[$rootScope.faculties[i].Key] = $rootScope.faculties[i].Description;
-      //$scope.fillCdses();
+	  $rootScope.facultiesMap = {};
+	  $rootScope.faculties.forEach(function(fac){ $rootScope.facultiesMap[fac.Key] = fac.Description;});
     });
 
   });
