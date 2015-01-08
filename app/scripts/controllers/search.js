@@ -14,7 +14,7 @@ angular.module('portalApp')
     function getSearchVerbose() {
       var items = [];
       if ($scope.searchContext.searchParams.FacultyKey) {
-        items.push('facoltà: <strong>' + $scope.faculties[$scope.searchContext.searchParams.FacultyKey].Description + '</strong>');
+        items.push('facoltà: <strong>' + $rootScope.facultiesMap[$scope.searchContext.searchParams.FacultyKey] + '</strong>');
       }
       if ($scope.searchContext.searchParams.CdsKey) {
         items.push('codice corso di studi: <strong>' + $scope.searchContext.searchParams.CdsKey + '</strong>');
@@ -115,9 +115,9 @@ angular.module('portalApp')
     };
 
   	$scope.fillCdses = function() {
-  		if ($scope.searchContext.FacultyKey) {
+  		if ($scope.searchContext.searchParams.FacultyKey) {
 	  		portal.getCdses($scope.searchContext.searchParams.FacultyKey).success(function(data) {
-	  			$scope.cdses = data.Data === 'null' ? [] : data.Data;		
+	  			$scope.cdses = data.Data === 'null' ? [] : data.Data;	
 	  		});
   		}
   		else {

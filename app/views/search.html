@@ -28,8 +28,8 @@
 			<h3>Ricerca avanzata</h3>
 			<div class="form-group">
 				<label for="faculty">Facoltà</label>
-				<select id="faculty" class="form-control" ng-options="key as faculty.Description for (key, faculty) in faculties" ng-change="fillCdses()" ng-model="searchContext.searchParams.FacultyKey">
-					<option value="">-- selziona una facoltà --</option>
+				<select id="faculty" class="form-control" ng-options="fac.Key as fac.Description for fac in faculties" ng-model="searchContext.searchParams.FacultyKey" ng-change="fillCdses();">
+					<option value="">-- seleziona una facoltà --</option>
 					
 				</select>
 			</div>
