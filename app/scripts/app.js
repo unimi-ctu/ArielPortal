@@ -102,17 +102,17 @@ angular
       if ($route.current.$$route.controller !== 'SearchCtrl') {
         $location.path('/search');
       }
-      $rootScope.$broadcast('getw4', $rootScope.qsKeyword);
+      $rootScope.$broadcast('getw4', $rootScope.globalVars.qsKeyword);
     };
 
     $rootScope.quickSearch = function() {
       if ($route.current.$$route.controller === 'SearchCtrl') {
-        $rootScope.$broadcast('quicksearch', $rootScope.qsKeyword);
+        $rootScope.$broadcast('quicksearch', $rootScope.globalVars.qsKeyword);
       }
       else {
-        $location.path('/search/' + $rootScope.qsKeyword);
+        $location.path('/search/' + $rootScope.globalVars.qsKeyword);
       }
-      $rootScope.qsKeyword = '';
+      $rootScope.globalVars.qsKeyword = '';
     };
 
     // per ora a vuoto
