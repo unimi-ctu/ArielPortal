@@ -62,7 +62,7 @@
             </ul>
             <form id="menusearch" class="navbar-form navbar-left arl-hideMax" role="search">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Parola chiave" ng-model="qsKeyword">
+                <input type="text" class="form-control" placeholder="Parola chiave" ng-model="globalVars.qsKeyword">
               </div>
               <button type="button" class="btn btn-default" ng-click="quickSearch()">Cerca siti</button>
             </form>
@@ -152,9 +152,9 @@
                 
                   <div class="form-group">
                     <label for="">Parola chiave</label>
-                    <input type="text" class="form-control" id="" ng-model="qsKeyword" placeholder="Inserisci parola chiave">
+                    <input type="text" class="form-control" id="" ng-model="globalVars.qsKeyword" placeholder="Inserisci parola chiave">
                   </div>
-                  <button type="submit" class="btn btn-primary" ng-click="quickSearch()">Cerca</button>
+                  <button type="submit" class="btn btn-primary" ng-disabled="!globalVars.qsKeyword" ng-click="quickSearch()">Cerca</button>
                 </form>
               </div>
           </div>
