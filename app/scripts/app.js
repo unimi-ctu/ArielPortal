@@ -58,6 +58,7 @@ angular
   .run(function ($rootScope, $route, $location, $sce, portal, ENV) {
     $rootScope.logoutUrl = ENV.authUrl + 'logout.aspx?backurl=' + $location.absUrl();
     $rootScope.loginUrl = $sce.trustAsResourceUrl(ENV.authUrl + ENV.authSkin + 'login.aspx?url=' + $location.absUrl());
+	
 
     $rootScope.isDebug = false;
     // serve per definire il profilo
@@ -102,17 +103,17 @@ angular
       if ($route.current.$$route.controller !== 'SearchCtrl') {
         $location.path('/search');
       }
-      $rootScope.$broadcast('getw4', $rootScope.globalVars.qsKeyword);
+      $rootScope.$broadcast('getw4', $rootScope.qsKeyword);
     };
 
     $rootScope.quickSearch = function() {
       if ($route.current.$$route.controller === 'SearchCtrl') {
-        $rootScope.$broadcast('quicksearch', $rootScope.globalVars.qsKeyword);
+        $rootScope.$broadcast('quicksearch', $rootScope.qsKeyword);
       }
       else {
-        $location.path('/search/' + $rootScope.globalVars.qsKeyword);
+        $location.path('/search/' + $rootScope.qsKeyword);
       }
-      $rootScope.globalVars.qsKeyword = '';
+      $rootScope.qsKeyword = '';
     };
 
     // per ora a vuoto

@@ -6,10 +6,10 @@
 		
 			<div class="form-group">
 				<label for="keyword">Parola chiave</label>
-				<input type="text" class="form-control" id="keyword" placeholder="Inserisci parola chiave" ng-change="updateRootScopeProp()" ng-model="globalVars.qsKeyword">
+				<input type="text" class="form-control" id="keyword" placeholder="Inserisci parola chiave" ng-change="updateRootScopeProp()" ng-model="$root.qsKeyword">
 			</div>
 		
-			<button ng-click="quickSearch()" type="button" ng-disabled="!globalVars.qsKeyword" class="btn btn-primary">Cerca</button>
+			<button ng-click="quickSearch()" type="button" ng-disabled="!$root.qsKeyword" class="btn btn-primary">Cerca</button>
 		</form>
 	</div>
 </div>
