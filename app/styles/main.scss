@@ -4,7 +4,7 @@ $font-family-sans-serif: "open sans", "Helvetica Neue", Helvetica, Arial, sans-s
 $font-size-base: 12px;
 
 // bower:scss
-@import "bootstrap-sass-official/assets/stylesheets/bootstrap.scss";
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
 .browsehappy {
@@ -382,6 +382,7 @@ $faculty-list: (
 }
 
 .arl-favorite {
+  border-left: 8px solid $brand-primary;
   h4 {
     padding: 3px;
     border: 1px solid transparent;
