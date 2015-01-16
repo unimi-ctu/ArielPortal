@@ -8,8 +8,5 @@
  * Controller of the portalApp
  */
 angular.module('portalApp')
-  .controller('QuicksearchCtrl', function ($scope, $rootScope) {
-		$scope.updateRootScopeProp = function()  {
-			//$rootScope.qsKeyword = $scope.qsKeyword;
-		};
+  .controller('QuicksearchCtrl', function () {
   });
