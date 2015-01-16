@@ -51,6 +51,10 @@ angular
         templateUrl: 'views/quicksearch.html',
         controller: 'QuicksearchCtrl'
       })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
+      })
       .otherwise({
         redirectTo: '/main'
       });

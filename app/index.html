@@ -48,6 +48,7 @@
               <li><a href="#/favorite">Preferiti</a></li>
               <li><a href="#/acl">Attività</a></li>
               <li><a href="#/quicksearch" class="arl-hideMax">Ricerca veloce siti</a></li>
+              <li ng-hide="user"><a href="#/login" class="arl-hideMax">Login</a></li>
             </ul>
             <ul id="menudd" class="nav navbar-nav arl-hideMax">
               <li class="dropdown">
@@ -57,6 +58,7 @@
                   <li><a href="#/favorite">Preferiti</a></li>
                   <li><a href="#/acl">Attività</a></li>
                   <li><a href="#/quicksearch">Ricerca siti</a></li>
+                  <li ng-hide="user"><a href="#/login">Login</a></li>
                 </ul>
               </li>
             </ul>
@@ -232,6 +234,7 @@
         <script src="scripts/filters/aclfilter.js"></script>
         <script src="scripts/services/interceptor.js"></script>
         <script src="scripts/controllers/quicksearch.js"></script>
+        <script src="scripts/controllers/login.js"></script>
         <!-- endbuild -->
 </body>
 </html>
